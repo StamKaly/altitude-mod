@@ -1,5 +1,5 @@
 class Plane:
-    def __init__(self, players_object):
+    def __init__(self):
         self.planes = []
 
 
@@ -45,6 +45,17 @@ class Plane:
         for sublist in self.planes:
             if playerId == sublist[0]:
                 self.planes.remove(sublist)
+                break
+
+
+    def get(self, playerId):
+        for sublist in self.planes:
+            if playerId == sublist[0]:
+                plane = sublist[1]
+                red_perk = sublist[2]
+                green_perk = sublist[3]
+                blue_perk = sublist[4]
+                return plane, red_perk, green_perk, blue_perk
 
 
 
@@ -109,3 +120,12 @@ class Player:
             if vaporId == sublist[1]:
                 return sublist[2]
 
+
+    def return_all_nicknames(self):
+        nicknames = [player[0] for player in self.players]
+        return nicknames
+
+
+    def get_planes(self, playerId):
+        plane, red_perk, green_perk, blue_perk = self.plane_object.get(playerId)
+        return "You are using a nice {} with {}, {} and ofc {}".format(plane, red_perk, green_perk, blue_perk)
