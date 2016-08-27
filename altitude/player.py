@@ -1,13 +1,17 @@
 class Plane:
-    def __init__(self):
+    def __init__(self, logger):
+        self.logger = logger
         self.planes = []
 
 
-    def add_or_check(self, playerId, plane, red_perk, green_perk, blue_perk, ace, level):
+    def add_or_check(self, nickname, plane, red_perk, green_perk, blue_perk, ace, level):
         for sublist in self.planes:
-            if playerId != sublist[0]:
+            if nickname is None:
+                return
+            if nickname != sublist[0]:
                 continue
-            if playerId == sublist[0]:
+            if nickname == sublist[0]:
+                self.logger.info("Tracking changes for {}'s player info".format(nickname))
                 if plane != sublist[1]:
                     plane_change = True
                     sublist[1] = plane
@@ -38,23 +42,28 @@ class Plane:
                     sublist[6] = level
                 else:
                     level_change = False
-                return "plane_change={},red_perk_change={},green_perk_change={},blue_perk_change={},ace_change={},level_change={}".format(plane_change, red_perk_change, green_perk_change, blue_perk_change, ace_change, level_change)
-        self.planes.append([playerId, plane, red_perk, green_perk, blue_perk, ace, level])
+                changes = "plane_change={},red_perk_change={},green_perk_change={},blue_perk_change={},ace_change={},level_change={}".format(plane_change, red_perk_change, green_perk_change, blue_perk_change, ace_change, level_change)
+                self.logger.info("Changes for {}'s player info are tracked: {}".format(nickname, changes))
+                return changes
+        self.planes.append([nickname, plane, red_perk, green_perk, blue_perk, ace, level])
+        self.logger.info("{}'s player info are added to plane's list".format(nickname))
 
-    def remove(self, playerId):
+    def remove(self, nickname):
         for sublist in self.planes:
-            if playerId == sublist[0]:
+            if nickname == sublist[0]:
                 self.planes.remove(sublist)
+                self.logger.info("{}'s player info are removed from planes list".format(nickname))
                 break
 
 
-    def get(self, playerId):
+    def get(self, nickname):
         for sublist in self.planes:
-            if playerId == sublist[0]:
+            if nickname == sublist[0]:
                 plane = sublist[1]
                 red_perk = sublist[2]
                 green_perk = sublist[3]
                 blue_perk = sublist[4]
+                self.logger.info("Got and returning {}'s player info:\nPlane = {}, Red perk = {}, Green perk: {}, Blue perk: {}".format(nickname, plane, red_perk, green_perk, blue_perk))
                 return plane, red_perk, green_perk, blue_perk
 
 
@@ -62,7 +71,8 @@ class Plane:
 
 
 class Player:
-    def __init__(self, plane_object):
+    def __init__(self, logger, plane_object):
+        self.logger = logger
         self.players = []
         self.plane_object = plane_object
 
@@ -78,35 +88,28 @@ class Player:
                     self.players.append(player)
                     break
             count += 1
+        self.logger.info("All players in server added to players list")
 
 
-    def ace_level(self, playerId, ace, level):
-        for sublist in self.players:
-            if sublist[2] == playerId:
-                if len(sublist) == 6:
-                    sublist[-1] = level
-                    sublist[-2] = ace
-                if len(sublist) == 4:
-                    sublist.append(ace)
-                    sublist.append(level)
-                break
 
-
-    def add(self, nickname, vaporId, playerId, IP, ace, level):
-        self.players.append([nickname, vaporId, playerId, IP, ace, level])
+    def add(self, nickname, vaporId, playerId, IP):
+        self.players.append([nickname, vaporId, playerId, IP])
+        self.logger.info("{} is added to players list".format(nickname))
 
 
     def remove(self, nickname):
         for sublist in self.players:
             if nickname == sublist[0]:
                 self.players.remove(sublist)
-                self.remove_from_planes(sublist[2])
+                self.logger.info("{} is removed from players list".format(nickname))
+                self.remove_from_planes(nickname)
                 break
 
-    def remove_from_planes(self, playerId):
+    def remove_from_planes(self, nickname):
+        self.logger.info("Removing {}'s player info from planes list".format(nickname))
         for sublist in self.players:
-            if playerId == sublist[2]:
-                self.plane_object.remove(playerId)
+            if nickname == sublist[0]:
+                self.plane_object.remove(nickname)
                 break
 
     def nickname_from_vapor(self, vaporId):
@@ -121,11 +124,16 @@ class Player:
                 return sublist[2]
 
 
+    def nickname_from_id(self, playerId):
+        for sublist in self.players:
+            if playerId == sublist[2]:
+                return sublist[0]
+
     def return_all_nicknames(self):
         nicknames = [player[0] for player in self.players]
         return nicknames
 
 
-    def get_planes(self, playerId):
-        plane, red_perk, green_perk, blue_perk = self.plane_object.get(playerId)
+    def get_planes(self, nickname):
+        plane, red_perk, green_perk, blue_perk = self.plane_object.get(nickname)
         return "You are using a nice {} with {}, {} and ofc {}".format(plane, red_perk, green_perk, blue_perk)
