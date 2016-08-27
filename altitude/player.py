@@ -102,15 +102,9 @@ class Player:
             if nickname == sublist[0]:
                 self.players.remove(sublist)
                 self.logger.info("{} is removed from players list".format(nickname))
-                self.remove_from_planes(nickname)
-                break
-
-    def remove_from_planes(self, nickname):
-        self.logger.info("Removing {}'s player info from planes list".format(nickname))
-        for sublist in self.players:
-            if nickname == sublist[0]:
                 self.plane_object.remove(nickname)
                 break
+
 
     def nickname_from_vapor(self, vaporId):
         for sublist in self.players:
