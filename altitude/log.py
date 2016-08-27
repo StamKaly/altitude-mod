@@ -31,10 +31,12 @@ class Log:
             if type == "clientRemove":
                 self.logger.info("Removing {}'s client from players and planes list".format(decoded['nickname']))
                 self.players.remove(decoded['nickname'])
+            if type == "clientNicknameChange":
+                self.logger.info("Changing {}'s nickname in players and planes list".format(decoded['oldNickname']))
+                self.players.nickname_change(decoded['oldNickname'], decoded['newNickname'])
             if type == "playerInfoEv":
                 self.planes.add_or_check(self.players.nickname_from_id(decoded['player']), decoded['plane'], decoded['perkRed'], decoded['perkGreen'],
                                          decoded['perkBlue'], decoded['ace'], decoded['level'])
-                pass
         except KeyError:
             self.logger.debug("Could not handle line {}: {}\nmaybe add functionality for it?\n".format(current_line+1, decoded))
             pass

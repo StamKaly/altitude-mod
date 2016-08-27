@@ -55,6 +55,12 @@ class Plane:
                 self.logger.info("{}'s player info are removed from planes list".format(nickname))
                 break
 
+    def nickname_change(self, oldNickname, newNickname):
+        for sublist in self.planes:
+            if oldNickname == sublist[0]:
+                sublist[0] = newNickname
+                self.logger.info("{}'s nickname changed to {} in planes list".format(oldNickname, newNickname))
+                break
 
     def get(self, nickname):
         for sublist in self.planes:
@@ -103,6 +109,15 @@ class Player:
                 self.players.remove(sublist)
                 self.logger.info("{} is removed from players list".format(nickname))
                 self.plane_object.remove(nickname)
+                break
+
+
+    def nickname_change(self, oldNickname, newNickname):
+        for sublist in self.players:
+            if oldNickname == sublist[0]:
+                sublist[0] = newNickname
+                self.logger.info("{}'s nickname changed to {} in players list".format(oldNickname, newNickname))
+                self.plane_object.nickname_change(oldNickname, newNickname)
                 break
 
 

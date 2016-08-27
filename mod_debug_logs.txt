@@ -3619,3 +3619,96 @@ Plane = Biplane, Red perk = Heavy Cannon, Green perk: Rubberized Hull, Blue perk
 28-08-2016, 00:23:24   -   INFO   -   Changes for Bot 1's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=False
 28-08-2016, 00:23:24   -   INFO   -   Tracking changes for Bot 2's player info
 28-08-2016, 00:23:24   -   INFO   -   Changes for Bot 2's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 01:17:35   -   INFO   -   Adding Bot 1's client to players and planes list
+28-08-2016, 01:17:35   -   INFO   -   Bot 1 is added to players list
+28-08-2016, 01:17:35   -   INFO   -   Adding Bot 2's client to players and planes list
+28-08-2016, 01:17:35   -   INFO   -   Bot 2 is added to players list
+28-08-2016, 01:17:35   -   INFO   -   Tracking changes for Bot 1's player info
+28-08-2016, 01:17:35   -   INFO   -   Changes for Bot 1's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 01:17:35   -   INFO   -   Tracking changes for Bot 2's player info
+28-08-2016, 01:17:35   -   INFO   -   Changes for Bot 2's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 01:19:01   -   INFO   -   Mod started
+28-08-2016, 01:19:06   -   INFO   -   Mod started
+28-08-2016, 01:20:05   -   INFO   -   Adding Stam's client to players and planes list
+28-08-2016, 01:20:05   -   INFO   -   Stam is added to players list
+28-08-2016, 01:20:12   -   INFO   -   Stam's player info are added to plane's list
+28-08-2016, 01:20:12   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 01:20:12   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 01:20:34   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 01:20:34   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 01:20:39   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 01:20:39   -   INFO   -   Changes for Stam's player info are tracked: plane_change=True,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 01:21:04   -   INFO   -   Parsing chat message: hello
+28-08-2016, 01:21:28   -   INFO   -   Removing Stam's client from players and planes list
+28-08-2016, 01:21:28   -   INFO   -   Stam is removed from players list
+28-08-2016, 01:21:28   -   INFO   -   Stam's player info are removed from planes list
+28-08-2016, 01:21:28   -   INFO   -   None's player info are added to plane's list
+28-08-2016, 01:23:07   -   INFO   -   Adding ITLBATL ftw's client to players and planes list
+28-08-2016, 01:23:07   -   INFO   -   ITLBATL ftw is added to players list
+28-08-2016, 01:23:09   -   INFO   -   ITLBATL ftw's player info are added to plane's list
+28-08-2016, 01:23:09   -   INFO   -   Tracking changes for ITLBATL ftw's player info
+28-08-2016, 01:23:09   -   INFO   -   Changes for ITLBATL ftw's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 01:23:13   -   INFO   -   Removing ITLBATL ftw's client from players and planes list
+28-08-2016, 01:23:13   -   INFO   -   ITLBATL ftw is removed from players list
+28-08-2016, 01:23:13   -   INFO   -   ITLBATL ftw's player info are removed from planes list
+28-08-2016, 01:35:40   -   INFO   -   Mod started
+28-08-2016, 01:36:09   -   INFO   -   Adding ITLBATL ftw's client to players and planes list
+28-08-2016, 01:36:09   -   INFO   -   ITLBATL ftw is added to players list
+28-08-2016, 01:36:15   -   INFO   -   ITLBATL ftw's player info are added to plane's list
+28-08-2016, 01:36:15   -   INFO   -   Tracking changes for ITLBATL ftw's player info
+28-08-2016, 01:36:15   -   INFO   -   Changes for ITLBATL ftw's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 01:36:59   -   INFO   -   Tracking changes for ITLBATL ftw's player info
+28-08-2016, 01:36:59   -   INFO   -   Changes for ITLBATL ftw's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 01:36:59   -   INFO   -   ITLBATL ftw's nickname changed to //////\\\\\\ in players list
+28-08-2016, 01:36:59   -   INFO   -   ITLBATL ftw's nickname changed to //////\\\\\\ in planes list
+28-08-2016, 01:37:31   -   INFO   -   Parsing chat message: hello
+28-08-2016, 01:37:40   -   INFO   -   Parsing chat message: soo server whats my plane?
+28-08-2016, 01:37:40   -   INFO   -   Got and returning //////\\\\\\'s player info:
+Plane = Loopy, Red perk = Double Fire, Green perk: Heavy Armor, Blue perk: Turbocharger
+28-08-2016, 01:37:44   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 01:37:44   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 01:37:46   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 01:37:46   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=True,red_perk_change=True,green_perk_change=False,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 01:37:52   -   INFO   -   Parsing chat message: soo server whats my plane?
+28-08-2016, 01:37:52   -   INFO   -   Got and returning //////\\\\\\'s player info:
+Plane = Bomber, Red perk = Flak Tailgun, Green perk: Heavy Armor, Blue perk: Ultracapacitor
+28-08-2016, 01:39:32   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 01:39:32   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 01:40:44   -   INFO   -   Mod started
+28-08-2016, 01:40:44   -   INFO   -   Adding ITLBATL ftw's client to players and planes list
+28-08-2016, 01:40:44   -   INFO   -   ITLBATL ftw is added to players list
+28-08-2016, 01:40:44   -   INFO   -   ITLBATL ftw's player info are added to plane's list
+28-08-2016, 01:40:44   -   INFO   -   Tracking changes for ITLBATL ftw's player info
+28-08-2016, 01:40:44   -   INFO   -   Changes for ITLBATL ftw's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 01:40:44   -   INFO   -   Tracking changes for ITLBATL ftw's player info
+28-08-2016, 01:40:44   -   INFO   -   Changes for ITLBATL ftw's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 01:40:44   -   INFO   -   Changing ITLBATL ftw's nickname in players and planes list
+28-08-2016, 01:40:44   -   INFO   -   ITLBATL ftw's nickname changed to //////\\\\\\ in players list
+28-08-2016, 01:40:44   -   INFO   -   ITLBATL ftw's nickname changed to //////\\\\\\ in planes list
+28-08-2016, 01:40:44   -   INFO   -   Parsing chat message: hello
+28-08-2016, 01:40:44   -   INFO   -   Parsing chat message: soo server whats my plane?
+28-08-2016, 01:40:44   -   INFO   -   Got and returning //////\\\\\\'s player info:
+Plane = Loopy, Red perk = Double Fire, Green perk: Heavy Armor, Blue perk: Turbocharger
+28-08-2016, 01:40:44   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 01:40:44   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 01:40:44   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 01:40:44   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=True,red_perk_change=True,green_perk_change=False,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 01:40:44   -   INFO   -   Parsing chat message: soo server whats my plane?
+28-08-2016, 01:40:44   -   INFO   -   Got and returning //////\\\\\\'s player info:
+Plane = Bomber, Red perk = Flak Tailgun, Green perk: Heavy Armor, Blue perk: Ultracapacitor
+28-08-2016, 01:40:44   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 01:40:44   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 01:41:05   -   INFO   -   Parsing chat message: soo server whats my plane?
+28-08-2016, 01:41:05   -   INFO   -   Got and returning //////\\\\\\'s player info:
+Plane = Bomber, Red perk = Flak Tailgun, Green perk: Heavy Armor, Blue perk: Ultracapacitor
+28-08-2016, 01:41:07   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 01:41:07   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 01:41:09   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 01:41:09   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=True,red_perk_change=True,green_perk_change=False,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 01:41:11   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 01:41:11   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 01:41:19   -   INFO   -   Parsing chat message: soo server whats my plane?
+28-08-2016, 01:41:19   -   INFO   -   Got and returning //////\\\\\\'s player info:
+Plane = Loopy, Red perk = Acid Bomb, Green perk: Heavy Armor, Blue perk: Turbocharger
+28-08-2016, 01:41:22   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 01:41:22   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
