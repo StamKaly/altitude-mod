@@ -1,1 +1,1 @@
-from . import commands, log, player, run
+from . import commands, log, player, run, playerinfo_handler, game

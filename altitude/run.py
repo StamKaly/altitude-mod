@@ -1,24 +1,22 @@
 import logging
-from . import commands, log, player
+from . import commands, log, player, playerinfo_handler, game
 
 
-def on_message(commands_object, players_object, decoded):
+def on_message(logger, commands_object, players_object, decoded):
     if decoded['message'] == "hello":
         commands_object.Message("Hello there, I am the server!")
-    if decoded['message'] == "soo server whats my plane?":
+    elif decoded['message'] == "soo server whats my plane?":
         commands_object.Message(players_object.get_planes(players_object.nickname_from_id(decoded['player'])))
+    logger.info('Chat message "{}" was parsed'.format(decoded['message']))
 
 
 
 
-def add_player(player_object, nickname, vaporId, playerId, IP):
-    player_object.add(nickname, vaporId, playerId, IP)
-
-
-
-def remove_player(player_object, nickname):
-    player_object.remove(nickname)
-
+def on_clientAdd(logger, commands_object, nickname):
+    commands_object.Multiple_Whispers(nickname, ["Hey there, it's me!",
+                                                 "-Who are you? Mandel or...",
+                                                 "ITS ME, MARIO!"])
+    logger.info("{} is welcomed!".format(nickname))
 
 
 def run(port, commands_file, logs_file, old_logs, logs_archive):
@@ -35,7 +33,9 @@ def run(port, commands_file, logs_file, old_logs, logs_archive):
     logger.addHandler(ch)
     planes = player.Plane(logger)
     players = player.Player(logger, planes)
-    command = commands.Commands(port, commands_file)
-    logs = log.Log(logger, logs_file, old_logs, logs_archive, command, players, planes)
+    command = commands.Commands(logger, players, port, commands_file)
+    playerInfoHandler = playerinfo_handler.Handler(logger, command, planes, players)
+    game_info = game.Game(logger, players, command)
+    logs = log.Log(logger, logs_file, old_logs, logs_archive, command, players, planes, playerInfoHandler, game_info)
     logger.info('Mod started')
     logs.Main()

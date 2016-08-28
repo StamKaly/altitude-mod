@@ -5,9 +5,9 @@ class Plane:
 
 
     def add_or_check(self, nickname, plane, red_perk, green_perk, blue_perk, ace, level):
+        if nickname is None:
+            return
         for sublist in self.planes:
-            if nickname is None:
-                return
             if nickname != sublist[0]:
                 continue
             if nickname == sublist[0]:
@@ -44,9 +44,12 @@ class Plane:
                     level_change = False
                 changes = "plane_change={},red_perk_change={},green_perk_change={},blue_perk_change={},ace_change={},level_change={}".format(plane_change, red_perk_change, green_perk_change, blue_perk_change, ace_change, level_change)
                 self.logger.info("Changes for {}'s player info are tracked: {}".format(nickname, changes))
-                return changes
+                return plane_change, red_perk_change, green_perk_change, blue_perk_change, ace_change, level_change
         self.planes.append([nickname, plane, red_perk, green_perk, blue_perk, ace, level])
         self.logger.info("{}'s player info are added to plane's list".format(nickname))
+        return "add"
+
+
 
     def remove(self, nickname):
         for sublist in self.planes:

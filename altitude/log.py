@@ -9,7 +9,8 @@ from . import run
 
 
 class Log:
-    def __init__(self, logger, log_file_location, old_logs_location, logs_archive_location, commands_object, players_object, planes_object):
+    def __init__(self, logger, log_file_location, old_logs_location, logs_archive_location, commands_object,
+                 players_object, planes_object, playerInfo_handler, game):
         self.logger = logger
         self.log_file = log_file_location
         self.logs_archive = logs_archive_location
@@ -17,6 +18,8 @@ class Log:
         self.commands = commands_object
         self.players = players_object
         self.planes = planes_object
+        self.playerInfoHandler = playerInfo_handler
+        self.game = game
 
 
     def do_with_logs(self, decoded, current_line):
@@ -24,19 +27,28 @@ class Log:
             type = decoded['type']
             if type == "chat":
                 self.logger.info("Parsing chat message: {}".format(decoded['message']))
-                run.on_message(self.commands, self.players, decoded)
-            if type == "clientAdd":
+                run.on_message(self.logger, self.commands, self.players, decoded)
+
+
+
+            if type == "mapChange":
+                self.game.check_current_mode_and_map(decoded['map'])
+
+
+
+            # Players
+            elif type == "clientAdd":
                 self.logger.info("Adding {}'s client to players and planes list".format(decoded['nickname']))
                 self.players.add(decoded['nickname'], decoded['vaporId'], decoded['player'], decoded['ip'])
-            if type == "clientRemove":
+                run.on_clientAdd(self.logger, self.commands, decoded['nickname'])
+            elif type == "clientRemove":
                 self.logger.info("Removing {}'s client from players and planes list".format(decoded['nickname']))
                 self.players.remove(decoded['nickname'])
-            if type == "clientNicknameChange":
+            elif type == "clientNicknameChange":
                 self.logger.info("Changing {}'s nickname in players and planes list".format(decoded['oldNickname']))
                 self.players.nickname_change(decoded['oldNickname'], decoded['newNickname'])
-            if type == "playerInfoEv":
-                self.planes.add_or_check(self.players.nickname_from_id(decoded['player']), decoded['plane'], decoded['perkRed'], decoded['perkGreen'],
-                                         decoded['perkBlue'], decoded['ace'], decoded['level'])
+            elif type == "playerInfoEv":
+                self.playerInfoHandler.parse(decoded)
         except KeyError:
             self.logger.debug("Could not handle line {}: {}\nmaybe add functionality for it?\n".format(current_line+1, decoded))
             pass

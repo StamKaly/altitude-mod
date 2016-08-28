@@ -3712,3 +3712,304 @@ Plane = Bomber, Red perk = Flak Tailgun, Green perk: Heavy Armor, Blue perk: Ult
 Plane = Loopy, Red perk = Acid Bomb, Green perk: Heavy Armor, Blue perk: Turbocharger
 28-08-2016, 01:41:22   -   INFO   -   Tracking changes for //////\\\\\\'s player info
 28-08-2016, 01:41:22   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 10:43:37   -   INFO   -   Mod started
+28-08-2016, 10:43:37   -   INFO   -   Adding ITLBATL ftw's client to players and planes list
+28-08-2016, 10:43:37   -   INFO   -   ITLBATL ftw is added to players list
+28-08-2016, 10:43:37   -   INFO   -   ITLBATL ftw is welcomed!
+28-08-2016, 10:43:37   -   INFO   -   ITLBATL ftw's player info are added to plane's list
+28-08-2016, 10:43:37   -   INFO   -   Tracking changes for ITLBATL ftw's player info
+28-08-2016, 10:43:37   -   INFO   -   Changes for ITLBATL ftw's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 10:43:37   -   INFO   -   Tracking changes for ITLBATL ftw's player info
+28-08-2016, 10:43:37   -   INFO   -   Changes for ITLBATL ftw's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 10:43:37   -   INFO   -   Changing ITLBATL ftw's nickname in players and planes list
+28-08-2016, 10:43:37   -   INFO   -   ITLBATL ftw's nickname changed to //////\\\\\\ in players list
+28-08-2016, 10:43:37   -   INFO   -   ITLBATL ftw's nickname changed to //////\\\\\\ in planes list
+28-08-2016, 10:43:37   -   INFO   -   Parsing chat message: hello
+28-08-2016, 10:44:30   -   INFO   -   Mod started
+28-08-2016, 10:44:30   -   INFO   -   Adding ITLBATL ftw's client to players and planes list
+28-08-2016, 10:44:30   -   INFO   -   ITLBATL ftw is added to players list
+28-08-2016, 10:44:30   -   INFO   -   ITLBATL ftw is welcomed!
+28-08-2016, 10:44:30   -   INFO   -   ITLBATL ftw's player info are added to plane's list
+28-08-2016, 10:44:30   -   INFO   -   Tracking changes for ITLBATL ftw's player info
+28-08-2016, 10:44:30   -   INFO   -   Changes for ITLBATL ftw's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 10:44:30   -   INFO   -   Tracking changes for ITLBATL ftw's player info
+28-08-2016, 10:44:30   -   INFO   -   Changes for ITLBATL ftw's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 10:44:30   -   INFO   -   Changing ITLBATL ftw's nickname in players and planes list
+28-08-2016, 10:44:30   -   INFO   -   ITLBATL ftw's nickname changed to //////\\\\\\ in players list
+28-08-2016, 10:44:30   -   INFO   -   ITLBATL ftw's nickname changed to //////\\\\\\ in planes list
+28-08-2016, 10:44:30   -   INFO   -   Parsing chat message: hello
+28-08-2016, 10:44:30   -   INFO   -   Chat message "hello" was parsed
+28-08-2016, 10:44:30   -   INFO   -   Parsing chat message: soo server whats my plane?
+28-08-2016, 10:44:30   -   INFO   -   Got and returning //////\\\\\\'s player info:
+Plane = Loopy, Red perk = Double Fire, Green perk: Heavy Armor, Blue perk: Turbocharger
+28-08-2016, 10:44:30   -   INFO   -   Chat message "soo server whats my plane?" was parsed
+28-08-2016, 10:44:30   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 10:44:30   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 10:44:30   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 10:44:30   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=True,red_perk_change=True,green_perk_change=False,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 10:44:30   -   INFO   -   Parsing chat message: soo server whats my plane?
+28-08-2016, 10:44:30   -   INFO   -   Got and returning //////\\\\\\'s player info:
+Plane = Bomber, Red perk = Flak Tailgun, Green perk: Heavy Armor, Blue perk: Ultracapacitor
+28-08-2016, 10:44:30   -   INFO   -   Chat message "soo server whats my plane?" was parsed
+28-08-2016, 10:44:30   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 10:44:30   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 10:44:30   -   INFO   -   Parsing chat message: soo server whats my plane?
+28-08-2016, 10:44:30   -   INFO   -   Got and returning //////\\\\\\'s player info:
+Plane = Bomber, Red perk = Flak Tailgun, Green perk: Heavy Armor, Blue perk: Ultracapacitor
+28-08-2016, 10:44:30   -   INFO   -   Chat message "soo server whats my plane?" was parsed
+28-08-2016, 10:44:30   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 10:44:30   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 10:44:30   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 10:44:30   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=True,red_perk_change=True,green_perk_change=False,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 10:44:30   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 10:44:30   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 10:44:30   -   INFO   -   Parsing chat message: soo server whats my plane?
+28-08-2016, 10:44:30   -   INFO   -   Got and returning //////\\\\\\'s player info:
+Plane = Loopy, Red perk = Acid Bomb, Green perk: Heavy Armor, Blue perk: Turbocharger
+28-08-2016, 10:44:30   -   INFO   -   Chat message "soo server whats my plane?" was parsed
+28-08-2016, 10:44:30   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 10:44:30   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 10:44:30   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 10:44:30   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 10:45:21   -   INFO   -   Mod started
+28-08-2016, 10:45:47   -   INFO   -   Adding //////\\\\\\'s client to players and planes list
+28-08-2016, 10:45:47   -   INFO   -   //////\\\\\\ is added to players list
+28-08-2016, 10:45:47   -   INFO   -   //////\\\\\\ is welcomed!
+28-08-2016, 10:45:53   -   INFO   -   //////\\\\\\'s player info are added to plane's list
+28-08-2016, 10:45:54   -   INFO   -   Tracking changes for //////\\\\\\'s player info
+28-08-2016, 10:45:54   -   INFO   -   Changes for //////\\\\\\'s player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 10:47:38   -   INFO   -   Removing //////\\\\\\'s client from players and planes list
+28-08-2016, 10:47:38   -   INFO   -   //////\\\\\\ is removed from players list
+28-08-2016, 10:47:38   -   INFO   -   //////\\\\\\'s player info are removed from planes list
+28-08-2016, 10:47:38   -   INFO   -   None's player info are added to plane's list
+28-08-2016, 10:47:59   -   INFO   -   Adding Stam's client to players and planes list
+28-08-2016, 10:47:59   -   INFO   -   Stam is added to players list
+28-08-2016, 10:47:59   -   INFO   -   Stam is welcomed!
+28-08-2016, 10:48:00   -   INFO   -   Stam's player info are added to plane's list
+28-08-2016, 10:48:00   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 10:48:00   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 10:48:07   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 10:48:07   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 10:52:57   -   INFO   -   Removing Stam's client from players and planes list
+28-08-2016, 10:52:57   -   INFO   -   Stam is removed from players list
+28-08-2016, 10:52:57   -   INFO   -   Stam's player info are removed from planes list
+28-08-2016, 10:54:07   -   INFO   -   Adding Stam's client to players and planes list
+28-08-2016, 10:54:07   -   INFO   -   Stam is added to players list
+28-08-2016, 10:54:07   -   INFO   -   Stam is welcomed!
+28-08-2016, 10:54:08   -   INFO   -   Stam's player info are added to plane's list
+28-08-2016, 10:54:08   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 10:54:08   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 10:54:19   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 10:54:19   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 10:54:27   -   INFO   -   Parsing chat message: hello
+28-08-2016, 10:54:27   -   INFO   -   Chat message "hello" was parsed
+28-08-2016, 10:54:46   -   INFO   -   Parsing chat message: soo server whats my plane?
+28-08-2016, 10:54:46   -   INFO   -   Got and returning Stam's player info:
+Plane = Loopy, Red perk = Acid Bomb, Green perk: Repair Drone, Blue perk: Turbocharger
+28-08-2016, 10:54:46   -   INFO   -   Chat message "soo server whats my plane?" was parsed
+28-08-2016, 10:56:15   -   INFO   -   Parsing chat message: hello
+28-08-2016, 10:56:15   -   INFO   -   Chat message "hello" was parsed
+28-08-2016, 10:56:40   -   INFO   -   Parsing chat message: this is so god damn awesome
+28-08-2016, 10:56:40   -   INFO   -   Chat message "this is so god damn awesome" was parsed
+28-08-2016, 10:56:51   -   INFO   -   Parsing chat message: right?
+28-08-2016, 10:56:51   -   INFO   -   Chat message "right?" was parsed
+28-08-2016, 10:56:56   -   INFO   -   Parsing chat message: soo server whats my plane?
+28-08-2016, 10:56:56   -   INFO   -   Got and returning Stam's player info:
+Plane = Loopy, Red perk = Acid Bomb, Green perk: Repair Drone, Blue perk: Turbocharger
+28-08-2016, 10:56:56   -   INFO   -   Chat message "soo server whats my plane?" was parsed
+28-08-2016, 10:57:27   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 10:57:27   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 10:57:27   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 10:57:27   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 10:57:28   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 10:57:28   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 10:59:51   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 10:59:51   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 10:59:51   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 10:59:51   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 10:59:51   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 10:59:51   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 11:00:50   -   INFO   -   Parsing chat message: hello
+28-08-2016, 11:00:50   -   INFO   -   Chat message "hello" was parsed
+28-08-2016, 11:00:52   -   INFO   -   Parsing chat message: hello
+28-08-2016, 11:00:52   -   INFO   -   Chat message "hello" was parsed
+28-08-2016, 11:00:57   -   INFO   -   Parsing chat message: hello
+28-08-2016, 11:00:57   -   INFO   -   Chat message "hello" was parsed
+28-08-2016, 11:00:58   -   INFO   -   Parsing chat message: hello
+28-08-2016, 11:00:58   -   INFO   -   Chat message "hello" was parsed
+28-08-2016, 11:01:09   -   INFO   -   Parsing chat message: hello
+28-08-2016, 11:01:09   -   INFO   -   Chat message "hello" was parsed
+28-08-2016, 11:01:10   -   INFO   -   Parsing chat message: hello
+28-08-2016, 11:01:10   -   INFO   -   Chat message "hello" was parsed
+28-08-2016, 11:01:11   -   INFO   -   Parsing chat message: hello
+28-08-2016, 11:01:11   -   INFO   -   Chat message "hello" was parsed
+28-08-2016, 11:01:12   -   INFO   -   Parsing chat message: hello
+28-08-2016, 11:01:12   -   INFO   -   Chat message "hello" was parsed
+28-08-2016, 11:01:37   -   INFO   -   Removing Stam's client from players and planes list
+28-08-2016, 11:01:37   -   INFO   -   Stam is removed from players list
+28-08-2016, 11:01:37   -   INFO   -   Stam's player info are removed from planes list
+28-08-2016, 11:17:02   -   INFO   -   Adding Stam's client to players and planes list
+28-08-2016, 11:17:02   -   INFO   -   Stam is added to players list
+28-08-2016, 11:17:02   -   INFO   -   Stam is welcomed!
+28-08-2016, 11:17:03   -   INFO   -   Stam's player info are added to plane's list
+28-08-2016, 11:17:03   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 11:17:03   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 11:17:13   -   INFO   -   Parsing chat message: Shoot the Ball into the goal to score and don't forget to pass!
+28-08-2016, 11:17:13   -   INFO   -   Chat message "Shoot the Ball into the goal to score and don't forget to pass!" was parsed
+28-08-2016, 11:17:39   -   INFO   -   Parsing chat message:  
+28-08-2016, 11:17:39   -   INFO   -   Chat message " " was parsed
+28-08-2016, 11:20:03   -   INFO   -   Parsing chat message: Press S or the middle mouse button in order to use the ball or any other powerup.
+28-08-2016, 11:20:03   -   INFO   -   Chat message "Press S or the middle mouse button in order to use the ball or any other powerup." was parsed
+28-08-2016, 13:07:37   -   INFO   -   Mod started
+28-08-2016, 13:07:43   -   INFO   -   Adding Stam's client to players and planes list
+28-08-2016, 13:07:43   -   INFO   -   Stam is added to players list
+28-08-2016, 13:07:43   -   INFO   -   Stam is welcomed!
+28-08-2016, 13:07:44   -   INFO   -   Stam's player info are added to plane's list
+28-08-2016, 13:07:44   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:07:44   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 13:07:44   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:12:21   -   INFO   -   Mod started
+28-08-2016, 13:12:21   -   INFO   -   Adding Stam's client to players and planes list
+28-08-2016, 13:12:21   -   INFO   -   Stam is added to players list
+28-08-2016, 13:12:21   -   INFO   -   Stam is welcomed!
+28-08-2016, 13:12:21   -   INFO   -   Stam's player info are added to plane's list
+28-08-2016, 13:12:21   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:12:21   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 13:12:21   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:12:21   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:12:21   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:12:21   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 13:12:21   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:12:21   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:12:21   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:12:21   -   INFO   -   Changes for Stam's player info are tracked: plane_change=True,red_perk_change=True,green_perk_change=True,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 13:12:21   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:12:21   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:12:21   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:12:21   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 13:12:21   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:12:21   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:12:34   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:12:34   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 13:12:34   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:12:34   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:12:40   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:12:40   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 13:12:40   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:12:40   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:13:17   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:13:17   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 13:13:17   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:13:17   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:13:35   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:13:35   -   INFO   -   Changes for Stam's player info are tracked: plane_change=True,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 13:13:35   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:13:35   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:14:49   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:14:49   -   INFO   -   Changes for Stam's player info are tracked: plane_change=True,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 13:14:49   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:14:49   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:14:49   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:14:49   -   INFO   -   Changes for Stam's player info are tracked: plane_change=True,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 13:14:49   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:14:49   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:14:49   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:14:49   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 13:14:49   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:14:49   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:14:58   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:14:58   -   INFO   -   Changes for Stam's player info are tracked: plane_change=True,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 13:14:58   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:14:58   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:15:23   -   INFO   -   Removing Stam's client from players and planes list
+28-08-2016, 13:15:23   -   INFO   -   Stam is removed from players list
+28-08-2016, 13:15:23   -   INFO   -   Stam's player info are removed from planes list
+28-08-2016, 13:15:23   -   INFO   -   Parsing changes for None's player info
+28-08-2016, 13:28:59   -   INFO   -   Mod started
+28-08-2016, 13:28:59   -   INFO   -   Adding Stam's client to players and planes list
+28-08-2016, 13:28:59   -   INFO   -   Stam is added to players list
+28-08-2016, 13:28:59   -   INFO   -   Stam is welcomed!
+28-08-2016, 13:28:59   -   INFO   -   Stam's player info are added to plane's list
+28-08-2016, 13:28:59   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 13:28:59   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:28:59   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 13:28:59   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:28:59   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Changes for Stam's player info are tracked: plane_change=True,red_perk_change=True,green_perk_change=True,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 13:28:59   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:28:59   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 13:28:59   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:28:59   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 13:28:59   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:28:59   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 13:28:59   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:28:59   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 13:28:59   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:28:59   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Changes for Stam's player info are tracked: plane_change=True,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 13:28:59   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:28:59   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Changes for Stam's player info are tracked: plane_change=True,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 13:28:59   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:28:59   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Changes for Stam's player info are tracked: plane_change=True,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 13:28:59   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:28:59   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 13:28:59   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:28:59   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Changes for Stam's player info are tracked: plane_change=True,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 13:28:59   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:28:59   -   INFO   -   Removing Stam's client from players and planes list
+28-08-2016, 13:28:59   -   INFO   -   Stam is removed from players list
+28-08-2016, 13:28:59   -   INFO   -   Stam's player info are removed from planes list
+28-08-2016, 13:28:59   -   INFO   -   Adding Stam's client to players and planes list
+28-08-2016, 13:28:59   -   INFO   -   Stam is added to players list
+28-08-2016, 13:28:59   -   INFO   -   Stam is welcomed!
+28-08-2016, 13:28:59   -   INFO   -   Stam's player info are added to plane's list
+28-08-2016, 13:28:59   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=True
+28-08-2016, 13:28:59   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:28:59   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:29:12   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:29:12   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 13:29:12   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:29:12   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:29:21   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:29:21   -   INFO   -   Changes for Stam's player info are tracked: plane_change=True,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 13:29:21   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:29:21   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:30:10   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:30:10   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 13:30:10   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:30:10   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:33:07   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:33:07   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 13:33:07   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:33:07   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:33:10   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:33:10   -   INFO   -   Changes for Stam's player info are tracked: plane_change=True,red_perk_change=True,green_perk_change=True,blue_perk_change=True,ace_change=False,level_change=False
+28-08-2016, 13:33:10   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:33:10   -   INFO   -   Stam's player info changes are parsed
+28-08-2016, 13:33:47   -   INFO   -   Tracking changes for Stam's player info
+28-08-2016, 13:33:47   -   INFO   -   Changes for Stam's player info are tracked: plane_change=False,red_perk_change=False,green_perk_change=False,blue_perk_change=False,ace_change=False,level_change=False
+28-08-2016, 13:33:47   -   INFO   -   Parsing changes for Stam's player info
+28-08-2016, 13:33:47   -   INFO   -   Stam's player info changes are parsed

@@ -1,5 +1,7 @@
 class Commands:
-    def __init__(self, port, commands_file_location):
+    def __init__(self, logger, players_object, port, commands_file_location):
+        self.logger = logger
+        self.players = players_object
         self.commands_file = commands_file_location
         self.console = "{},console,".format(port)
 
@@ -12,11 +14,13 @@ class Commands:
     def StartTournament(self):
         cmd = '{}startTournament'.format(self.console)
         self.write_command(cmd)
+        self.logger.info("Tournament has now started")
 
 
     def StopTournament(self):
         cmd = '{}stopTournament'.format(self.console)
         self.write_command(cmd)
+        self.logger.info("Tournament is now stopped")
 
 
     def Whisper(self, playerName, message):
@@ -44,18 +48,21 @@ class Commands:
     def ChangeMap(self, mapName):
         cmd = '{}changeMap {}\n'.format(self.console, mapName)
         self.write_command(cmd)
+        self.logger.info("Map is now changed to {}".format(mapName))
 
 
 
     def CameraScale(self, camera):
         cmd = '{}testCameraViewScale {}\n'.format(self.console, camera)
         self.write_command(cmd)
+        self.logger.info("Everyone's camera has now a scale of {}%".format(camera))
 
 
 
     def PlaneScale(self, scale):
         cmd = '{}testPlaneScale {}\n'.format(self.console, scale)
         self.write_command(cmd)
+        self.logger.info("Everyone's plane has now a scale of {}%".format(scale))
 
 
 
@@ -70,12 +77,14 @@ class Commands:
             mode = 3
         cmd = '{}testGravityMode {}\n'.format(self.console, mode)
         self.write_command(cmd)
+        self.logger.info("Gravity now applies to {}".format(mode))
 
 
 
     def HealthModifier(self, health):
         cmd = '{}testHealthModifier {}'.format(self.console, health)
         self.write_command(cmd)
+        self.logger.info("Everyone's health is now set to {}%".format(health))
 
 
 
@@ -92,22 +101,28 @@ class Commands:
     def AssignTeam(self, playerName, team):
         cmd = '{}assignTeam "{}" {}\n'.format(self.console, playerName, self.get_team(team))
         self.write_command(cmd)
+        self.logger.info("{} is moved to {} - (Non-tournament Mode)".format(playerName, team))
 
 
     def ModifyTournament(self, playerName, team):
         cmd = '{}modifyTournament "{}" {}\n'.format(self.console, playerName, self.get_team(team))
         self.write_command(cmd)
+        self.logger.info("{} is moved to {} - (Tournament Mode)".format(playerName, team))
 
 
-    def AssignEveryone(self, playerNames, team):
-        team = self.get_team(team)
+    def AssignEveryone(self, team):
+        team_num = self.get_team(team)
+        playerNames = [player[0] for player in self.players.players]
         for arg in playerNames:
-            cmd = '{}assignTeam "{}" {}\n'.format(self.console, arg, team)
+            cmd = '{}assignTeam "{}" {}\n'.format(self.console, arg, team_num)
             self.write_command(cmd)
+        self.logger.info('Everyone in server is moved to {} - (Non-tournament Mode)'.format(team))
 
 
-    def ModifyEveryone(self, playerNames, team):
-        team = self.get_team(team)
+    def ModifyEveryone(self, team):
+        team_num = self.get_team(team)
+        playerNames = [player[0] for player in self.players.players]
         for arg in playerNames:
-            cmd = '{}modifyTournament "{}" {}\n'.format(self.console, arg, team)
+            cmd = '{}modifyTournament "{}" {}\n'.format(self.console, arg, team_num)
             self.write_command(cmd)
+        self.logger.info('Everyone in server is moved to {} - (Tournament Mode)'.format(team))
