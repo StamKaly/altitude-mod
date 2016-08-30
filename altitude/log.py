@@ -10,7 +10,7 @@ from . import run
 
 class Log:
     def __init__(self, logger, log_file_location, old_logs_location, logs_archive_location, commands_object,
-                 players_object, planes_object, playerInfo_handler, game):
+                 players_object, planesPositions_object, planes_object, playerInfo_handler, game):
         self.logger = logger
         self.current_line = 0
         self.log_file = log_file_location
@@ -18,6 +18,7 @@ class Log:
         self.old_logs = old_logs_location
         self.commands = commands_object
         self.players = players_object
+        self.planesPositions = planesPositions_object
         self.planes = planes_object
         self.playerInfoHandler = playerInfo_handler
         self.game = game
@@ -39,7 +40,8 @@ class Log:
 
 
 
-
+            if type == "logPlanePositions":
+                self.planesPositions.add_or_check(self.decoded)
 
 
 

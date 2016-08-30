@@ -3,7 +3,11 @@ class Plane:
         self.logger = logger
         self.planes = []
         self.changeMap = False
+        self.messagesToSend = None
 
+
+    def get_commands_object(self, commands_object):
+        self.commands = commands_object
 
     def on_changeMap(self):
         for sublist in self.planes:
@@ -25,51 +29,55 @@ class Plane:
         if nickname is None:
             return None
         for sublist in self.planes:
-            if nickname != sublist[0]:
-                continue
             if nickname == sublist[0]:
                 if self.changeMap is True and sublist[7] is True:
                     sublist[7] = False
                     self.logger.info("Ignoring {}'s perkless loopy!".format(nickname))
+                    return "perkless"
+                elif self.changeMap is True and sublist[7] is False and self.messagesToSend is not None:
+                    self.commands.Multiple_Whispers(nickname, self.messagesToSend)
+                    if self.check_if_all_clients_have_joined() is True:
+                        self.changeMap = False
+                        self.messagesToSend = None
+                        self.logger.info("All clients are in the server after changeMap")
+                elif self.changeMap is True and self.messagesToSend is None:
                     if self.check_if_all_clients_have_joined() is True:
                         self.changeMap = False
                         self.logger.info("All clients are in the server after changeMap")
-                    return "perkless"
+                self.logger.info("Tracking changes for {}'s player info".format(nickname))
+                if plane != sublist[1]:
+                    plane_change = True
+                    sublist[1] = plane
                 else:
-                    self.logger.info("Tracking changes for {}'s player info".format(nickname))
-                    if plane != sublist[1]:
-                        plane_change = True
-                        sublist[1] = plane
-                    else:
-                        plane_change = False
-                    if red_perk != sublist[2]:
-                        red_perk_change = True
-                        sublist[2] = red_perk
-                    else:
-                        red_perk_change = False
-                    if green_perk != sublist[3]:
-                        green_perk_change = True
-                        sublist[3] = green_perk
-                    else:
-                        green_perk_change = False
-                    if blue_perk != sublist[4]:
-                        blue_perk_change = True
-                        sublist[4] = blue_perk
-                    else:
-                        blue_perk_change = False
-                    if ace != sublist[5]:
-                        ace_change = True
-                        sublist[5] = ace
-                    else:
-                        ace_change = False
-                    if level != sublist[6]:
-                        level_change = True
-                        sublist[6] = level
-                    else:
-                        level_change = False
-                    changes = "plane_change={},red_perk_change={},green_perk_change={},blue_perk_change={},ace_change={},level_change={}".format(plane_change, red_perk_change, green_perk_change, blue_perk_change, ace_change, level_change)
-                    self.logger.info("Changes for {}'s player info are tracked: {}".format(nickname, changes))
-                    return plane_change, red_perk_change, green_perk_change, blue_perk_change, ace_change, level_change
+                    plane_change = False
+                if red_perk != sublist[2]:
+                    red_perk_change = True
+                    sublist[2] = red_perk
+                else:
+                    red_perk_change = False
+                if green_perk != sublist[3]:
+                    green_perk_change = True
+                    sublist[3] = green_perk
+                else:
+                    green_perk_change = False
+                if blue_perk != sublist[4]:
+                    blue_perk_change = True
+                    sublist[4] = blue_perk
+                else:
+                    blue_perk_change = False
+                if ace != sublist[5]:
+                    ace_change = True
+                    sublist[5] = ace
+                else:
+                    ace_change = False
+                if level != sublist[6]:
+                    level_change = True
+                    sublist[6] = level
+                else:
+                    level_change = False
+                changes = "plane_change={},red_perk_change={},green_perk_change={},blue_perk_change={},ace_change={},level_change={}".format(plane_change, red_perk_change, green_perk_change, blue_perk_change, ace_change, level_change)
+                self.logger.info("Changes for {}'s player info are tracked: {}".format(nickname, changes))
+                return plane_change, red_perk_change, green_perk_change, blue_perk_change, ace_change, level_change
         self.planes.append([nickname, plane, red_perk, green_perk, blue_perk, ace, level, False])
         self.logger.info("{}'s player info are added to plane's list".format(nickname))
         return "add"
@@ -99,6 +107,51 @@ class Plane:
                 blue_perk = sublist[4]
                 self.logger.info("Got and returning {}'s player info:\nPlane = {}, Red perk = {}, Green perk: {}, Blue perk: {}".format(nickname, plane, red_perk, green_perk, blue_perk))
                 return plane, red_perk, green_perk, blue_perk
+
+
+
+
+
+
+class PlanePosition:
+    def __init__(self, logger):
+        self.logger = logger
+        self.plane_positions = []
+
+
+    def add_or_check(self, decoded):
+        for row in decoded['positionByPlayer']:
+            x, y = decoded['positionByPlayer'][row].split(',')
+            for sublist in self.plane_positions:
+                if row == sublist[0]:
+                    sublist[1] = (x, y)
+                    return
+            self.plane_positions.append([row, (x, y)])
+            break
+
+
+
+
+
+    def remove(self, playerId):
+        for sublist in self.plane_positions:
+            if playerId == sublist[0]:
+                self.plane_positions.remove(sublist)
+                break
+
+
+
+
+    def GetPosition(self, playerId):
+        for sublist in self.plane_positions:
+            if sublist[0] == playerId:
+                self.logger.info("Position found and returned: {}".format(sublist[0]))
+                return sublist[1]
+
+
+
+
+
 
 
 
