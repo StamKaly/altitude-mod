@@ -11,7 +11,6 @@ class Handler:
             self.commands.Whisper(nickname, "The Loopy is the fastest and most agile plane of all the planes!")
 
 
-
     def on_redPerkChange(self, nickname, redPerk):
         if redPerk == "Heavy Cannon":
             self.commands.Whisper(nickname, "Heavy Cannon, which you will also hear as sniper, is a very powerful weapon!")
@@ -72,6 +71,10 @@ class Handler:
         add_or_check = self.planes.add_or_check(nickname, plane, redPerk, greenPerk, bluePerk, ace, level)
         if add_or_check == "add":
             return
+        elif add_or_check == "perkless":
+            return
+        elif add_or_check is None:
+            self.logger.info("{}'s `playerinfoEv` was lost and can't track plane info".format(self.players.nickname_from_id(decoded['player'])))
         elif decoded['leaving'] is not True:
             self.logger.info("Parsing changes for {}'s player info".format(nickname))
             plane_change, red_perk_change, green_perk_change, blue_perk_change, ace_change, level_change = add_or_check

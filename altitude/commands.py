@@ -45,6 +45,11 @@ class Commands:
             self.write_command(cmd)
 
 
+    def LogServerStatus(self):
+        cmd = '{}logServerStatus\n'.format(self.console)
+        self.write_command(cmd)
+
+
     def ChangeMap(self, mapName):
         cmd = '{}changeMap {}\n'.format(self.console, mapName)
         self.write_command(cmd)
@@ -82,7 +87,7 @@ class Commands:
 
 
     def HealthModifier(self, health):
-        cmd = '{}testHealthModifier {}'.format(self.console, health)
+        cmd = '{}testHealthModifier {}\n'.format(self.console, health)
         self.write_command(cmd)
         self.logger.info("Everyone's health is now set to {}%".format(health))
 

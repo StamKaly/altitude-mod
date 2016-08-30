@@ -1,6 +1,6 @@
 import json
 from os import remove
-from os.path import isfile
+from os.path import isfile, getsize
 from . import run
 
 
@@ -12,6 +12,7 @@ class Log:
     def __init__(self, logger, log_file_location, old_logs_location, logs_archive_location, commands_object,
                  players_object, planes_object, playerInfo_handler, game):
         self.logger = logger
+        self.current_line = 0
         self.log_file = log_file_location
         self.logs_archive = logs_archive_location
         self.old_logs = old_logs_location
@@ -22,35 +23,57 @@ class Log:
         self.game = game
 
 
-    def do_with_logs(self, decoded, current_line):
+    def do_with_logs(self):
         try:
-            type = decoded['type']
+            type = self.decoded['type']
             if type == "chat":
-                self.logger.info("Parsing chat message: {}".format(decoded['message']))
-                run.on_message(self.logger, self.commands, self.players, decoded)
+                self.logger.info("Parsing chat message: {}".format(self.decoded['message']))
+                run.on_message(self.logger, self.commands, self.players, self.decoded)
 
 
 
             if type == "mapChange":
-                self.game.check_current_mode_and_map(decoded['map'])
+                self.game.check_current_mode_and_map(self.decoded['map'])
+                self.planes.on_changeMap()
+
+
+
+
+
+
 
 
 
             # Players
             elif type == "clientAdd":
-                self.logger.info("Adding {}'s client to players and planes list".format(decoded['nickname']))
-                self.players.add(decoded['nickname'], decoded['vaporId'], decoded['player'], decoded['ip'])
-                run.on_clientAdd(self.logger, self.commands, decoded['nickname'])
+                self.logger.info("Adding {}'s client to players and planes list".format(self.decoded['nickname']))
+                self.players.add(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['player'], self.decoded['ip'])
+                run.on_clientAdd(self.logger, self.commands, self.decoded['nickname'])
+            elif type == "logServerStatus":
+                self.logger.info("Adding all clients in server to players list")
+                self.players.get_all_players(self.decoded['nicknames'], self.decoded['vaporIds'], self.decoded['playerIds'],
+                                             self.decoded['ips'])
+                self.commands.AssignEveryone("spec")
             elif type == "clientRemove":
-                self.logger.info("Removing {}'s client from players and planes list".format(decoded['nickname']))
-                self.players.remove(decoded['nickname'])
+                self.logger.info("Removing {}'s client from players and planes list".format(self.decoded['nickname']))
+                self.players.remove(self.decoded['nickname'])
             elif type == "clientNicknameChange":
-                self.logger.info("Changing {}'s nickname in players and planes list".format(decoded['oldNickname']))
-                self.players.nickname_change(decoded['oldNickname'], decoded['newNickname'])
+                self.logger.info("Changing {}'s nickname in players and planes list".format(self.decoded['oldNickname']))
+                self.players.nickname_change(self.decoded['oldNickname'], self.decoded['newNickname'])
             elif type == "playerInfoEv":
-                self.playerInfoHandler.parse(decoded)
+                self.playerInfoHandler.parse(self.decoded)
+
+
+
+
+
+
+
+
+
+
         except KeyError:
-            self.logger.debug("Could not handle line {}: {}\nmaybe add functionality for it?\n".format(current_line+1, decoded))
+            self.logger.debug("Could not handle line {}: {}\nmaybe add functionality for it?\n".format(self.current_line+1, self.decoded))
             pass
 
 
@@ -58,23 +81,31 @@ class Log:
 
 
     def Main(self):
-        current_line = 0
+        if getsize(self.log_file) != 0:
+            self.logger.info("Logs file is not empty; appending its content to the archive logs")
+            with open(self.log_file) as log:
+                logs = log.read()
+                with open(self.logs_archive, "a") as archive:
+                    archive.write(logs)
+            with open(self.log_file, "w"):
+                pass
+        self.commands.LogServerStatus()
         while True:
             with open(self.log_file) as log:
-                logs = log.readlines()[current_line:]
+                logs = log.readlines()[self.current_line:]
             for line in logs:
                 if 'port' in line:
                     try:
-                        decoded = json.loads(line)
-                        self.do_with_logs(decoded, current_line)
+                        self.decoded = json.loads(line)
+                        self.do_with_logs()
                     except json.decoder.JSONDecodeError:
-                        self.logger.warn("Could not parse line {}: {}".format(current_line+1, line))
+                        self.logger.warn("Could not parse line {}: {}".format(self.current_line+1, line))
                         continue
                     finally:
-                        current_line += 1
+                        self.current_line += 1
                         if isfile(self.old_logs) is True:
                             self.logger.info("Old logs file found; copying it into an archive logs file, deleting it and starting parsing new logs file!")
-                            current_line = 0
+                            self.current_line = 0
                             with open(self.old_logs) as old_log:
                                 old_logs = old_log.read()
                                 with open(self.logs_archive, "a") as archive:
