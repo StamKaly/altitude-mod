@@ -73,8 +73,6 @@ class Handler:
             return
         elif add_or_check == "perkless":
             return
-        elif add_or_check is None:
-            self.logger.info("{}'s `playerinfoEv` was lost and can't track plane info".format(self.players.nickname_from_id(decoded['player'])))
         elif decoded['leaving'] is not True:
             self.logger.info("Parsing changes for {}'s player info".format(nickname))
             plane_change, red_perk_change, green_perk_change, blue_perk_change, ace_change, level_change = add_or_check

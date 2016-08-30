@@ -50,6 +50,11 @@ class Commands:
         self.write_command(cmd)
 
 
+    def LogPlanePositions(self):
+        cmd = '{}logPlanePositions\n'.format(self.console)
+        self.write_command(cmd)
+
+
     def ChangeMap(self, mapName):
         cmd = '{}changeMap {}\n'.format(self.console, mapName)
         self.write_command(cmd)

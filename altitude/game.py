@@ -1,11 +1,29 @@
 class Game:
-    def __init__(self, logger, players_object, planes_object, commands_object):
+    def __init__(self, logger, players_object, planes_object, plane_positions_object, commands_object):
         self.logger = logger
         self.players = players_object
         self.planes = planes_object
+        self.planePositions = plane_positions_object
         self.commands = commands_object
         self.current_mode = ""
         self.current_map = ""
+
+
+    def get_logs_object(self, logs_object):
+        self.log = logs_object
+
+
+
+
+    def on_position(self):
+        if self.current_map == "asteroids":
+            for sublist in self.planePositions.plane_positions:
+                x, y = sublist[1]
+                if 1780 < x < 1820 and 641 < y < 681:
+                    self.commands.Whisper(self.players.nickname_from_id(sublist[0]), "Works so nice!!!")
+                    self.log.getPositions = False
+
+
 
 
     def on_mode_change(self):
@@ -16,7 +34,8 @@ class Game:
 
     def on_map_change(self):
         if self.current_map == "asteroids":
-            self.commands.Message("This is the most common and loved map in Altitude!")
+            #self.log.getPositions = True
+            self.planes.messagesToSend.append("This is the most common and loved map in Altitude!")
 
 
     def check_current_mode_and_map(self, full_map):

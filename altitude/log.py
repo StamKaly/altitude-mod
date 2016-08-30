@@ -22,6 +22,7 @@ class Log:
         self.planes = planes_object
         self.playerInfoHandler = playerInfo_handler
         self.game = game
+        self.getPositions = False
 
 
     def do_with_logs(self):
@@ -34,6 +35,7 @@ class Log:
 
 
             if type == "mapChange":
+                self.getPositions = False
                 self.game.check_current_mode_and_map(self.decoded['map'])
                 self.planes.on_changeMap()
 
@@ -42,8 +44,7 @@ class Log:
 
             if type == "logPlanePositions":
                 self.planesPositions.add_or_check(self.decoded)
-
-
+                self.game.on_position()
 
 
             # Players
@@ -93,6 +94,8 @@ class Log:
                 pass
         self.commands.LogServerStatus()
         while True:
+            if self.getPositions is True:
+                self.commands.LogPlanePositions()
             with open(self.log_file) as log:
                 logs = log.readlines()[self.current_line:]
             for line in logs:

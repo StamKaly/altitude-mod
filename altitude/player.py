@@ -124,9 +124,9 @@ class PlanePosition:
             x, y = decoded['positionByPlayer'][row].split(',')
             for sublist in self.plane_positions:
                 if row == sublist[0]:
-                    sublist[1] = (x, y)
+                    sublist[1] = (int(x), int(y))
                     return
-            self.plane_positions.append([row, (x, y)])
+            self.plane_positions.append([int(row), (int(x), int(y))])
             break
 
 
