@@ -57,7 +57,7 @@ class Reader:
 
     def add_kill(self, vaporId):
         self.cursor.execute("SELECT kills FROM Players WHERE vaporId = ?", (vaporId,))
-        kills, = self.cursor.fetchall()
+        (kills,), = self.cursor.fetchall()
         kills += 1
         self.cursor.execute("UPDATE Players SET kills = ? WHERE vaporId = ?", (kills, vaporId,))
         self.connection.commit()
@@ -66,7 +66,7 @@ class Reader:
 
     def add_base(self, vaporId):
         self.cursor.execute("SELECT bases FROM Players WHERE vaporId = ?", (vaporId,))
-        bases, = self.cursor.fetchone()
+        (bases,), = self.cursor.fetchall()
         bases += 1
         self.cursor.execute("UPDATE Players SET bases = ? WHERE vaporId = ?", (bases, vaporId))
         self.connection.commit()
@@ -76,7 +76,7 @@ class Reader:
 
     def add_goal(self, vaporId):
         self.cursor.execute("SELECT goals FROM Players WHERE vaporId = ?", (vaporId,))
-        goals, = self.cursor.fetchall()
+        (goals,), = self.cursor.fetchall()
         goals += 1
         self.cursor.execute("UPDATE Players SET goals = ? WHERE vaporId = ?", (goals, vaporId,))
         self.connection.commit()

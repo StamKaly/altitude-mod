@@ -98,6 +98,7 @@ class Game:
 
     def on_goal(self, playerId):
         nickname = self.players.nickname_from_id(playerId)
+        self.logger.info("Player's ID who scored goal: {}, vapor: {}".format(playerId, self.players.vapor_from_id(playerId)))
         self.database.add_goal(self.players.vapor_from_id(playerId))
         database_best_in_ball = self.database.get_most_goals()
         database_most_goals = self.database.most_goals
