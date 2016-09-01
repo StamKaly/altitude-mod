@@ -163,6 +163,7 @@ class Player:
         self.logger = logger
         self.players = []
         self.plane_object = plane_object
+        self.lobby_loaded = False
 
     def get_game_object(self, game_object):
         self.game = game_object
