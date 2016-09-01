@@ -92,12 +92,13 @@ class Reader:
                 players.append([row[0], row[1]])
             goals = [arg[1] for arg in players]
             most_goals = max(goals)
-            self.best_in_ball = []
-            for sublist in players:
-                if most_goals == sublist[1]:
-                    self.best_in_ball.append(sublist[0])
-            self.logger.info("{} has/have scored the most goals = {}".format(self.best_in_ball, most_goals))
-            self.most_goals = most_goals
+            if most_goals != 0:
+                self.best_in_ball = []
+                for sublist in players:
+                    if most_goals == sublist[1]:
+                        self.best_in_ball.append(sublist[0])
+                self.logger.info("{} has/have scored the most goals = {}".format(self.best_in_ball, most_goals))
+                self.most_goals = most_goals
             return self.best_in_ball
         except ValueError:
             return []
@@ -113,12 +114,13 @@ class Reader:
                 players.append([row[0], row[1]])
             kills = [arg[1] for arg in players]
             most_kills = max(kills)
-            self.best_in_1dm = []
-            for sublist in players:
-                if most_kills == sublist[1]:
-                    self.best_in_1dm.append(sublist[0])
-            self.logger.info("{} has/have killed the most = {}".format(self.best_in_1dm, most_kills))
-            self.most_kills = most_kills
+            if most_kills != 0:
+                self.best_in_1dm = []
+                for sublist in players:
+                    if most_kills == sublist[1]:
+                        self.best_in_1dm.append(sublist[0])
+                self.logger.info("{} has/have killed the most = {}".format(self.best_in_1dm, most_kills))
+                self.most_kills = most_kills
             return self.best_in_1dm
         except ValueError:
             return []
@@ -133,12 +135,13 @@ class Reader:
                 players.append([row[0], row[1]])
             bases = [arg[1] for arg in players]
             most_bases_destroyed = max(bases)
-            self.best_in_tbd = []
-            for sublist in players:
-                if most_bases_destroyed == sublist[1]:
-                    self.best_in_tbd.append(sublist[0])
-            self.logger.info("{} has/have destroyed the most bases = {}".format(self.best_in_tbd, most_bases_destroyed))
-            self.most_bases_destroyed = most_bases_destroyed
+            if most_bases_destroyed != 0:
+                self.best_in_tbd = []
+                for sublist in players:
+                    if most_bases_destroyed == sublist[1]:
+                        self.best_in_tbd.append(sublist[0])
+                self.logger.info("{} has/have destroyed the most bases = {}".format(self.best_in_tbd, most_bases_destroyed))
+                self.most_bases_destroyed = most_bases_destroyed
             return self.best_in_tbd
         except ValueError:
             return []

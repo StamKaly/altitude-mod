@@ -117,6 +117,7 @@ class PlanePosition:
     def __init__(self, logger):
         self.logger = logger
         self.plane_positions = []
+        self.lobby_loaded = False
 
 
     def add_or_check(self, decoded):
@@ -163,6 +164,8 @@ class Player:
         self.players = []
         self.plane_object = plane_object
 
+    def get_game_object(self, game_object):
+        self.game = game_object
 
     def get_commands_object(self, commands_object):
         self.commands = commands_object
@@ -195,8 +198,9 @@ class Player:
                 self.logger.info("{} is removed from players list".format(nickname))
                 self.plane_object.remove(nickname)
                 break
-        if len(self.players) == 0:
+        if len(self.players) == 0 and self.game.current_mode != "lobby":
             self.commands.ChangeMap("lobby_sta")
+            self.lobby_loaded = True
             self.logger.info("No-one is now in the server, map is changed to the lobby!")
 
 

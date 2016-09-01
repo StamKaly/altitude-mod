@@ -80,5 +80,6 @@ def run(port, commands_file, logs_file, old_logs, logs_archive):
     game_info = game.Game(logger, players, planes, plane_positions, command, database)
     logs = log.Log(logger, logs_file, old_logs, logs_archive, start_map, command, database, players, plane_positions, planes, playerInfoHandler, game_info)
     game_info.get_logs_object(logs)
+    players.get_game_object(game_info)
     logger.info('Mod started')
     logs.Main()

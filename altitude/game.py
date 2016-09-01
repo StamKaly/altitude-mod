@@ -6,8 +6,8 @@ class Game:
         self.planePositions = plane_positions_object
         self.commands = commands_object
         self.database = database
-        self.current_mode = ""
-        self.current_map = ""
+        self.current_mode = "lobby"
+        self.current_map = "sta"
         self.best_in_ball = self.database.get_most_goals()
         self.best_in_1dm = self.database.get_most_kills()
         self.best_in_tbd = self.database.get_demolition_expert()
@@ -60,10 +60,12 @@ class Game:
             else:
                 self.planes.messagesToSend.append('There is no best player of the day in 1dm yet.')
                 self.planes.messagesToSend.append('Be the first one!')
-        elif self.current_mode == "lobby":
+        elif self.current_mode == "lobby" and self.players.lobby_loaded is False:
             self.planes.messagesToSend = ['This is the lobby, when the are 2 or more players here,',
                                           'use the command "/vote start <gameMode>" in the chat to',
                                           'start a vote for a new match!']
+        else:
+            self.players.lobby_loaded = False
 
 
     def on_map_change(self):
