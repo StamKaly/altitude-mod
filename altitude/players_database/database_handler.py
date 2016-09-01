@@ -11,6 +11,9 @@ class Reader:
         self.best_in_ball = []
         self.best_in_1dm = []
         self.best_in_tbd = []
+        self.most_goals = 0
+        self.most_kills = 0
+        self.most_bases_destroyed = 0
 
 
 
@@ -49,7 +52,7 @@ class Reader:
         self.cursor.execute("UPDATE Players SET bases = 0")
         self.connection.commit()
         self.best_in_ball = []
-        self.best_in_1dm =[]
+        self.best_in_1dm = []
         self.best_in_tbd = []
         self.logger.info("Goals, kills and bases scores are reset in the database")
 
@@ -95,6 +98,8 @@ class Reader:
             if most_goals == sublist[1]:
                 self.best_in_ball.append(sublist[0])
         self.logger.info("{} has/have scored the most goals = {}".format(self.best_in_ball, most_goals))
+        self.most_goals = most_goals
+        return self.best_in_ball
 
 
 
@@ -111,7 +116,8 @@ class Reader:
             if most_kills == sublist[1]:
                 self.best_in_1dm.append(sublist[0])
         self.logger.info("{} has/have killed the most = {}".format(self.best_in_1dm, most_kills))
-
+        self.most_kills = most_kills
+        return self.best_in_1dm
 
 
 
@@ -127,3 +133,5 @@ class Reader:
             if most_bases_destroyed == sublist[1]:
                 self.best_in_tbd.append(sublist[0])
         self.logger.info("{} has/have destroyed the most bases = {}".format(self.best_in_tbd, most_bases_destroyed))
+        self.most_bases_destroyed = most_bases_destroyed
+        return self.best_in_tbd

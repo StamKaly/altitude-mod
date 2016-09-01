@@ -2,27 +2,30 @@ import json
 from os import remove
 from os.path import isfile, getsize
 from . import run
-
+import time
 
 
 
 
 
 class Log:
-    def __init__(self, logger, log_file_location, old_logs_location, logs_archive_location, commands_object,
-                 players_object, planesPositions_object, planes_object, playerInfo_handler, game):
+    def __init__(self, logger, log_file_location, old_logs_location, logs_archive_location, start_object, commands_object,
+                 database_object, players_object, planesPositions_object, planes_object, playerInfo_handler, game):
         self.logger = logger
         self.current_line = 0
         self.log_file = log_file_location
         self.logs_archive = logs_archive_location
         self.old_logs = old_logs_location
+        self.start = start_object
         self.commands = commands_object
         self.players = players_object
+        self.database = database_object
         self.planesPositions = planesPositions_object
         self.planes = planes_object
         self.playerInfoHandler = playerInfo_handler
         self.game = game
         self.getPositions = False
+        self.newDay = False
 
 
     def do_with_logs(self):
@@ -34,24 +37,46 @@ class Log:
 
 
 
-            if type == "mapChange":
+            elif type == "mapChange":
                 self.getPositions = False
                 self.game.check_current_mode_and_map(self.decoded['map'])
                 self.planes.on_changeMap()
 
-
-
-
-            if type == "logPlanePositions":
+            elif type == "logPlanePositions":
                 self.planesPositions.add_or_check(self.decoded)
                 self.game.on_position()
+
+
+
+            # Scores
+            elif type == "goal":
+                self.game.on_goal(self.decoded['player'])
+
+            elif type == "structureDestroy" and self.decoded['target'] == 'base':
+                self.game.on_base_destroy(self.decoded['player'])
+
+            elif type == "kill" and self.decoded['source'] == 'plane':
+                self.game.on_kill(self.decoded['player'])
+
+            elif type == "roundEnd":
+                self.game.on_roundEnd()
+
+
+
+            # On command
+            elif type == "consoleCommandExecute":
+                run.on_command(self.commands, self.start, self.decoded)
+
+
+
 
 
             # Players
             elif type == "clientAdd":
                 self.logger.info("Adding {}'s client to players and planes list".format(self.decoded['nickname']))
                 self.players.add(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['player'], self.decoded['ip'])
-                run.on_clientAdd(self.logger, self.commands, self.decoded['nickname'])
+                self.database.add_or_check(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['ip'])
+                run.on_clientAdd(self.logger, self.commands, self.game, self.decoded['nickname'])
             elif type == "logServerStatus":
                 self.logger.info("Adding all clients in server to players list")
                 self.players.get_all_players(self.decoded['nicknames'], self.decoded['vaporIds'], self.decoded['playerIds'],
@@ -63,6 +88,7 @@ class Log:
             elif type == "clientNicknameChange":
                 self.logger.info("Changing {}'s nickname in players and planes list".format(self.decoded['oldNickname']))
                 self.players.nickname_change(self.decoded['oldNickname'], self.decoded['newNickname'])
+                self.database.on_nickname_change(self.decoded['oldNickname'], self.decoded['newNickname'])
             elif type == "playerInfoEv":
                 self.playerInfoHandler.parse(self.decoded)
 
@@ -94,6 +120,12 @@ class Log:
                 pass
         self.commands.LogServerStatus()
         while True:
+            GMT_time = time.gmtime()
+            if GMT_time.tm_hour == 0 and GMT_time.tm_min == 0 and self.newDay is False:
+                self.newDay = True
+                self.game.reset_scores()
+            elif GMT_time.tm_hour == 0 and GMT_time.tm_min == 1 and self.newDay is True:
+                self.newDay = False
             if self.getPositions is True:
                 self.commands.LogPlanePositions()
             with open(self.log_file) as log:

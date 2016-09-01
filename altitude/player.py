@@ -163,6 +163,10 @@ class Player:
         self.players = []
         self.plane_object = plane_object
 
+
+    def get_commands_object(self, commands_object):
+        self.commands = commands_object
+
     def get_all_players(self, nicknames, vapors, playerIds, IPs):
         player_list = [nicknames, vapors, playerIds, IPs]
         count = 0
@@ -191,6 +195,9 @@ class Player:
                 self.logger.info("{} is removed from players list".format(nickname))
                 self.plane_object.remove(nickname)
                 break
+        if len(self.players) == 0:
+            self.commands.ChangeMap("lobby_sta")
+            self.logger.info("No-one is now in the server, map is changed to the lobby!")
 
 
     def nickname_change(self, oldNickname, newNickname):
@@ -218,6 +225,12 @@ class Player:
         for sublist in self.players:
             if playerId == sublist[2]:
                 return sublist[0]
+
+
+    def vapor_from_id(self, playerId):
+        for sublist in self.players:
+            if playerId == [2]:
+                return sublist[1]
 
     def return_all_nicknames(self):
         nicknames = [player[0] for player in self.players]
