@@ -90,7 +90,7 @@ class Game:
     def on_roundEnd(self):
         if self.current_mode == "ball":
             self.commands.Multiple_Messages(self.message_for_roundEnd_in_ball)
-        elif self.current_mode == "tbd":
+        elif self.current_mode == "1dm":
             self.commands.Multiple_Messages(self.message_for_roundEnd_in_1dm)
 
 
