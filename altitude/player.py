@@ -234,7 +234,7 @@ class Player:
 
     def vapor_from_id(self, playerId):
         for sublist in self.players:
-            if playerId == [2]:
+            if playerId == sublist[2]:
                 return sublist[1]
 
     def return_all_nicknames(self):
