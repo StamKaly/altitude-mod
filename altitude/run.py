@@ -23,6 +23,8 @@ def on_command(commands_object, start_object, decoded):
             start_object.tbd()
         elif argument == "1dm":
             start_object.onedm()
+        elif argument == "Football":
+            start_object.football()
 
 
 
@@ -30,21 +32,21 @@ def on_clientAdd(logger, commands_object, game_object, nickname):
     commands_object.Whisper(nickname, "Welcome to STA! The place where you have real fun!")
     if game_object.current_mode == "ball":
         commands_object.Whisper(nickname, "Press S to use the Ball or any other powerup.")
-        if len(game_object.best_in_ball) != 0:
+        if len(game_object.message_for_best_in_ball) != 0:
             commands_object.Multiple_Whispers(nickname, game_object.message_for_best_in_ball)
         else:
             commands_object.Multiple_Whispers(nickname, ['There is no best player of the day in Ball yet.',
                                                          'Be the first one!'])
     elif game_object.current_mode == "tbd":
         commands_object.Whisper(nickname, 'Destroy the base with the bomb, press S to use the bomb.')
-        if len(game_object.best_in_tbd) != 0:
+        if len(game_object.message_for_best_in_tbd) != 0:
             commands_object.Multiple_Whispers(nickname, game_object.message_for_best_in_tbd)
         else:
             commands_object.Multiple_Whispers(nickname, ['There is no best player of the day in TBD yet.',
                                                          'Be the first one!'])
     elif game_object.current_mode == "1dm":
         commands_object.Whisper(nickname, "Kill as many planes as you can and try not to die.")
-        if len(game_object.best_in_1dm) != 0:
+        if len(game_object.message_for_best_in_tbd) != 0:
             commands_object.Multiple_Whispers(nickname, game_object.message_for_best_in_1dm)
         else:
             commands_object.Multiple_Whispers(nickname, ['There is no best player of the day in 1dm yet.',

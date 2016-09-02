@@ -14,7 +14,6 @@ class Map:
                           "ball_cross",
                           "ball_darkwar ",
                           "ball_factory",
-                          "ball_football",
                           "ball_fracas",
                           "ball_funnelpark",
                           "ball_gliderpark",
@@ -90,3 +89,6 @@ class Map:
 
     def onedm(self):
         self.commands.ChangeMap(choice(self.onedm_maps))
+
+    def football(self):
+        self.commands.ChangeMap("ball_football")

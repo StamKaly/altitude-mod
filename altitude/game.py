@@ -41,26 +41,26 @@ class Game:
     def on_mode_change(self):
         if self.current_mode == "ball":
             self.planes.messagesToSend = ["Press S to use the Ball or any other powerup."]
-            if len(self.best_in_ball) != 0:
+            if len(self.message_for_best_in_ball) != 0:
                 for row in self.message_for_best_in_ball:
                     self.planes.messagesToSend.append(row)
-            else:
+            if len(self.planes.messagesToSend) == 1:
                 self.planes.messagesToSend.append('There is no best player of the day in Ball yet.')
                 self.planes.messagesToSend.append('Be the first one!')
         elif self.current_mode == "tbd":
             self.planes.messagesToSend = ['Destroy the base with the bomb, press S to use the bomb.']
-            if len(self.best_in_tbd) != 0:
+            if len(self.message_for_best_in_tbd) != 0:
                 for row in self.message_for_best_in_tbd:
                     self.planes.messagesToSend.append(row)
-            else:
+            if len(self.planes.messagesToSend) == 1:
                 self.planes.messagesToSend.append('There is no best player of the day in TBD yet.')
                 self.planes.messagesToSend.append('Be the first one!')
         elif self.current_mode == "1dm":
             self.planes.messagesToSend = ["Kill as many planes as you can and try not to die."]
-            if len(self.best_in_1dm) != 0:
+            if len(self.message_for_best_in_1dm) != 0:
                 for row in self.message_for_best_in_1dm:
                     self.planes.messagesToSend.append(row)
-            else:
+            if len(self.planes.messagesToSend) == 1:
                 self.planes.messagesToSend.append('There is no best player of the day in 1dm yet.')
                 self.planes.messagesToSend.append('Be the first one!')
         elif self.current_mode == "lobby" and self.players.lobby_loaded is False:
