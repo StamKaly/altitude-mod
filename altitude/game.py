@@ -113,7 +113,7 @@ class Game:
                                                                                                       database_most_goals)]
             if self.best_in_ball == database_best_in_ball:
                 if self.most_goals != database_most_goals:
-                    self.message_for_roundEnd_in_ball = ["New record from {},", "the player of the day in Ball: {} Goals".format(nickname,
+                    self.message_for_roundEnd_in_ball = ["New record from {},".format(nickname), "the player of the day in Ball: {} Goals".format(
                                                                                                                database_most_goals)]
                     self.message_for_best_in_ball = ['Player of the day in Ball:', '{} - {} Goals'.format(nickname,
                                                                                                           database_most_goals)]
@@ -147,7 +147,7 @@ class Game:
                                                                                                       database_most_bases_destroyed)]
             if self.best_in_tbd == database_best_in_tbd:
                 if self.most_bases_destroyed != database_most_bases_destroyed:
-                    self.commands.Multiple_Messages(["New record from {},", "the player of the day in TBD: {} Bases Destroyed".format(nickname,
+                    self.commands.Multiple_Messages(["New record from {},".format(nickname), "the player of the day in TBD: {} Bases Destroyed".format(
                                                                                                                database_most_bases_destroyed)])
                     self.message_for_best_in_tbd = ['Player of the day in TBD:', '{} - {} Bases Destroyed'.format(nickname,
                                                                                                           database_most_bases_destroyed)]
@@ -180,7 +180,7 @@ class Game:
                                                                                                           database_most_kills)]
                 if self.best_in_1dm == database_best_in_1dm:
                     if self.most_kills != database_most_kills:
-                        self.message_for_roundEnd_in_1dm = ["New record from {},", "the player of the day in 1dm: {} Kills".format(nickname,
+                        self.message_for_roundEnd_in_1dm = ["New record from {},".format(nickname), "the player of the day in 1dm: {} Kills".format(
                                                                                                                    database_most_kills)]
                         self.message_for_best_in_1dm = ['Player of the day in 1dm:', '{} - {} Kills'.format(nickname,
                                                                                                               database_most_kills)]
