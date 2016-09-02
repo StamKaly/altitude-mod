@@ -178,6 +178,10 @@ class Player:
     def get_commands_object(self, commands_object):
         self.commands = commands_object
 
+    def get_number_of_players(self):
+        return len(self.players)
+
+
     def get_all_players(self, nicknames, vapors, playerIds, IPs):
         player_list = [nicknames, vapors, playerIds, IPs]
         count = 0
@@ -252,8 +256,7 @@ class Player:
                 return sublist[1]
 
     def return_all_nicknames(self):
-        nicknames = [player[0] for player in self.players]
-        return nicknames
+        return [player[0] for player in self.players]
 
 
     def get_planes(self, nickname):

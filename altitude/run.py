@@ -13,18 +13,21 @@ def on_message(logger, commands_object, players_object, decoded):
 
 
 
-def on_command(commands_object, start_object, decoded):
+def on_command(commands_object, start_object, players_object, decoded):
     command = decoded['command']
     if command == "start":
-        argument = decoded['arguments'][0]
-        if argument == "Ball":
-            start_object.ball()
-        elif argument == "TBD":
-            start_object.tbd()
-        elif argument == "1dm":
-            start_object.onedm()
-        elif argument == "Football":
-            start_object.football()
+        if players_object.get_number_of_players() >= 2:
+            argument = decoded['arguments'][0]
+            if argument == "Ball":
+                start_object.ball()
+            elif argument == "TBD":
+                start_object.tbd()
+            elif argument == "1dm":
+                start_object.onedm()
+            elif argument == "Football":
+                start_object.football()
+        else:
+            commands_object.Message("2 or more players must be here to start a match!")
 
 
 
@@ -52,13 +55,14 @@ def on_clientAdd(logger, commands_object, game_object, nickname):
             commands_object.Multiple_Whispers(nickname, ['There is no best player of the day in 1dm yet.',
                                                          'Be the first one!'])
     elif game_object.current_mode == "lobby":
-        commands_object.Multiple_Whispers(nickname, ['This is the lobby, when the are 2 or more players here,',
+        commands_object.Multiple_Whispers(nickname, ['This is the lobby, when there are 2 or more players here,',
                                                      'use the command "/vote start <gameMode>" in the chat to',
                                                      'start a vote for a new match!'])
     logger.info("{} is welcomed!".format(nickname))
 
 
 def run(port, commands_file, logs_file, old_logs, logs_archive):
+    database_handler.Reader("something").reset_values() # Just resetting goals, bases and kills
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
     formatter = logging.Formatter("%(asctime)s   -   %(levelname)s   -   %(message)s", "%d-%m-%Y, %H:%M:%S")

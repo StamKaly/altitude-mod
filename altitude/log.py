@@ -65,7 +65,7 @@ class Log:
 
             # On command
             elif type == "consoleCommandExecute":
-                run.on_command(self.commands, self.start, self.decoded)
+                run.on_command(self.commands, self.start, self.players, self.decoded)
 
 
 

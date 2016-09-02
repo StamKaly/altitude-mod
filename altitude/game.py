@@ -45,7 +45,7 @@ class Game:
                 for row in self.message_for_best_in_ball:
                     self.planes.messagesToSend.append(row)
             if len(self.planes.messagesToSend) == 1:
-                self.planes.messagesToSend.append('There is no best player of the day in Ball yet.')
+                self.planes.messagesToSend.append('There is no player of the day in Ball yet.')
                 self.planes.messagesToSend.append('Be the first one!')
         elif self.current_mode == "tbd":
             self.planes.messagesToSend = ['Destroy the base with the bomb, press S to use the bomb.']
@@ -53,7 +53,7 @@ class Game:
                 for row in self.message_for_best_in_tbd:
                     self.planes.messagesToSend.append(row)
             if len(self.planes.messagesToSend) == 1:
-                self.planes.messagesToSend.append('There is no best player of the day in TBD yet.')
+                self.planes.messagesToSend.append('There is no player of the day in TBD yet.')
                 self.planes.messagesToSend.append('Be the first one!')
         elif self.current_mode == "1dm":
             self.planes.messagesToSend = ["Kill as many planes as you can and try not to die."]
@@ -61,10 +61,10 @@ class Game:
                 for row in self.message_for_best_in_1dm:
                     self.planes.messagesToSend.append(row)
             if len(self.planes.messagesToSend) == 1:
-                self.planes.messagesToSend.append('There is no best player of the day in 1dm yet.')
+                self.planes.messagesToSend.append('There is no player of the day in 1dm yet.')
                 self.planes.messagesToSend.append('Be the first one!')
         elif self.current_mode == "lobby" and self.players.lobby_loaded is False:
-            self.planes.messagesToSend = ['This is the lobby, when the are 2 or more players here,',
+            self.planes.messagesToSend = ['This is the lobby, when there are 2 or more players here,',
                                           'use the command "/vote start <gameMode>" in the chat to',
                                           'start a vote for a new match!']
         else:
@@ -166,6 +166,28 @@ class Game:
         self.most_bases_destroyed = database_most_bases_destroyed
 
 
+
+
+
+
+
+    def check_current_mode_and_map(self, full_map):
+        mode, mapName = full_map.split("_")
+        if mode != self.current_mode:
+            self.current_mode = mode
+            self.on_mode_change()
+        if mapName != self.current_map:
+            self.current_map = mapName
+            self.on_map_change()
+
+
+
+
+
+
+
+
+    '''
     def on_kill(self, playerId):
         if self.current_mode == "1dm":
             nickname = self.players.nickname_from_id(playerId)
@@ -196,15 +218,4 @@ class Game:
                         self.message_for_best_in_1dm.append("{}) {}".format(number+1, database_best_in_1dm[number]))
             self.best_in_1dm = database_best_in_1dm
             self.most_kills = database_most_kills
-
-
-
-
-    def check_current_mode_and_map(self, full_map):
-        mode, mapName = full_map.split("_")
-        if mode != self.current_mode:
-            self.current_mode = mode
-            self.on_mode_change()
-        if mapName != self.current_map:
-            self.current_map = mapName
-            self.on_map_change()
+    '''
