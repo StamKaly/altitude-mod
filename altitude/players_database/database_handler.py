@@ -58,7 +58,7 @@ class Reader:
     def add_kill(self, vaporId):
         self.logger.info("-   Database   -   Selecting kills from players where vaporId is {}".format(vaporId))
         self.cursor.execute("SELECT kills FROM Players WHERE vaporId = ?", (vaporId,))
-        (kills,), = self.cursor.fetchall()
+        (kills,) = self.cursor.fetchone()
         kills += 1
         self.cursor.execute("UPDATE Players SET kills = ? WHERE vaporId = ?", (kills, vaporId,))
         self.connection.commit()
@@ -68,7 +68,7 @@ class Reader:
     def add_base(self, vaporId):
         self.logger.info("-   Database   -   Selecting bases from players where vaporId is {}".format(vaporId))
         self.cursor.execute("SELECT bases FROM Players WHERE vaporId = ?", (vaporId,))
-        (bases,), = self.cursor.fetchall()
+        (bases,) = self.cursor.fetchone()
         bases += 1
         self.cursor.execute("UPDATE Players SET bases = ? WHERE vaporId = ?", (bases, vaporId))
         self.connection.commit()
@@ -79,7 +79,7 @@ class Reader:
     def add_goal(self, vaporId):
         self.logger.info("-   Database   -   Selecting goals from players where vaporId is {}".format(vaporId))
         self.cursor.execute("SELECT goals FROM Players WHERE vaporId = ?", (vaporId,))
-        (goals,), = self.cursor.fetchall()
+        (goals,) = self.cursor.fetchone()
         goals += 1
         self.cursor.execute("UPDATE Players SET goals = ? WHERE vaporId = ?", (goals, vaporId,))
         self.connection.commit()
