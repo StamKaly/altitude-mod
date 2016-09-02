@@ -4,6 +4,7 @@ class Map:
     def __init__(self, logger, commands_object):
         self.logger = logger
         self.commands = commands_object
+        # Thanks to Tolis for making these map lists!
         self.ball_maps = ["ball_arcade",
                           "ball_asteroids",
                           "ball_atmosphere",
@@ -52,6 +53,7 @@ class Map:
                          "tbd_heights",
                          "tbd_hills",
                          "tbd_justice",
+                         "tbd_kessler",
                          "tbd_locomotion",
                          "tbd_lostcity",
                          "tbd_mayhem",
