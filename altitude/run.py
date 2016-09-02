@@ -49,7 +49,7 @@ def on_clientAdd(logger, commands_object, game_object, nickname):
                                                          'Be the first one!'])
     elif game_object.current_mode == "1dm":
         commands_object.Whisper(nickname, "Kill as many planes as you can and try not to die.")
-        if len(game_object.message_for_best_in_tbd) != 0:
+        if len(game_object.message_for_best_in_1dm) != 0:
             commands_object.Multiple_Whispers(nickname, game_object.message_for_best_in_1dm)
         else:
             commands_object.Multiple_Whispers(nickname, ['There is no best player of the day in 1dm yet.',
