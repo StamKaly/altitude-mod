@@ -123,7 +123,7 @@ class Reader:
                     if most_kills == sublist[1]:
                         self.best_in_1dm.append(sublist[0])
                 self.logger.info("{} has/have killed the most = {}".format(self.best_in_1dm, most_kills))
-                self.most_kills = most_kills
+                self.most_goals = most_kills
             return self.best_in_1dm
         except ValueError:
             return []
