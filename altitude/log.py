@@ -118,6 +118,7 @@ class Log:
                     archive.write(logs)
             with open(self.log_file, "w"):
                 pass
+        self.database.reser_values()
         while True:
             GMT_time = time.gmtime()
             if GMT_time.tm_hour == 0 and GMT_time.tm_min == 0 and self.newDay is False:
