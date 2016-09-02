@@ -72,6 +72,7 @@ def run(port, commands_file, logs_file, old_logs, logs_archive):
     planes = player.Plane(logger)
     plane_positions = player.PlanePosition(logger)
     players = player.Player(logger, planes)
+    planes.get_players_object(players)
     command = commands.Commands(logger, players, port, commands_file)
     players.get_commands_object(command)
     start_map = start.Map(logger, command)

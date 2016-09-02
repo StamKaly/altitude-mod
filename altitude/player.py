@@ -5,6 +5,9 @@ class Plane:
         self.changeMap = False
         self.messagesToSend = None
 
+    def get_players_object(self, players_object):
+        self.players = players_object
+
 
     def get_commands_object(self, commands_object):
         self.commands = commands_object
@@ -27,6 +30,10 @@ class Plane:
 
     def add_or_check(self, nickname, plane, red_perk, green_perk, blue_perk, ace, level):
         if nickname is None:
+            self.logger.info("Detected and ignored NoneType nickname in planes list")
+            return None
+        elif self.players.check_nickname_existence(nickname) is False:
+            self.logger.info("Detected and ignored unknown nickname in planes list")
             return None
         for sublist in self.planes:
             if nickname == sublist[0]:
@@ -184,6 +191,13 @@ class Player:
                     break
             count += 1
         self.logger.info("All players in server added to players list")
+
+
+    def check_nickname_existence(self, nickname):
+        for sublist in self.players:
+            if nickname == sublist[0]:
+                return True
+        return False
 
 
 
