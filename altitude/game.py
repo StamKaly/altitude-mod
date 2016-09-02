@@ -105,6 +105,7 @@ class Game:
         self.database.add_goal(self.players.vapor_from_id(playerId))
         database_best_in_ball = self.database.get_most_goals()
         database_most_goals = self.database.most_goals
+        self.message_for_roundEnd_in_ball = []
         if len(database_best_in_ball) <= 1:
             if self.best_in_ball != database_best_in_ball:
                 self.commands.Multiple_Messages(["New player of the day in Ball:", "{} - {} Goals".format(nickname,
@@ -120,12 +121,11 @@ class Game:
         elif len(database_best_in_ball) > 1:
             players = len(database_best_in_ball)
             self.message_for_best_in_ball = []
-            self.message_for_roundEnd_in_ball = []
             if self.best_in_ball != database_best_in_ball:
-                self.message_for_roundEnd_in_ball.append("There are now {} best players of the day in Ball with {} Goals:".format(players, database_most_goals))
+                self.commands.Message("There are now {} best players of the day in Ball with {} Goals:".format(players, database_most_goals))
                 self.message_for_best_in_ball.append("Players of the day in Ball with {} Goals:".format(database_most_goals))
                 for number in range(players):
-                    self.message_for_roundEnd_in_ball.append("{}) {}".format(number+1, database_best_in_ball[number]))
+                    self.commands.Message("{}) {}".format(number+1, database_best_in_ball[number]))
                     self.message_for_best_in_ball.append("{}) {}".format(number+1, database_best_in_ball[number]))
         self.best_in_ball = database_best_in_ball
         self.most_goals = database_most_goals
@@ -170,34 +170,17 @@ class Game:
 
 
 
-
-    def check_current_mode_and_map(self, full_map):
-        mode, mapName = full_map.split("_")
-        if mode != self.current_mode:
-            self.current_mode = mode
-            self.on_mode_change()
-        if mapName != self.current_map:
-            self.current_map = mapName
-            self.on_map_change()
-
-
-
-
-
-
-
-
-    '''
     def on_kill(self, playerId):
-        if self.current_mode == "1dm":
+        if self.current_mode == "1dm" and playerId > 0:
             nickname = self.players.nickname_from_id(playerId)
             self.database.add_kill(self.players.vapor_from_id(playerId))
             database_best_in_1dm = self.database.get_most_kills()
             database_most_kills = self.database.most_kills
+            self.message_for_roundEnd_in_1dm = []
             if len(database_best_in_1dm) <= 1:
                 if self.best_in_1dm != database_best_in_1dm:
                     self.commands.Multiple_Messages(["New player of the day in 1dm:", "{} - {} Kills".format(nickname,
-                                                                                                database_best_in_1dm)])
+                                                                                                database_most_kills)])
                     self.message_for_best_in_1dm = ['Player of the day in 1dm:', '{} - {} Kills'.format(nickname,
                                                                                                           database_most_kills)]
                 if self.best_in_1dm == database_best_in_1dm:
@@ -209,13 +192,23 @@ class Game:
             elif len(database_best_in_1dm) > 1:
                 players = len(database_best_in_1dm)
                 self.message_for_best_in_1dm = []
-                self.message_for_roundEnd_in_1dm = []
                 if self.best_in_1dm != database_best_in_1dm:
-                    self.message_for_roundEnd_in_1dm.append("There are now {} players of the day in 1dm with {} Kills:".format(players, database_most_kills))
+                    self.commands.Message("There are now {} players of the day in 1dm with {} Kills:".format(players, database_most_kills))
                     self.message_for_best_in_1dm.append("Players of the day in 1dm with {} Kills:".format(database_most_kills))
                     for number in range(players):
-                        self.message_for_roundEnd_in_1dm.append("{}) {}".format(number+1, database_best_in_1dm[number]))
+                        self.commands.Message("{}) {}".format(number+1, database_best_in_1dm[number]))
                         self.message_for_best_in_1dm.append("{}) {}".format(number+1, database_best_in_1dm[number]))
             self.best_in_1dm = database_best_in_1dm
             self.most_kills = database_most_kills
-    '''
+
+
+
+
+    def check_current_mode_and_map(self, full_map):
+        mode, mapName = full_map.split("_")
+        if mode != self.current_mode:
+            self.current_mode = mode
+            self.on_mode_change()
+        if mapName != self.current_map:
+            self.current_map = mapName
+            self.on_map_change()
