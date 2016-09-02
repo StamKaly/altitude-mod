@@ -62,7 +62,6 @@ def on_clientAdd(logger, commands_object, game_object, nickname):
 
 
 def run(port, commands_file, logs_file, old_logs, logs_archive):
-    database_handler.Reader("something").reset_values() # Just resetting goals, bases and kills
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
     formatter = logging.Formatter("%(asctime)s   -   %(levelname)s   -   %(message)s", "%d-%m-%Y, %H:%M:%S")
@@ -74,6 +73,7 @@ def run(port, commands_file, logs_file, old_logs, logs_archive):
     ch.setLevel(logging.DEBUG)
     ch.setFormatter(formatter)
     logger.addHandler(ch)
+    database_handler.Reader(logger).reset_values() # Just resetting goals, bases and kills
     database = database_handler.Reader(logger)
     planes = player.Plane(logger)
     plane_positions = player.PlanePosition(logger)
