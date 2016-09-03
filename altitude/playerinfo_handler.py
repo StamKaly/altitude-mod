@@ -29,8 +29,9 @@ class Handler:
 
     def on_aceChange(self, nickname, ace):
         if ace == 1:
-            self.commands.Whisper(nickname, "You have now become ace Rank 1! Congratulations!")
-            self.logger.info("{} is ace {}".format(nickname, ace))
+            self.commands.Multiple_Whispers(nickname, ["You have now become ace Rank 1! Congratulations!",
+                                                       "Make sure you start playing ladder now that you are pro",
+                                                       "Just go and read the rules at planeball.com/ranked/about"])
 
 
     def on_levelChange(self, nickname, level):
@@ -40,7 +41,7 @@ class Handler:
 
 
     def on_setup_change(self, nickname, plane, redPerk, greenPerk, bluePerk, ace, level, plane_name, redPerk_name,
-                        greenPerk_name, bluePerk_name):
+                        greenPerk_name, bluePerk_name, ace_number, level_number):
         if plane is True:
             self.on_planeChange(nickname, plane_name)
         if redPerk is True:
@@ -50,9 +51,9 @@ class Handler:
         if bluePerk is True:
             self.on_bluePerkChange(nickname, bluePerk_name)
         if ace is True:
-            self.on_aceChange(nickname, ace)
+            self.on_aceChange(nickname, ace_number)
         if level is True:
-            self.on_levelChange(nickname, level)
+            self.on_levelChange(nickname, level_number)
         self.logger.info("{}'s player info changes are parsed".format(nickname))
 
 
@@ -78,4 +79,4 @@ class Handler:
             self.logger.info("Parsing changes for {}'s player info".format(nickname))
             plane_change, red_perk_change, green_perk_change, blue_perk_change, ace_change, level_change = add_or_check
             self.on_setup_change(nickname, plane_change, red_perk_change, green_perk_change, blue_perk_change,
-                                 ace_change, level_change, plane, redPerk, greenPerk, bluePerk)
+                                 ace_change, level_change, plane, redPerk, greenPerk, bluePerk, ace, level)
