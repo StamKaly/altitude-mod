@@ -38,14 +38,14 @@ class Main:
     def config(self):
         with open(self.server_config, "w") as server_config:
             with open(self.server_config2) as server_config2:
-                server_config.write(server_config2)
+                server_config.write(server_config2.read())
         print("Config has been updated")
 
 
     def commands(self):
         with open(self.custom_commands, "w") as commands:
             with open(self.custom_commands2) as commands2:
-                commands.write(commands2)
+                commands.write(commands2.read())
         print("Custom json commands have been updated")
 
 
