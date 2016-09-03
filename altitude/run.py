@@ -15,7 +15,7 @@ def on_message(logger, commands_object, players_object, decoded):
 
 def on_command(commands_object, start_object, players_object, decoded):
     command = decoded['command']
-    if command == "start":
+    if command == "match":
         if players_object.get_number_of_players() >= 2:
             argument = decoded['arguments'][0]
             if argument == "Ball":
@@ -56,8 +56,8 @@ def on_clientAdd(logger, commands_object, game_object, nickname):
                                                          'Be the first one!'])
     elif game_object.current_mode == "lobby":
         commands_object.Multiple_Whispers(nickname, ['This is the lobby, when there are 2 or more players here,',
-                                                     'use the command "/vote start <gameMode>" in the chat to',
-                                                     'start a vote for a new match!'])
+                                                     'use the command "/match <gameMode>" in the chat to',
+                                                     'start a vote for a new match! (Enter to use the chat)'])
     logger.info("{} is welcomed!".format(nickname))
 
 

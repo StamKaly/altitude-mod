@@ -166,7 +166,7 @@ class PlanePosition:
     def GetPosition(self, playerId):
         for sublist in self.plane_positions:
             if sublist[0] == playerId:
-                self.logger.info("Position found and returned: {}".format(sublist[0]))
+                self.logger.info("Position found and returned: {}".format(sublist[1]))
                 return sublist[1]
 
 
