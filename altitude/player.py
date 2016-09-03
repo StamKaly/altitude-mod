@@ -55,6 +55,13 @@ class Plane:
                         self.logger.info("All clients are in the server after changeMap")
                 if sublist[8] is True:
                     sublist[8] = False
+                    sublist[0] = nickname
+                    sublist[1] = plane
+                    sublist[2] = red_perk
+                    sublist[3] = green_perk
+                    sublist[4] = blue_perk
+                    sublist[5] = ace
+                    sublist[6] = level
                     return "add"
                 else:
                     self.logger.info("Tracking changes for {}'s player info".format(nickname))
