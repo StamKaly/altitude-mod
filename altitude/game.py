@@ -171,7 +171,7 @@ class Game:
 
 
     def on_kill(self, playerId):
-        if self.current_mode == "1dm" and playerId > 0:
+        if self.current_mode == "1dm" and playerId >= 0:
             nickname = self.players.nickname_from_id(playerId)
             self.database.add_kill(self.players.vapor_from_id(playerId))
             database_best_in_1dm = self.database.get_most_kills()
