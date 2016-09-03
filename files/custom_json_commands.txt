@@ -1,1 +1,1 @@
-{"name":"start", "arguments":[["Ball","TBD","1dm","Football"]], "argumentDescriptions":["gameMode"],"voteThreshold":70}
+{"name":"match", "arguments":[["Ball","TBD","1dm","Football"]], "argumentDescriptions":["gameMode"],"voteThreshold":0}

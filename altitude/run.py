@@ -57,7 +57,7 @@ def on_clientAdd(logger, commands_object, game_object, nickname):
     elif game_object.current_mode == "lobby":
         commands_object.Multiple_Whispers(nickname, ['This is the lobby, when there are 2 or more players here,',
                                                      'use the command "/match <gameMode>" in the chat to',
-                                                     'start a vote for a new match! (Enter to use the chat)'])
+                                                     'start a vote for a new match! (Enter to open the chat)'])
     logger.info("{} is welcomed!".format(nickname))
 
 
