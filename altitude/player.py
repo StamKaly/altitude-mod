@@ -15,6 +15,7 @@ class Plane:
     def on_changeMap(self):
         for sublist in self.planes:
             sublist[7] = True
+            sublist[9] = False
         self.changeMap = True
 
 
@@ -41,8 +42,9 @@ class Plane:
                     sublist[7] = False
                     self.logger.info("Ignoring {}'s perkless loopy!".format(nickname))
                     return "perkless"
-                elif self.changeMap is True and sublist[7] is False and self.messagesToSend is not None:
+                elif self.changeMap is True and sublist[7] is False and sublist[9] is False and self.messagesToSend is not None:
                     self.commands.Multiple_Whispers(nickname, self.messagesToSend)
+                    sublist[9] = True
                     if self.check_if_all_clients_have_joined() is True:
                         self.changeMap = False
                         self.messagesToSend = None
@@ -51,41 +53,45 @@ class Plane:
                     if self.check_if_all_clients_have_joined() is True:
                         self.changeMap = False
                         self.logger.info("All clients are in the server after changeMap")
-                self.logger.info("Tracking changes for {}'s player info".format(nickname))
-                if plane != sublist[1]:
-                    plane_change = True
-                    sublist[1] = plane
+                if sublist[8] is True:
+                    sublist[8] = False
+                    return "add"
                 else:
-                    plane_change = False
-                if red_perk != sublist[2]:
-                    red_perk_change = True
-                    sublist[2] = red_perk
-                else:
-                    red_perk_change = False
-                if green_perk != sublist[3]:
-                    green_perk_change = True
-                    sublist[3] = green_perk
-                else:
-                    green_perk_change = False
-                if blue_perk != sublist[4]:
-                    blue_perk_change = True
-                    sublist[4] = blue_perk
-                else:
-                    blue_perk_change = False
-                if ace != sublist[5]:
-                    ace_change = True
-                    sublist[5] = ace
-                else:
-                    ace_change = False
-                if level != sublist[6]:
-                    level_change = True
-                    sublist[6] = level
-                else:
-                    level_change = False
-                changes = "plane_change={},red_perk_change={},green_perk_change={},blue_perk_change={},ace_change={},level_change={}".format(plane_change, red_perk_change, green_perk_change, blue_perk_change, ace_change, level_change)
-                self.logger.info("Changes for {}'s player info are tracked: {}".format(nickname, changes))
-                return plane_change, red_perk_change, green_perk_change, blue_perk_change, ace_change, level_change
-        self.planes.append([nickname, plane, red_perk, green_perk, blue_perk, ace, level, False])
+                    self.logger.info("Tracking changes for {}'s player info".format(nickname))
+                    if plane != sublist[1]:
+                        plane_change = True
+                        sublist[1] = plane
+                    else:
+                        plane_change = False
+                    if red_perk != sublist[2]:
+                        red_perk_change = True
+                        sublist[2] = red_perk
+                    else:
+                        red_perk_change = False
+                    if green_perk != sublist[3]:
+                        green_perk_change = True
+                        sublist[3] = green_perk
+                    else:
+                        green_perk_change = False
+                    if blue_perk != sublist[4]:
+                        blue_perk_change = True
+                        sublist[4] = blue_perk
+                    else:
+                        blue_perk_change = False
+                    if ace != sublist[5]:
+                        ace_change = True
+                        sublist[5] = ace
+                    else:
+                        ace_change = False
+                    if level != sublist[6]:
+                        level_change = True
+                        sublist[6] = level
+                    else:
+                        level_change = False
+                    changes = "plane_change={},red_perk_change={},green_perk_change={},blue_perk_change={},ace_change={},level_change={}".format(plane_change, red_perk_change, green_perk_change, blue_perk_change, ace_change, level_change)
+                    self.logger.info("Changes for {}'s player info are tracked: {}".format(nickname, changes))
+                    return plane_change, red_perk_change, green_perk_change, blue_perk_change, ace_change, level_change
+        self.planes.append([nickname, plane, red_perk, green_perk, blue_perk, ace, level, False, True, False])
         self.logger.info("{}'s player info are added to plane's list".format(nickname))
         return "add"
 

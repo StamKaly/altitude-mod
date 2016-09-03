@@ -29,7 +29,7 @@ class Handler:
 
     def on_aceChange(self, nickname, ace):
         if ace == 1:
-            self.commands.Whisper(nickname, "You have now become ace Rank 1 ! Congratulations!")
+            self.commands.Whisper(nickname, "You have now become ace Rank 1! Congratulations!")
 
 
     def on_levelChange(self, nickname, level):
