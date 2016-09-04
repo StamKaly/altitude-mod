@@ -7,9 +7,11 @@ class Reader:
         self.cursor = self.connection.cursor()
         self.logger = logger
         self.best_in_ball = []
+        self.best_in_football = []
         self.best_in_1dm = []
         self.best_in_tbd = []
         self.most_goals = 0
+        self.most_f_goals = 0
         self.most_kills = 0
         self.most_bases_destroyed = 0
 
@@ -30,7 +32,7 @@ class Reader:
             self.logger.info("{}'s nickname is updated in the database".format(nickname))
             return "updated"
         else:
-            self.cursor.execute("INSERT INTO Players VALUES(?, ?, ?, 0, 0, 0)", (nickname, vaporId, IP,))
+            self.cursor.execute("INSERT INTO Players VALUES(?, ?, ?, 0, 0, 0, 0)", (nickname, vaporId, IP,))
             self.connection.commit()
             self.logger.info("{} is added to the database".format(nickname))
             return "added"
@@ -46,17 +48,19 @@ class Reader:
 
     def reset_values(self):
         self.cursor.execute("UPDATE Players SET goals = 0")
+        self.cursor.execute("UPDATE Players SET f_goals = 0")
         self.cursor.execute("UPDATE Players SET kills = 0")
         self.cursor.execute("UPDATE Players SET bases = 0")
         self.connection.commit()
         self.best_in_ball = []
+        self.best_in_football = []
         self.best_in_1dm = []
         self.best_in_tbd = []
         self.logger.info("Goals, kills and bases scores are reset in the database")
 
 
     def add_kill(self, vaporId):
-        self.logger.info("-   Database   -   Selecting kills from players where vaporId is {}".format(vaporId))
+        self.logger.info("Database   -   Selecting kills from players where vaporId is {}".format(vaporId))
         self.cursor.execute("SELECT kills FROM Players WHERE vaporId = ?", (vaporId,))
         (kills,) = self.cursor.fetchone()
         kills += 1
@@ -66,7 +70,7 @@ class Reader:
 
 
     def add_base(self, vaporId):
-        self.logger.info("-   Database   -   Selecting bases from players where vaporId is {}".format(vaporId))
+        self.logger.info("Database   -   Selecting bases from players where vaporId is {}".format(vaporId))
         self.cursor.execute("SELECT bases FROM Players WHERE vaporId = ?", (vaporId,))
         (bases,) = self.cursor.fetchone()
         bases += 1
@@ -77,7 +81,7 @@ class Reader:
 
 
     def add_goal(self, vaporId):
-        self.logger.info("-   Database   -   Selecting goals from players where vaporId is {}".format(vaporId))
+        self.logger.info("Database   -   Selecting goals from players where vaporId is {}".format(vaporId))
         self.cursor.execute("SELECT goals FROM Players WHERE vaporId = ?", (vaporId,))
         (goals,) = self.cursor.fetchone()
         goals += 1
@@ -85,6 +89,15 @@ class Reader:
         self.connection.commit()
         self.logger.info("Someone scored another goal and his score is added to the database")
 
+
+    def add_f_goal(self, vaporId):
+        self.logger.info("Database   -   Selecting f_goals from players where vaporId is {}".format(vaporId))
+        self.cursor.execute("SELECT f_goals FROM Players WHERE vaporId = ?", (vaporId,))
+        (f_goals,) = self.cursor.fetchone()
+        f_goals += 1
+        self.cursor.execute("UPDATE Players SET f_goals = ? WHERE vaporId = ?", (f_goals, vaporId,))
+        self.connection.commit()
+        self.logger.info("Someone scored another goal in football and his score is added to the database")
 
 
     def get_most_goals(self):
@@ -103,6 +116,28 @@ class Reader:
                 self.logger.info("{} has/have scored the most goals = {}".format(self.best_in_ball, most_goals))
                 self.most_goals = most_goals
             return self.best_in_ball
+        except ValueError:
+            return []
+
+
+
+
+    def get_most_f_goals(self):
+        try:
+            self.cursor.execute("SELECT nickname, f_goals FROM Players")
+            players = []
+            for row in self.cursor.fetchall():
+                players.append([row[0], row[1]])
+            f_goals = [arg[1] for arg in players]
+            most_f_goals = max(f_goals)
+            if most_f_goals != 0:
+                self.best_in_football = []
+                for sublist in players:
+                    if most_f_goals == sublist[1]:
+                        self.best_in_football.append(sublist[0])
+                self.logger.info("{} has/have scored the most goals in football = {}".format(self.best_in_ball, most_f_goals))
+                self.most_f_goals = most_f_goals
+            return self.best_in_football
         except ValueError:
             return []
 

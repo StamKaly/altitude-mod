@@ -1,1 +1,2 @@
-{"name":"match", "arguments":[["Ball","TBD","1dm","Football"]], "argumentDescriptions":["gameMode"],"voteThreshold":0}
+{"name":"match", "arguments":[["Ball","TBD","1dm","Football"]], "argumentDescriptions":["gameMode"], "voteThreshold":0}
+{"name":"match_with_map", "arguments":["map"], "argumentDescriptions":["mapName"], "voteThreshold":0}

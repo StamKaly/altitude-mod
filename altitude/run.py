@@ -28,6 +28,12 @@ def on_command(commands_object, start_object, players_object, decoded):
                 start_object.football()
         else:
             commands_object.Message("2 or more players must be here to start a match!")
+    elif command == "match_with_map":
+        if players_object.get_number_of_players() >= 2:
+            _map_ = decoded['arguments'][0]
+            commands_object.ChangeMap(_map_)
+        else:
+            commands_object.Message("2 or more players must be here to start a match!")
 
 
 
@@ -35,11 +41,18 @@ def on_clientAdd(logger, commands_object, game_object, nickname):
     commands_object.Whisper(nickname, "Welcome to STA! The place where you have real fun!")
     if game_object.current_mode == "ball":
         commands_object.Whisper(nickname, "Press S to use the Ball or any other powerup.")
-        if len(game_object.message_for_best_in_ball) != 0:
-            commands_object.Multiple_Whispers(nickname, game_object.message_for_best_in_ball)
+        if game_object.current_map != "football":
+            if len(game_object.message_for_best_in_ball) != 0:
+                commands_object.Multiple_Whispers(nickname, game_object.message_for_best_in_ball)
+            else:
+                commands_object.Multiple_Whispers(nickname, ['There is no best player of the day in Ball yet.',
+                                                             'Be the first one!'])
         else:
-            commands_object.Multiple_Whispers(nickname, ['There is no best player of the day in Ball yet.',
-                                                         'Be the first one!'])
+            if len(game_object.message_for_best_in_football) != 0:
+                commands_object.Multiple_Whispers(nickname, game_object.message_for_best_in_football)
+            else:
+                commands_object.Multiple_Whispers(nickname, ['There is no best player of the day in Ball yet.',
+                                                             'Be the first one!'])
     elif game_object.current_mode == "tbd":
         commands_object.Whisper(nickname, 'Destroy the base with the bomb, press S to use the bomb.')
         if len(game_object.message_for_best_in_tbd) != 0:
@@ -69,10 +82,6 @@ def run(port, commands_file, logs_file, old_logs, logs_archive):
     fh.setLevel(logging.DEBUG)
     fh.setFormatter(formatter)
     logger.addHandler(fh)
-    ch = logging.StreamHandler()
-    ch.setLevel(logging.DEBUG)
-    ch.setFormatter(formatter)
-    logger.addHandler(ch)
     database_handler.Reader(logger).reset_values() # Just resetting goals, bases and kills
     database = database_handler.Reader(logger)
     planes = player.Plane(logger)

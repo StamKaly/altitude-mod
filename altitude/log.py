@@ -136,7 +136,6 @@ class Log:
                         self.do_with_logs()
                     except json.decoder.JSONDecodeError:
                         self.logger.warn("Could not parse line {}: {}".format(self.current_line+1, line))
-                        continue
                     finally:
                         self.current_line += 1
                         if isfile(self.old_logs) is True:
