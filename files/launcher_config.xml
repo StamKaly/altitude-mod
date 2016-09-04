@@ -36,6 +36,7 @@
         <AltitudeServerConsoleCommandPermissions ConsoleCommand="changeMap">
           <AllowedGroups>
             <AltitudeConsoleGroup Group="Administrator" />
+            <AltitudeConsoleGroup Group="Anonymous" />
           </AllowedGroups>
         </AltitudeServerConsoleCommandPermissions>
         <AltitudeServerConsoleCommandPermissions ConsoleCommand="custom">
