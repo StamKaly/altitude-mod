@@ -149,7 +149,7 @@ class Game:
                         self.message_for_best_in_ball.append("{}) {}".format(number+1, database_best_in_ball[number]))
             self.best_in_ball = database_best_in_ball
             self.most_goals = database_most_goals
-        else:
+        elif self.current_map == "football":
             nickname = self.players.nickname_from_id(playerId)
             self.logger.info(
                 "Player's ID who scored goal in football: {}, vapor: {}".format(playerId, self.players.vapor_from_id(playerId)))
@@ -270,9 +270,6 @@ class Game:
         except ValueError:
             mode, mapName1, mapName2 = full_map.split("_")
             mapName = mapName1 + mapName2
-        if mode != self.current_mode:
-            self.current_mode = mode
-            self.on_mode_change()
-        if mapName != self.current_map:
-            self.current_map = mapName
-            self.on_map_change()
+        self.current_map = mapName
+        self.current_mode = mode
+        self.on_mode_change()

@@ -28,7 +28,7 @@ def on_command(commands_object, start_object, players_object, decoded):
                 start_object.football()
         else:
             commands_object.Message("2 or more players must be here to start a match!")
-    elif command == "match_with_map":
+    elif command == "matchWithMap":
         if players_object.get_number_of_players() >= 2:
             _map_ = decoded['arguments'][0]
             commands_object.ChangeMap(_map_)
