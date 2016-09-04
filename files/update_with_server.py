@@ -4,6 +4,8 @@ class Main:
     def __init__(self):
         self.the_lobby = "/home/user/altitude-files/maps/lobby_sta.altx"
         self.the_lobby2 = "/home/user/altitude/altitude-mod/files/lobby_sta.altx"
+        self.gamejar = "/home/user/altitude-files/game.jar"
+        self.gamejar2 = "/home/user/altitude/altitude-mod/files/game.jar"
         self.server_config = "/home/user/altitude-files/servers/launcher_config.xml"
         self.server_config2 = "/home/user/altitude/altitude-mod/files/launcher_config.xml"
         self.custom_commands = "/home/user/altitude-files/servers/custom_json_commands.txt"
@@ -32,7 +34,33 @@ class Main:
                     the_lobby.write(the_lobby2.read())
                 print("Lobby is now updated!")
             else:
-                print("Lobby already up-to-date")
+                print("Lobby is already up-to-date")
+
+
+    def game(self):
+        hasher = sha256()
+        BLOCKSIZE = 10485760
+        with open(self.gamejar, "rb") as gamejar:
+            buf = gamejar.read(BLOCKSIZE)
+            while len(buf) > 0:
+                hasher.update(buf)
+                buf = gamejar.read(BLOCKSIZE)
+            gamejar_hash = hasher.hexdigest()
+
+        hasher2 = sha256()
+        with open(self.gamejar2, "rb") as gamejar2:
+            buf2 = gamejar2.read(BLOCKSIZE)
+            while len(buf2) > 0:
+                hasher2.update(buf2)
+                buf2 = gamejar2.read(BLOCKSIZE)
+            gamejar2_hash = hasher.hexdigest()
+            if gamejar_hash != gamejar2_hash:
+                with open(self.gamejar, "wb") as gamejar:
+                    gamejar.write(gamejar2.read())
+                print("Game.jar is now updated!")
+            else:
+                print("Game.jar is already up-to-date")
+
 
 
     def config(self):
@@ -51,6 +79,7 @@ class Main:
 
     def main(self):
         self.lobby()
+        self.game()
         self.config()
         self.commands()
 
