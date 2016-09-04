@@ -270,6 +270,9 @@ class Game:
         except ValueError:
             mode, mapName1, mapName2 = full_map.split("_")
             mapName = mapName1 + mapName2
-        self.current_map = mapName
-        self.current_mode = mode
-        self.on_mode_change()
+        if mapName != self.current_map:
+            self.current_map = mapName
+            self.on_map_change()
+        if mode != self.current_mode:
+            self.current_mode = mode
+            self.on_mode_change()
