@@ -68,7 +68,7 @@ class Handler:
         redPerk = decoded['perkRed']
         greenPerk = decoded['perkGreen']
         bluePerk = decoded['perkBlue']
-        ace = decoded['ace']
+        ace = decoded['aceRank']
         level = decoded['level']
         add_or_check = self.planes.add_or_check(nickname, plane, redPerk, greenPerk, bluePerk, ace, level)
         if add_or_check == "add":
