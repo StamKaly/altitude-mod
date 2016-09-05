@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ServerLauncherConfig ip="" upnpEnabled="true" updatePort="27275">
   <servers>
-    <AltitudeServerConfig port="27279" downloadMaxKilobytesPerSecond="500" downloadHttpSource="" serverName="Stam and Tolis' Academy testing server" maxPlayerCount="30" hardcore="true" autoBalanceTeams="true" preventTeamSwitching="true" disableBalanceTeamsPopup="true" lanServer="false" callEndOfRoundVote="true" disallowDemoUsers="false" rconEnabled="true" rconPassword="staftw" maxPing="1000" minLevel="0" maxLevel="0" secretCode="testing" cameraViewScalePercent="100">
+    <AltitudeServerConfig port="27279" downloadMaxKilobytesPerSecond="500" downloadHttpSource="" serverName="Stam and Tolis' Academy testing server" maxPlayerCount="30" hardcore="true" autoBalanceTeams="false" preventTeamSwitching="true" disableBalanceTeamsPopup="true" lanServer="false" callEndOfRoundVote="true" disallowDemoUsers="false" rconEnabled="true" rconPassword="staftw" maxPing="1000" minLevel="0" maxLevel="0" secretCode="testing" cameraViewScalePercent="100">
       <adminsByVaporID>
         <UUID UUID="c9e24c41-292d-4d40-b76c-230d8f30ef32" />
         <UUID UUID="f4d0b170-2877-4a92-90eb-eb950a57c636" />
