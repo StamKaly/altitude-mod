@@ -13,53 +13,17 @@ class Main:
 
 
     def lobby(self):
-        hasher = sha256()
-        BLOCKSIZE = 10485760
-        with open(self.the_lobby, "rb") as the_lobby:
-            buf = the_lobby.read(BLOCKSIZE)
-            while len(buf) > 0:
-                hasher.update(buf)
-                buf = the_lobby.read(BLOCKSIZE)
-            the_lobby_hash = hasher.hexdigest()
-
-        hasher2 = sha256()
-        with open(self.the_lobby2, "rb") as the_lobby2:
-            buf2 = the_lobby2.read(BLOCKSIZE)
-            while len(buf2) > 0:
-                hasher2.update(buf2)
-                buf2 = the_lobby2.read(BLOCKSIZE)
-            the_lobby2_hash = hasher.hexdigest()
-            if the_lobby_hash != the_lobby2_hash:
-                with open(self.the_lobby, "wb") as the_lobby:
-                    the_lobby.write(the_lobby2.read())
-                print("Lobby is now updated!")
-            else:
-                print("Lobby is already up-to-date")
+        with open(self.the_lobby, "wb") as the_lobby:
+            with open(self.the_lobby2, "rb") as the_lobby2:
+                the_lobby.write(the_lobby2.read())
+        print("Lobby has been updated")
 
 
     def game(self):
-        hasher = sha256()
-        BLOCKSIZE = 10485760
-        with open(self.gamejar, "rb") as gamejar:
-            buf = gamejar.read(BLOCKSIZE)
-            while len(buf) > 0:
-                hasher.update(buf)
-                buf = gamejar.read(BLOCKSIZE)
-            gamejar_hash = hasher.hexdigest()
-
-        hasher2 = sha256()
-        with open(self.gamejar2, "rb") as gamejar2:
-            buf2 = gamejar2.read(BLOCKSIZE)
-            while len(buf2) > 0:
-                hasher2.update(buf2)
-                buf2 = gamejar2.read(BLOCKSIZE)
-            gamejar2_hash = hasher.hexdigest()
-            if gamejar_hash != gamejar2_hash:
-                with open(self.gamejar, "wb") as gamejar:
-                    gamejar.write(gamejar2.read())
-                print("Game.jar is now updated!")
-            else:
-                print("Game.jar is already up-to-date")
+        with open(self.gamejar, "wb") as game:
+            with open(self.gamejar2, "rb") as game2:
+                game.write(game2.read())
+        print("Game.jar has been updated")
 
 
 
