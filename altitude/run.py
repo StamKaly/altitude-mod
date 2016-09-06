@@ -15,7 +15,10 @@ def on_message(logger, commands_object, players_object, decoded):
 
 def on_command(commands_object, sender, start_object, players_object, permission, decoded):
     command = decoded['command']
-    argument = decoded['arguments'][0]
+    try:
+        argument = decoded['arguments'][0]
+    except IndexError:
+        argument = None
     if command == "match":
         if players_object.get_number_of_players() >= 2:
             if argument == "Ball":
