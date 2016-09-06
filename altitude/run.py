@@ -60,6 +60,17 @@ def on_command(commands_object, sender, start_object, players_object, permission
         permission.listBans(sender)
     elif command == "sta_listUnbanned":
         permission.listUnbanned(sender)
+    elif command == "goInsane":
+        if argument == "True":
+            commands_object.CameraScale(40)
+            commands_object.PlaneScale(40)
+            commands_object.Gravity("everything")
+            commands_object.Message("Insane mode activated!")
+        elif argument == "False":
+            commands_object.CameraScale(100)
+            commands_object.PlaneScale(100)
+            commands_object.Gravity("nothing")
+            commands_object.Message("Insane mode deactivated")
 
 
 
