@@ -13,7 +13,7 @@ class Permissions:
         if self.state is True:
             if self.teachers.teachers_check_existence(self.players.vapor_from_id(playerId)) is True:
                 return
-            level, ace = self.players.get_level_and_ace()
+            level, ace = self.players.get_level_and_ace(playerId)
             if ace == 0 and level <= 59:
                 return
             else:
