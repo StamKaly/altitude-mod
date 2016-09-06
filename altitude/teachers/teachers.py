@@ -131,7 +131,7 @@ class Handler:
                 continue
         if len(messages) == 0:
             return None
-        return number, messages
+        return number - 1, messages
 
 
     def get_unbanned(self):
@@ -149,7 +149,7 @@ class Handler:
                 continue
         if len(messages) == 0:
             return None
-        return number, messages
+        return number - 1, messages
 
 
 
@@ -168,7 +168,7 @@ class Handler:
                 continue
         if len(messages) == 0:
             return None
-        return number, messages
+        return number - 1, messages
 
 
     def get_vapor_from_teachers(self, nickname):
