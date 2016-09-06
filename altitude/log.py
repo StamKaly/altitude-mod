@@ -67,8 +67,8 @@ class Log:
             # On command
             elif type == "consoleCommandExecute":
                 if self.decoded['source'] != "00000000-0000-0000-0000-000000000000":
-                    run.on_command(self.commands, self.decoded['source'], self.start, self.players, self.decoded,
-                                   self.permissions)
+                    run.on_command(self.commands, self.decoded['source'], self.start, self.players, self.permissions,
+                                   self.decoded)
 
 
 
