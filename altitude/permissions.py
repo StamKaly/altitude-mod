@@ -38,10 +38,19 @@ class Permissions:
 
 
     def setServerMode(self, sender, mode):
+        sender_nickname = self.players.nickname_from_vapor(sender)
         if mode == "Newbies and Teachers":
-            self.state = True
+            if self.state is False:
+                self.state = True
+                self.commands.Whisper(sender_nickname, "Mode is set successfully! Only teachers and newbies will be able to spawn!")
+            else:
+                self.commands.Whisper(sender_nickname, "This mode is already in use right now, maybe you meant everyone?")
         elif mode == "Everyone":
-            self.state = False
+            if self.state is True:
+                self.state = False
+                self.commands.Whisper(sender_nickname, "Mode is set successfully! Everyone will be able to spawn!")
+            else:
+                self.commands.Whisper(sender_nickname, "This mode is already in use right now, maybe you meant newbies and teachers?")
 
 
     def addTeacher(self, sender, nickname):
