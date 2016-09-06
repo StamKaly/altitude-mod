@@ -1,5 +1,5 @@
 import logging
-from . import commands, log, player, playerinfo_handler, game, start
+from . import commands, log, player, playerinfo_handler, game, start, permissions
 from .players_database import database_handler
 
 
@@ -13,11 +13,11 @@ def on_message(logger, commands_object, players_object, decoded):
 
 
 
-def on_command(commands_object, start_object, players_object, decoded):
+def on_command(commands_object, sender, start_object, players_object, permission, decoded):
     command = decoded['command']
+    argument = decoded['arguments'][0]
     if command == "match":
         if players_object.get_number_of_players() >= 2:
-            argument = decoded['arguments'][0]
             if argument == "Ball":
                 start_object.ball()
             elif argument == "TBD":
@@ -30,10 +30,33 @@ def on_command(commands_object, start_object, players_object, decoded):
             commands_object.Message("2 or more players must be here to start a match!")
     elif command == "matchWithMap":
         if players_object.get_number_of_players() >= 2:
-            _map_ = decoded['arguments'][0]
-            commands_object.ChangeMap(_map_)
+            commands_object.ChangeMap(argument)
         else:
             commands_object.Message("2 or more players must be here to start a match!")
+    elif command == "sta_setServerMode":
+        permission.setServerMode(sender, argument)
+    elif command == "sta_addTeacher":
+        permission.addTeacher(sender, argument)
+    elif command == "sta_addTeacherWithVapor":
+        permission.addTeacherWithVapor(sender, argument)
+    elif command == "sta_removeTeacher":
+        permission.removeTeacher(sender, argument)
+    elif command == "sta_removeTeacherWithNickname":
+        permission.removeTeacherWithNickname(sender, argument)
+    elif command == "sta_listTeachers":
+        permission.listTeachers(sender)
+    elif command == "sta_removeBan":
+        permission.removeBan(sender, argument)
+    elif command == "sta_removeBanWithNickname":
+        permission.removeBanWithNickname(sender, argument)
+    elif command == "sta_addBan":
+        permission.addBan(sender, argument)
+    elif command == "sta_addBanWithVapor":
+        permission.addBanWithVapor(sender, argument)
+    elif command == "sta_listBans":
+        permission.listBans(sender)
+    elif command == "sta_listUnbanned":
+        permission.listUnbanned(sender)
 
 
 
@@ -74,7 +97,7 @@ def on_clientAdd(logger, commands_object, game_object, nickname):
     logger.info("{} is welcomed!".format(nickname))
 
 
-def run(port, commands_file, logs_file, old_logs, logs_archive):
+def run(port, commands_file, logs_file, old_logs, logs_archive, server_mode):
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
     formatter = logging.Formatter("%(asctime)s   -   %(levelname)s   -   %(message)s", "%d-%m-%Y, %H:%M:%S")
@@ -89,12 +112,14 @@ def run(port, commands_file, logs_file, old_logs, logs_archive):
     players = player.Player(logger, planes)
     planes.get_players_object(players)
     command = commands.Commands(logger, players, port, commands_file)
+    teachers = permissions.Permissions(logger, command, players, server_mode)
     players.get_commands_object(command)
     start_map = start.Map(logger, command)
     planes.get_commands_object(command)
     playerInfoHandler = playerinfo_handler.Handler(logger, command, planes, players)
     game_info = game.Game(logger, players, planes, plane_positions, command, database)
-    logs = log.Log(logger, logs_file, old_logs, logs_archive, start_map, command, database, players, plane_positions, planes, playerInfoHandler, game_info)
+    logs = log.Log(logger, logs_file, old_logs, logs_archive, start_map, command, database, players, plane_positions,
+                   planes, playerInfoHandler, game_info, teachers)
     game_info.get_logs_object(logs)
     players.get_game_object(game_info)
     logger.info('Mod started')

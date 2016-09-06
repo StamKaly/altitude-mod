@@ -12,15 +12,35 @@ class Commands:
 
 
     def StartTournament(self):
-        cmd = '{}startTournament'.format(self.console)
+        cmd = '{}startTournament\n'.format(self.console)
         self.write_command(cmd)
         self.logger.info("Tournament has now started")
 
 
     def StopTournament(self):
-        cmd = '{}stopTournament'.format(self.console)
+        cmd = '{}stopTournament\n'.format(self.console)
         self.write_command(cmd)
         self.logger.info("Tournament is now stopped")
+
+    def AddChatBlock(self, vapor, block_type, duration, unit_time, reason):
+        cmd = "{}chatBlock {} {} {} {} {}\n".format(self.console, vapor, block_type, duration,
+                                                  unit_time, reason)
+        self.write_command(cmd)
+        self.logger.info("A chat block ban has been added to {} for {} {} in {}".format(vapor, duration,
+                                                                                        unit_time, block_type))
+
+    def ChatBlock(self, nickname, block_type, duration, unit_time, reason):
+        cmd = "{}chatBlock {} {} {} {} {}\n".format(self.console, nickname, block_type, duration,
+                                                  unit_time, reason)
+        self.write_command(cmd)
+        self.logger.info("A chat block ban has been added to {} for {} {} in {}".format(nickname, duration,
+                                                                                        unit_time, block_type))
+
+
+    def RemoveChatBlock(self, vapor, block_type):
+        cmd = "{}removeChatBlock {} {}\n".format(self.console, vapor, block_type)
+        self.write_command(cmd)
+        self.logger.info("A chat block had been removed")
 
 
     def Whisper(self, playerName, message):

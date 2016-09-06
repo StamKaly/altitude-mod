@@ -10,7 +10,7 @@ import time
 
 class Log:
     def __init__(self, logger, log_file_location, old_logs_location, logs_archive_location, start_object, commands_object,
-                 database_object, players_object, planesPositions_object, planes_object, playerInfo_handler, game):
+                 database_object, players_object, planesPositions_object, planes_object, playerInfo_handler, game, permissions):
         self.logger = logger
         self.current_line = 0
         self.log_file = log_file_location
@@ -24,6 +24,7 @@ class Log:
         self.planes = planes_object
         self.playerInfoHandler = playerInfo_handler
         self.game = game
+        self.permissions = permissions
         self.getPositions = False
         self.newDay = False
 
@@ -65,7 +66,9 @@ class Log:
 
             # On command
             elif type == "consoleCommandExecute":
-                run.on_command(self.commands, self.start, self.players, self.decoded)
+                if self.decoded['source'] != "00000000-0000-0000-0000-000000000000":
+                    run.on_command(self.commands, self.decoded['source'], self.start, self.players, self.decoded,
+                                   self.permissions)
 
 
 
@@ -77,6 +80,7 @@ class Log:
                 self.players.add(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['player'], self.decoded['ip'])
                 self.database.add_or_check(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['ip'])
                 run.on_clientAdd(self.logger, self.commands, self.game, self.decoded['nickname'])
+                self.permissions.on_clientAdd(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['level'], self.decoded['aceRank'])
             elif type == "logServerStatus":
                 self.logger.info("Adding all clients in server to players list")
                 self.players.get_all_players(self.decoded['nicknames'], self.decoded['vaporIds'], self.decoded['playerIds'],
@@ -89,8 +93,11 @@ class Log:
                 self.logger.info("Changing {}'s nickname in players and planes list".format(self.decoded['oldNickname']))
                 self.players.nickname_change(self.decoded['oldNickname'], self.decoded['newNickname'])
                 self.database.on_nickname_change(self.decoded['oldNickname'], self.decoded['newNickname'])
+                self.permissions.on_nicknameChange(self.decoded['newNickname'])
             elif type == "playerInfoEv":
                 self.playerInfoHandler.parse(self.decoded)
+            elif type == "spawn":
+                self.permissions.on_spawn(self.decoded['player'])
 
 
 

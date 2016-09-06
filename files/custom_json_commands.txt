@@ -1,2 +1,14 @@
 {"name":"match", "arguments":[["Ball","TBD","1dm","Football"]], "argumentDescriptions":["gameMode"], "voteThreshold":0}
 {"name":"matchWithMap", "arguments":["map"], "argumentDescriptions":["mapName"], "voteThreshold":0}
+{"name":"sta_setServerMode", "arguments":[["Newbies and Teachers", "Everyone"]], "argumentDescriptions":["Mode"], "voteThreshold":100}
+{"name":"sta_addTeacher", "arguments":["player"], "argumentDescriptions":["Nickname"], "voteThreshold":100}
+{"name":"sta_addTeacherWithVapor", "arguments":["string"], "argumentDescriptions":["VaporID"], "voteThreshold":100}
+{"name":"sta_removeTeacher", "arguments":["player"], "argumentDescriptions":["Nickname"], "voteThreshold":100}
+{"name":"sta_removeTeacherWithNickname", "arguments":["string"], "argumentDescriptions":["Partial Nickname"], "voteThreshold":100}
+{"name":"sta_listTeachers", "arguments":[], "voteThreshold":0}
+{"name":"sta_removeBan", "arguments":["player"], "argumentDescriptions":["Nickname"], "voteThreshold":100}
+{"name":"sta_removeBanWithNickname", "arguments":["string"], "argumentDescriptions":["Partial Nickname"], "voteThreshold":100}
+{"name":"sta_addBan", "arguments":["player"], "argumentDescriptions":["Nickname"], "voteThreshold":100}
+{"name":"sta_addBanWithVapor", "arguments":["string"], "argumentDescriptions":["VaporID"], "voteThreshold":100}
+{"name":"sta_listBans", "arguments":[], "voteThreshold":100}
+{"name":"sta_listUnbanned", "arguments":[], "voteThreshold":100}

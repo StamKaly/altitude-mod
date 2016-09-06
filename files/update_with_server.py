@@ -1,5 +1,3 @@
-from hashlib import sha256
-
 class Main:
     def __init__(self):
         self.the_lobby = "/home/user/altitude-files/maps/lobby_sta.altx"

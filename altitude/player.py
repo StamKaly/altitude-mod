@@ -118,6 +118,13 @@ class Plane:
                 self.logger.info("{}'s nickname changed to {} in planes list".format(oldNickname, newNickname))
                 break
 
+
+    def get_level_and_ace(self, nickname):
+        for sublist in self.planes:
+            if nickname == sublist[0]:
+                return sublist[6], sublist[5]
+
+
     def get(self, nickname):
         for sublist in self.planes:
             if nickname == sublist[0]:
@@ -268,9 +275,19 @@ class Player:
             if playerId == sublist[2]:
                 return sublist[1]
 
+
+    def vapor_from_nickname(self, nickname):
+        for sublist in self.players:
+            if nickname == sublist[0]:
+                return sublist[1]
+
+
     def return_all_nicknames(self):
         return [player[0] for player in self.players]
 
+    def get_level_and_ace(self, playerId):
+        nickname = self.nickname_from_id(playerId)
+        return self.plane_object.get_level_and_ace(nickname)
 
     def get_planes(self, nickname):
         plane, red_perk, green_perk, blue_perk = self.plane_object.get(nickname)
