@@ -192,7 +192,7 @@ class Permissions:
         unban = self.teachers.get_unbanned()
         if unban is None:
             self.commands.Whisper(sender_nickname,
-                                  "There are no bans right now.")
+                                  "There are no people unbanned right now.")
         else:
             number, messages = unban
             self.commands.Whisper(sender_nickname, "There are {} people unbanned:".format(number))
