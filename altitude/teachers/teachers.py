@@ -64,7 +64,7 @@ class Handler:
             return "not found"
         else:
             self.cursor.execute("SELECT nickname FROM Unbanned WHERE vaporId = ?", (vaporId,))
-            (nickname,), = self.cursor.fetchone()
+            (nickname,) = self.cursor.fetchone()
             self.cursor.execute("DELETE FROM Unbanned WHERE vaporId = ?", (vaporId,))
             self.connection.commit()
             return nickname
