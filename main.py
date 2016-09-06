@@ -1,5 +1,5 @@
 from altitude import run
 
 
-run.run("27279", "/home/user/altitude-files/servers/command.txt", "/home/user/altitude-files/servers/log.txt",
-        "/home/user/altitude-files/servers/log_old.txt", "/home/user/altitude-files/servers/logs_archive.txt", False)
+run.Run("27279", "/home/user/altitude-files/servers/command.txt", "/home/user/altitude-files/servers/log.txt",
+        "/home/user/altitude-files/servers/log_old.txt", "/home/user/altitude-files/servers/logs_archive.txt", False).run()

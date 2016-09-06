@@ -77,7 +77,7 @@ class Game:
                 self.planes.messagesToSend.append('Be the first one!')
         elif self.current_mode == "lobby" and self.players.lobby_loaded is False:
             self.planes.messagesToSend = ['This is the lobby, when there are 2 or more players here,',
-                                          'use the command "/match <gameMode>" in the chat to',
+                                          'use the command \\\"/match <gameMode>\\\" in the chat to',
                                           'start a vote for a new match! (Enter to open the chat)']
         else:
             self.players.lobby_loaded = False

@@ -1,7 +1,6 @@
 import json
 from os import remove
 from os.path import isfile, getsize
-from . import run
 import time
 
 
@@ -29,12 +28,16 @@ class Log:
         self.newDay = False
 
 
+    def get_run_object(self, run):
+        self.run = run
+
+
     def do_with_logs(self):
         try:
             type = self.decoded['type']
             if type == "chat":
                 self.logger.info("Parsing chat message: {}".format(self.decoded['message']))
-                run.on_message(self.logger, self.commands, self.players, self.decoded)
+                self.run.on_message()
 
 
 
@@ -67,8 +70,7 @@ class Log:
             # On command
             elif type == "consoleCommandExecute":
                 if self.decoded['source'] != "00000000-0000-0000-0000-000000000000":
-                    run.on_command(self.commands, self.decoded['source'], self.start, self.players, self.permissions,
-                                   self.decoded)
+                    self.run.on_command()
 
 
 
@@ -79,7 +81,7 @@ class Log:
                 self.logger.info("Adding {}'s client to players and planes list".format(self.decoded['nickname']))
                 self.players.add(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['player'], self.decoded['ip'])
                 self.database.add_or_check(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['ip'])
-                run.on_clientAdd(self.logger, self.commands, self.game, self.decoded['nickname'])
+                self.run.on_clientAdd()
                 self.permissions.on_clientAdd(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['level'], self.decoded['aceRank'])
             elif type == "logServerStatus":
                 self.logger.info("Adding all clients in server to players list")

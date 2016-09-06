@@ -2,139 +2,153 @@ import logging
 from . import commands, log, player, playerinfo_handler, game, start, permissions
 from .players_database import database_handler
 
-
-def on_message(logger, commands_object, players_object, decoded):
-    if decoded['message'] == "hello":
-        commands_object.Message("Hello there, I am the server!")
-    elif decoded['message'] == "soo server whats my plane?":
-        commands_object.Message(players_object.get_planes(players_object.nickname_from_id(decoded['player'])))
-    logger.info('Chat message "{}" was parsed'.format(decoded['message']))
-
-
-
-
-def on_command(commands_object, sender, start_object, players_object, permission, decoded):
-    command = decoded['command']
-    try:
-        argument = decoded['arguments'][0]
-    except IndexError:
-        argument = None
-    if command == "match":
-        if players_object.get_number_of_players() >= 2:
-            if argument == "Ball":
-                start_object.ball()
-            elif argument == "TBD":
-                start_object.tbd()
-            elif argument == "1dm":
-                start_object.onedm()
-            elif argument == "Football":
-                start_object.football()
-        else:
-            commands_object.Message("2 or more players must be here to start a match!")
-    elif command == "matchWithMap":
-        if players_object.get_number_of_players() >= 2:
-            commands_object.ChangeMap(argument)
-        else:
-            commands_object.Message("2 or more players must be here to start a match!")
-    elif command == "sta_setServerMode":
-        permission.setServerMode(sender, argument)
-    elif command == "sta_addTeacher":
-        permission.addTeacher(sender, argument)
-    elif command == "sta_addTeacherWithVapor":
-        permission.addTeacherWithVapor(sender, argument)
-    elif command == "sta_removeTeacher":
-        permission.removeTeacher(sender, argument)
-    elif command == "sta_removeTeacherWithNickname":
-        permission.removeTeacherWithNickname(sender, argument)
-    elif command == "sta_listTeachers":
-        permission.listTeachers(sender)
-    elif command == "sta_removeBan":
-        permission.removeBan(sender, argument)
-    elif command == "sta_removeBanWithNickname":
-        permission.removeBanWithNickname(sender, argument)
-    elif command == "sta_addBan":
-        permission.addBan(sender, argument)
-    elif command == "sta_addBanWithVapor":
-        permission.addBanWithVapor(sender, argument)
-    elif command == "sta_listBans":
-        permission.listBans(sender)
-    elif command == "sta_listUnbanned":
-        permission.listUnbanned(sender)
-    elif command == "goInsane":
-        if argument == "True":
-            commands_object.CameraScale(40)
-            commands_object.PlaneScale(40)
-            commands_object.Gravity("everything")
-            commands_object.Message("Insane mode activated!")
-        elif argument == "False":
-            commands_object.CameraScale(100)
-            commands_object.PlaneScale(100)
-            commands_object.Gravity("nothing")
-            commands_object.Message("Insane mode deactivated")
+class Run:
+    def __init__(self, port, commands_file, logs_file, old_logs, logs_archive, server_mode):
+        self.logs_file = logs_file
+        self.old_logs = old_logs
+        self.logs_archive = logs_archive
+        self.logger = logging.getLogger()
+        self.logger.setLevel(logging.DEBUG)
+        formatter = logging.Formatter("%(asctime)s   -   %(levelname)s   -   %(message)s", "%d-%m-%Y, %H:%M:%S")
+        fh = logging.FileHandler('mod_debug_logs.txt')
+        fh.setLevel(logging.DEBUG)
+        fh.setFormatter(formatter)
+        self.logger.addHandler(fh)
+        database_handler.Reader(self.logger).reset_values()  # Just resetting goals, bases and kills
+        self.database = database_handler.Reader(self.logger)
+        self.planes = player.Plane(self.logger)
+        self.plane_positions = player.PlanePosition(self.logger)
+        self.players = player.Player(self.logger, self.planes)
+        self.planes.get_players_object(self.players)
+        self.command = commands.Commands(self.logger, self.players, port, commands_file)
+        self.teachers = permissions.Permissions(self.logger, self.command, self.players, server_mode)
+        self.players.get_commands_object(self.command)
+        self.start_map = start.Map(self.logger, self.command)
+        self.planes.get_commands_object(self.command)
+        self.playerInfoHandler = playerinfo_handler.Handler(self.logger, self.command, self.planes, self.players)
+        self.game_info = game.Game(self.logger, self.players, self.planes, self.plane_positions, self.command, self.database)
+        self.logs = log.Log(self.logger, logs_file, old_logs, logs_archive, self.start_map, self.command, self.database,
+                       self.players, self.plane_positions, self.planes, self.playerInfoHandler, self.game_info, self.teachers)
+        self.game_info.get_logs_object(self.logs)
+        self.players.get_game_object(self.game_info)
+        self.logger.info('Mod started')
 
 
+    def on_message(self):
+        if self.logs.decoded['message'] == "hello":
+            self.command.Message("Hello there, I am the server!")
+        elif self.logs.decoded['message'] == "soo server whats my plane?":
+            self.command.Message(self.players.get_planes(self.players.nickname_from_id(self.logs.decoded['player'])))
+        self.logger.info('Chat message "{}" was parsed'.format(self.logs.decoded['message']))
 
-def on_clientAdd(logger, commands_object, game_object, nickname):
-    commands_object.Whisper(nickname, "Welcome to STA! The place where you have real fun!")
-    if game_object.current_mode == "ball":
-        commands_object.Whisper(nickname, "Press S to use the Ball or any other powerup.")
-        if game_object.current_map != "football":
-            if len(game_object.message_for_best_in_ball) != 0:
-                commands_object.Multiple_Whispers(nickname, game_object.message_for_best_in_ball)
+
+    def on_command(self):
+        sender = self.logs.decoded['source']
+        command = self.logs.decoded['command']
+        try:
+            argument = self.logs.decoded['arguments'][0]
+        except IndexError:
+            argument = None
+        if command == "match":
+            if self.players.get_number_of_players() >= 2:
+                if argument == "Ball":
+                    self.start_map.ball()
+                elif argument == "TBD":
+                    self.start_map.tbd()
+                elif argument == "1dm":
+                    self.start_map.onedm()
+                elif argument == "Football":
+                    self.start_map.football()
             else:
-                commands_object.Multiple_Whispers(nickname, ['There is no best player of the day in Ball yet.',
-                                                             'Be the first one!'])
-        else:
-            if len(game_object.message_for_best_in_football) != 0:
-                commands_object.Multiple_Whispers(nickname, game_object.message_for_best_in_football)
+                self.command.Message("2 or more players must be here to start a match!")
+        elif command == "matchWithMap":
+            if self.players.get_number_of_players() >= 2:
+                self.command.ChangeMap(argument)
             else:
-                commands_object.Multiple_Whispers(nickname, ['There is no best player of the day in Ball yet.',
+                self.command.Message("2 or more players must be here to start a match!")
+        elif command == "sta_setServerMode":
+            self.teachers.setServerMode(sender, argument)
+        elif command == "sta_addTeacher":
+            self.teachers.addTeacher(sender, argument)
+        elif command == "sta_addTeacherWithVapor":
+            self.teachers.addTeacherWithVapor(sender, argument)
+        elif command == "sta_removeTeacher":
+            self.teachers.removeTeacher(sender, argument)
+        elif command == "sta_removeTeacherWithNickname":
+            self.teachers.removeTeacherWithNickname(sender, argument)
+        elif command == "sta_listTeachers":
+            self.teachers.listTeachers(sender)
+        elif command == "sta_removeBan":
+            self.teachers.removeBan(sender, argument)
+        elif command == "sta_removeBanWithNickname":
+            self.teachers.removeBanWithNickname(sender, argument)
+        elif command == "sta_addBan":
+            self.teachers.addBan(sender, argument)
+        elif command == "sta_addBanWithVapor":
+            self.teachers.addBanWithVapor(sender, argument)
+        elif command == "sta_listBans":
+            self.teachers.listBans(sender)
+        elif command == "sta_listUnbanned":
+            self.teachers.listUnbanned(sender)
+        elif command == "goInsane":
+            if argument == "True":
+                self.command.CameraScale(40)
+                self.command.PlaneScale(40)
+                self.command.Gravity("everything")
+                self.command.Message("Insane mode activated!")
+            elif argument == "False":
+                self.command.CameraScale(100)
+                self.command.PlaneScale(100)
+                self.command.Gravity("nothing")
+                self.command.Message("Insane mode deactivated")
+
+
+
+    def on_clientAdd(self):
+        nickname = self.logs.decoded['nickname']
+        self.command.Whisper(nickname, "Welcome to STA! The place where you have real fun!")
+        if self.game_info.current_mode == "ball":
+            self.command.Whisper(nickname, "Press S to use the Ball or any other powerup.")
+            if self.game_info.current_map != "football":
+                if len(self.game_info.message_for_best_in_ball) != 0:
+                    self.command.Multiple_Whispers(nickname, self.game_info.message_for_best_in_ball)
+                else:
+                    self.command.Multiple_Whispers(nickname, ['There is no best player of the day in Ball yet.',
+                                                                 'Be the first one!'])
+            else:
+                if len(self.game_info.message_for_best_in_football) != 0:
+                    self.command.Multiple_Whispers(nickname, self.game_info.message_for_best_in_football)
+                else:
+                    self.command.Multiple_Whispers(nickname, ['There is no best player of the day in Ball yet.',
+                                                                 'Be the first one!'])
+        elif self.game_info.current_mode == "tbd":
+            self.command.Whisper(nickname, 'Destroy the base with the bomb, press S to use the bomb.')
+            if len(self.game_info.message_for_best_in_tbd) != 0:
+                self.command.Multiple_Whispers(nickname, self.game_info.message_for_best_in_tbd)
+            else:
+                self.command.Multiple_Whispers(nickname, ['There is no best player of the day in TBD yet.',
                                                              'Be the first one!'])
-    elif game_object.current_mode == "tbd":
-        commands_object.Whisper(nickname, 'Destroy the base with the bomb, press S to use the bomb.')
-        if len(game_object.message_for_best_in_tbd) != 0:
-            commands_object.Multiple_Whispers(nickname, game_object.message_for_best_in_tbd)
-        else:
-            commands_object.Multiple_Whispers(nickname, ['There is no best player of the day in TBD yet.',
-                                                         'Be the first one!'])
-    elif game_object.current_mode == "1dm":
-        commands_object.Whisper(nickname, "Kill as many planes as you can and try not to die.")
-        if len(game_object.message_for_best_in_1dm) != 0:
-            commands_object.Multiple_Whispers(nickname, game_object.message_for_best_in_1dm)
-        else:
-            commands_object.Multiple_Whispers(nickname, ['There is no best player of the day in 1dm yet.',
-                                                         'Be the first one!'])
-    elif game_object.current_mode == "lobby":
-        commands_object.Multiple_Whispers(nickname, ['This is the lobby, when there are 2 or more players here,',
-                                                     'use the command "/match <gameMode>" in the chat to',
-                                                     'start a vote for a new match! (Enter to open the chat)'])
-    logger.info("{} is welcomed!".format(nickname))
+        elif self.game_info.current_mode == "1dm":
+            self.command.Whisper(nickname, "Kill as many planes as you can and try not to die.")
+            if len(self.game_info.message_for_best_in_1dm) != 0:
+                self.command.Multiple_Whispers(nickname, self.game_info.message_for_best_in_1dm)
+            else:
+                self.command.Multiple_Whispers(nickname, ['There is no best player of the day in 1dm yet.',
+                                                             'Be the first one!'])
+        elif self.game_info.current_mode == "lobby":
+            self.command.Multiple_Whispers(nickname, ['This is the lobby, when there are 2 or more players here,',
+                                                         'use the command \\\"/match <gameMode>\\\" in the chat to',
+                                                         'start a vote for a new match! (Enter to open the chat)'])
+        self.logger.info("{} is welcomed!".format(nickname))
 
 
-def run(port, commands_file, logs_file, old_logs, logs_archive, server_mode):
-    logger = logging.getLogger()
-    logger.setLevel(logging.DEBUG)
-    formatter = logging.Formatter("%(asctime)s   -   %(levelname)s   -   %(message)s", "%d-%m-%Y, %H:%M:%S")
-    fh = logging.FileHandler('mod_debug_logs.txt')
-    fh.setLevel(logging.DEBUG)
-    fh.setFormatter(formatter)
-    logger.addHandler(fh)
-    database_handler.Reader(logger).reset_values() # Just resetting goals, bases and kills
-    database = database_handler.Reader(logger)
-    planes = player.Plane(logger)
-    plane_positions = player.PlanePosition(logger)
-    players = player.Player(logger, planes)
-    planes.get_players_object(players)
-    command = commands.Commands(logger, players, port, commands_file)
-    teachers = permissions.Permissions(logger, command, players, server_mode)
-    players.get_commands_object(command)
-    start_map = start.Map(logger, command)
-    planes.get_commands_object(command)
-    playerInfoHandler = playerinfo_handler.Handler(logger, command, planes, players)
-    game_info = game.Game(logger, players, planes, plane_positions, command, database)
-    logs = log.Log(logger, logs_file, old_logs, logs_archive, start_map, command, database, players, plane_positions,
-                   planes, playerInfoHandler, game_info, teachers)
-    game_info.get_logs_object(logs)
-    players.get_game_object(game_info)
-    logger.info('Mod started')
-    logs.Main()
+
+    def run(self):
+        self.logs = log.Log(self.logger, self.logs_file, self.old_logs, self.logs_archive, self.start_map, self.command, self.database,
+                            self.players, self.plane_positions, self.planes, self.playerInfoHandler, self.game_info,
+                            self.teachers)
+        self.game_info.get_logs_object(self.logs)
+        self.players.get_game_object(self.game_info)
+        self.logger.info('Mod started')
+        self.logs.get_run_object(self)
+        self.logs.Main()
