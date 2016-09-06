@@ -11,6 +11,10 @@ class Commands:
             commands.write(cmd)
 
 
+    def aquote(self, nickname):
+        return nickname.replace('\\', '\\\\').replace('"', '\\"')
+
+
     def StartTournament(self):
         cmd = '{}startTournament\n'.format(self.console)
         self.write_command(cmd)
@@ -30,7 +34,7 @@ class Commands:
                                                                                         unit_time, block_type))
 
     def ChatBlock(self, nickname, block_type, duration, unit_time, reason):
-        cmd = "{}chatBlock {} {} {} {} {}\n".format(self.console, nickname, block_type, duration,
+        cmd = "{}chatBlock {} {} {} {} {}\n".format(self.console, self.aquote(nickname), block_type, duration,
                                                   unit_time, reason)
         self.write_command(cmd)
         self.logger.info("A chat block ban has been added to {} for {} {} in {}".format(nickname, duration,
@@ -44,13 +48,13 @@ class Commands:
 
 
     def Whisper(self, playerName, message):
-        cmd = '{}serverWhisper "{}" "{}"\n'.format(self.console, playerName, message)
+        cmd = '{}serverWhisper "{}" "{}"\n'.format(self.console, self.aquote(playerName), message)
         self.write_command(cmd)
 
 
     def Multiple_Whispers(self, playerName, messages):
         for arg in messages:
-            cmd = '{}serverWhisper "{}" "{}"\n'.format(self.console, playerName, arg)
+            cmd = '{}serverWhisper "{}" "{}"\n'.format(self.console, self.aquote(playerName), arg)
             self.write_command(cmd)
 
 
@@ -129,13 +133,13 @@ class Commands:
 
 
     def AssignTeam(self, playerName, team):
-        cmd = '{}assignTeam "{}" {}\n'.format(self.console, playerName, self.get_team(team))
+        cmd = '{}assignTeam "{}" {}\n'.format(self.console, self.aquote(playerName), self.get_team(team))
         self.write_command(cmd)
         self.logger.info("{} is moved to {} - (Non-tournament Mode)".format(playerName, team))
 
 
     def ModifyTournament(self, playerName, team):
-        cmd = '{}modifyTournament "{}" {}\n'.format(self.console, playerName, self.get_team(team))
+        cmd = '{}modifyTournament "{}" {}\n'.format(self.console, self.aquote(playerName), self.get_team(team))
         self.write_command(cmd)
         self.logger.info("{} is moved to {} - (Tournament Mode)".format(playerName, team))
 
@@ -144,7 +148,7 @@ class Commands:
         team_num = self.get_team(team)
         playerNames = [player[0] for player in self.players.players]
         for arg in playerNames:
-            cmd = '{}assignTeam "{}" {}\n'.format(self.console, arg, team_num)
+            cmd = '{}assignTeam "{}" {}\n'.format(self.console, self.aquote(arg), team_num)
             self.write_command(cmd)
         self.logger.info('Everyone in server is moved to {} - (Non-tournament Mode)'.format(team))
 
@@ -153,6 +157,6 @@ class Commands:
         team_num = self.get_team(team)
         playerNames = [player[0] for player in self.players.players]
         for arg in playerNames:
-            cmd = '{}modifyTournament "{}" {}\n'.format(self.console, arg, team_num)
+            cmd = '{}modifyTournament "{}" {}\n'.format(self.console, self.aquote(arg), team_num)
             self.write_command(cmd)
         self.logger.info('Everyone in server is moved to {} - (Tournament Mode)'.format(team))
