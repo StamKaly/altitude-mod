@@ -6,8 +6,8 @@ class Game:
         self.planePositions = plane_positions_object
         self.commands = commands_object
         self.database = database
-        self.current_mode = "lobby"
-        self.current_map = "sta"
+        self.current_mode = ""
+        self.current_map = ""
         self.best_in_ball = self.database.get_most_goals()
         self.best_in_football = self.database.get_most_f_goals()
         self.best_in_1dm = self.database.get_most_kills()
