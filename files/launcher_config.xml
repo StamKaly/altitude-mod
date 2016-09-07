@@ -12,6 +12,9 @@
         <String value="ball_tron" />
         <String value="lobby_sta" />
         <String value="tbd_kessler" />
+        <String value="ball_illumination"/>
+        <String value="ball_bricks"/>
+        <String value="ball_kessler"/>
         <String value="|1dm|" />
         <String value="|ball|" />
         <String value="|tbd|" />
