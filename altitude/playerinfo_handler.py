@@ -80,3 +80,7 @@ class Handler:
             plane_change, red_perk_change, green_perk_change, blue_perk_change, ace_change, level_change = add_or_check
             self.on_setup_change(nickname, plane_change, red_perk_change, green_perk_change, blue_perk_change,
                                  ace_change, level_change, plane, redPerk, greenPerk, bluePerk, ace, level)
+
+#TODO: Make mod understand when players are using random:
+#red perk on custom random: Config Random Red
+#red perk on full random: Random Red

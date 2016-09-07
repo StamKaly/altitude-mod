@@ -101,6 +101,8 @@ class Run:
                 self.command.PlaneScale(100)
                 self.command.Gravity("nothing")
                 self.command.Message("Insane mode deactivated")
+        elif command == "myStats":
+            self.command.Whisper(self.players.nickname_from_vapor(sender), self.database.myStats(sender, argument))
 
 
 
@@ -137,8 +139,8 @@ class Run:
                                                              'Be the first one!'])
         elif self.game_info.current_mode == "lobby":
             self.command.Multiple_Whispers(nickname, ['This is the lobby, when there are 2 or more players here,',
-                                                         'use the command \\\"/match <gameMode>\\\" in the chat to',
-                                                         'start a vote for a new match! (Enter to open the chat)'])
+                                                      'use the command \\\"/match <gameMode>\\\" in the chat to',
+                                                      'start a new match! (Press Enter to open the chat)'])
         self.logger.info("{} is welcomed!".format(nickname))
 
 

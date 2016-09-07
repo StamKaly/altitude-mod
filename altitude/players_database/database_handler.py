@@ -183,3 +183,35 @@ class Reader:
             return self.best_in_tbd
         except ValueError:
             return []
+
+
+
+    def myStats(self, vaporId, mode):
+        if mode == "Ball":
+            self.cursor.execute("SELECT goals FROM Players WHERE vaporId = ?", (vaporId,))
+            (goals,) = self.cursor.fetchone()
+            if goals == 0:
+                return "You haven\\\'t scored any goals in Ball today."
+            else:
+                return "You have scored {} goals in Ball today!".format(goals)
+        elif mode == "Football":
+            self.cursor.execute("SELECT f_goals FROM Players WHERE vaporId = ?", (vaporId,))
+            (f_goals,) = self.cursor.fetchone()
+            if f_goals == 0:
+                return "You haven\\\'t scored any goals in Football today."
+            else:
+                return "You have scored {} goals in Football today!".format(f_goals)
+        elif mode == "1dm":
+            self.cursor.execute("SELECT kills FROM Players WHERE vaporId = ?", (vaporId,))
+            (kills,) = self.cursor.fetchone()
+            if kills == 0:
+                return "You haven\\\'t killed anyone in 1dm today."
+            else:
+                return "You have killed {} planes in 1dm today!".format(kills)
+        elif mode == "TBD":
+            self.cursor.execute("SELECT bases FROM Players WHERE vaporId = ?", (vaporId,))
+            (bases,) = self.cursor.fetchone()
+            if bases == 0:
+                return "You haven\\\'t destroyed any bases in TBD today."
+            else:
+                return "You have destroyed {} bases in TBD today!".format(bases)

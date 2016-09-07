@@ -78,7 +78,7 @@ class Game:
         elif self.current_mode == "lobby" and self.players.lobby_loaded is False:
             self.planes.messagesToSend = ['This is the lobby, when there are 2 or more players here,',
                                           'use the command \\\"/match <gameMode>\\\" in the chat to',
-                                          'start a vote for a new match! (Enter to open the chat)']
+                                          'start a new match! (Press Enter to open the chat)']
         else:
             self.players.lobby_loaded = False
 
@@ -111,13 +111,23 @@ class Game:
         if self.current_mode == "ball":
             if self.current_map != "football":
                 self.commands.Multiple_Messages(self.message_for_roundEnd_in_ball)
+                self.message_for_roundEnd_in_ball = []
             else:
                 self.commands.Multiple_Messages(self.message_for_roundEnd_in_football)
+                self.message_for_roundEnd_in_football = []
         elif self.current_mode == "1dm":
             self.commands.Multiple_Messages(self.message_for_roundEnd_in_1dm)
+            self.message_for_roundEnd_in_1dm = []
 
 
-    def on_goal(self, playerId):
+    def on_goal(self, playerId, assister, secondary_assister):
+        if assister >= 0 and secondary_assister >= 0:
+            scorer_nickname = self.players.nickname_from_id(playerId)
+            assister_name = self.players.nickname_from_id(assister)
+            secondary_assister_name = self.players.nickname_from_id(secondary_assister)
+            self.commands.Whisper(scorer_nickname, "Good teamwork!")
+            self.commands.Whisper(assister_name, "Good teamwork!")
+            self.commands.Whisper(secondary_assister_name, "Good teamwork!")
         if self.current_map != "football":
             nickname = self.players.nickname_from_id(playerId)
             self.logger.info("Player's ID who scored goal: {}, vapor: {}".format(playerId, self.players.vapor_from_id(playerId)))
@@ -126,15 +136,15 @@ class Game:
             database_most_goals = self.database.most_goals
             if len(database_best_in_ball) <= 1:
                 if self.best_in_ball != database_best_in_ball:
-                    self.message_for_roundEnd_in_ball = ["New player of the day in Ball:", "{} - {} Goals".format(nickname,
+                    self.message_for_roundEnd_in_ball = ["New player of the day in Ball:", "{} - {} Goals".format(self.commands.aquote(nickname),
                                                                                                 database_most_goals)]
-                    self.message_for_best_in_ball = ['Player of the day in Ball:', '{} - {} Goals'.format(nickname,
+                    self.message_for_best_in_ball = ['Player of the day in Ball:', '{} - {} Goals'.format(self.commands.aquote(nickname),
                                                                                                           database_most_goals)]
                 if self.best_in_ball == database_best_in_ball:
                     if self.most_goals != database_most_goals:
-                        self.message_for_roundEnd_in_ball = ["New record from {},".format(nickname), "the player of the day in Ball: {} Goals".format(
-                                                                                                                   database_most_goals)]
-                        self.message_for_best_in_ball = ['Player of the day in Ball:', '{} - {} Goals'.format(nickname,
+                        self.message_for_roundEnd_in_ball = ["New record from {},".format(self.commands.aquote(nickname)),
+                                                             "the player of the day in Ball: {} Goals".format(database_most_goals)]
+                        self.message_for_best_in_ball = ['Player of the day in Ball:', '{} - {} Goals'.format(self.commands.aquote(nickname),
                                                                                                               database_most_goals)]
             elif len(database_best_in_ball) > 1:
                 players = len(database_best_in_ball)
@@ -145,8 +155,8 @@ class Game:
                     self.message_for_roundEnd_in_ball.append("with {} Goals:".format(database_most_goals))
                     self.message_for_best_in_ball.append("Players of the day in Ball with {} Goals:".format(database_most_goals))
                     for number in range(players):
-                        self.message_for_roundEnd_in_ball.append("{}) {}".format(number+1, database_best_in_ball[number]))
-                        self.message_for_best_in_ball.append("{}) {}".format(number+1, database_best_in_ball[number]))
+                        self.message_for_roundEnd_in_ball.append("{}) {}".format(number+1, self.commands.aquote(database_best_in_ball[number])))
+                        self.message_for_best_in_ball.append("{}) {}".format(number+1, self.commands.aquote(database_best_in_ball[number])))
             self.best_in_ball = database_best_in_ball
             self.most_goals = database_most_goals
         elif self.current_map == "football":
@@ -159,16 +169,16 @@ class Game:
             if len(database_best_in_football) <= 1:
                 if self.best_in_football != database_best_in_football:
                     self.message_for_roundEnd_in_football = ["New player of the day in Football:",
-                                                         "{} - {} Goals".format(nickname,
+                                                         "{} - {} Goals".format(self.commands.aquote(nickname),
                                                                                 database_most_f_goals)]
-                    self.message_for_best_in_football = ['Player of the day in Football:', '{} - {} Goals'.format(nickname,
+                    self.message_for_best_in_football = ['Player of the day in Football:', '{} - {} Goals'.format(self.commands.aquote(nickname),
                                                                                                           database_most_f_goals)]
                 if self.best_in_football == database_best_in_football:
                     if self.most_f_goals != database_most_f_goals:
-                        self.message_for_roundEnd_in_football = ["New record from {},".format(nickname),
+                        self.message_for_roundEnd_in_football = ["New record from {},".format(self.commands.aquote(nickname)),
                                                              "the player of the day in Football: {} Goals".format(
                                                                  database_most_f_goals)]
-                        self.message_for_best_in_football = ['Player of the day in Football:', '{} - {} Goals'.format(nickname,
+                        self.message_for_best_in_football = ['Player of the day in Football:', '{} - {} Goals'.format(self.commands.aquote(nickname),
                                                                                                               database_most_f_goals)]
             elif len(database_best_in_football) > 1:
                 players = len(database_best_in_football)
@@ -182,8 +192,8 @@ class Game:
                         "Players of the day in Football with {} Goals:".format(database_most_f_goals))
                     for number in range(players):
                         self.message_for_roundEnd_in_football.append(
-                            "{}) {}".format(number + 1, database_best_in_football[number]))
-                        self.message_for_best_in_football.append("{}) {}".format(number + 1, database_best_in_football[number]))
+                            "{}) {}".format(number + 1, self.commands.aquote(database_best_in_football[number])))
+                        self.message_for_best_in_football.append("{}) {}".format(number + 1, self.commands.aquote(database_best_in_football[number])))
             self.best_in_football = database_best_in_football
             self.most_goals = database_most_f_goals
                 
@@ -198,15 +208,15 @@ class Game:
         database_most_bases_destroyed = self.database.most_bases_destroyed
         if len(database_best_in_tbd) <= 1:
             if self.best_in_tbd != database_best_in_tbd:
-                self.commands.Multiple_Messages(["New player of the day in TBD:", "{} - {} Bases Destroyed".format(nickname,
+                self.commands.Multiple_Messages(["New player of the day in TBD:", "{} - {} Bases Destroyed".format(self.commands.aquote(nickname),
                                                                                             database_most_bases_destroyed)])
-                self.message_for_best_in_tbd = ['Player of the day in TBD:', '{} - {} Bases Destroyed'.format(nickname,
+                self.message_for_best_in_tbd = ['Player of the day in TBD:', '{} - {} Bases Destroyed'.format(self.commands.aquote(nickname),
                                                                                                       database_most_bases_destroyed)]
             if self.best_in_tbd == database_best_in_tbd:
                 if self.most_bases_destroyed != database_most_bases_destroyed:
-                    self.commands.Multiple_Messages(["New record from {},".format(nickname), "the player of the day in TBD: {} Bases Destroyed".format(
-                                                                                                               database_most_bases_destroyed)])
-                    self.message_for_best_in_tbd = ['Player of the day in TBD:', '{} - {} Bases Destroyed'.format(nickname,
+                    self.commands.Multiple_Messages(["New record from {},".format(self.commands.aquote(nickname)),
+                                                     "the player of the day in TBD: {} Bases Destroyed".format(database_most_bases_destroyed)])
+                    self.message_for_best_in_tbd = ['Player of the day in TBD:', '{} - {} Bases Destroyed'.format(self.commands.aquote(nickname),
                                                                                                           database_most_bases_destroyed)]
         elif len(database_best_in_tbd) > 1:
             players = len(database_best_in_tbd)
@@ -217,8 +227,8 @@ class Game:
                 self.message_for_best_in_tbd.append(
                     "Players of the day in TBD with {} Bases Destroyed:".format(database_most_bases_destroyed))
                 for number in range(players):
-                    self.commands.Message("{}) {}".format(number + 1, database_best_in_tbd[number]))
-                    self.message_for_best_in_tbd.append("{}) {}".format(number + 1, database_best_in_tbd[number]))
+                    self.commands.Message("{}) {}".format(number + 1, self.commands.aquote(database_best_in_tbd[number])))
+                    self.message_for_best_in_tbd.append("{}) {}".format(number + 1, self.commands.aquote(database_best_in_tbd[number])))
         self.best_in_tbd = database_best_in_tbd
         self.most_bases_destroyed = database_most_bases_destroyed
 
@@ -235,16 +245,16 @@ class Game:
             database_most_kills = self.database.most_kills
             if len(database_best_in_1dm) <= 1:
                 if self.best_in_1dm != database_best_in_1dm:
-                    self.message_for_roundEnd_in_1dm = ["New player of the day in 1dm:", "{} - {} Kills".format(nickname,
+                    self.message_for_roundEnd_in_1dm = ["New player of the day in 1dm:", "{} - {} Kills".format(self.commands.aquote(nickname),
                                                                                                               database_most_kills)]
-                    self.message_for_best_in_1dm = ['Player of the day in 1dm:', '{} - {} Kills'.format(nickname,
+                    self.message_for_best_in_1dm = ['Player of the day in 1dm:', '{} - {} Kills'.format(self.commands.aquote(nickname),
                                                                                                           database_most_kills)]
                 if self.best_in_1dm == database_best_in_1dm:
                     if self.most_kills != database_most_kills:
-                        self.message_for_roundEnd_in_1dm = ["New record from {},".format(nickname),
+                        self.message_for_roundEnd_in_1dm = ["New record from {},".format(self.commands.aquote(nickname)),
                                                              "the player of the day in 1dm: {} Kills".format(
                                                                  database_most_kills)]
-                        self.message_for_best_in_1dm = ['Player of the day in 1dm:', '{} - {} Kills'.format(nickname,
+                        self.message_for_best_in_1dm = ['Player of the day in 1dm:', '{} - {} Kills'.format(self.commands.aquote(nickname),
                                                                                                               database_most_kills)]
             elif len(database_best_in_1dm) > 1:
                 players = len(database_best_in_1dm)
@@ -256,8 +266,8 @@ class Game:
                     self.message_for_best_in_1dm.append(
                         "Players of the day in 1dm with {} Kills:".format(database_most_kills))
                     for number in range(players):
-                        self.message_for_roundEnd_in_1dm.append("{}) {}".format(number + 1, database_best_in_1dm[number]))
-                        self.message_for_best_in_1dm.append("{}) {}".format(number + 1, database_best_in_1dm[number]))
+                        self.message_for_roundEnd_in_1dm.append("{}) {}".format(number + 1, self.commands.aquote(database_best_in_1dm[number])))
+                        self.message_for_best_in_1dm.append("{}) {}".format(number + 1, self.commands.aquote(database_best_in_1dm[number])))
             self.best_in_1dm = database_best_in_1dm
             self.most_kills = database_most_kills
 
@@ -273,6 +283,10 @@ class Game:
         if mapName != self.current_map:
             self.current_map = mapName
             self.on_map_change()
+        else:
+            self.on_map_change()
         if mode != self.current_mode:
             self.current_mode = mode
+            self.on_mode_change()
+        else:
             self.on_mode_change()
