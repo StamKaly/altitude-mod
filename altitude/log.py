@@ -54,7 +54,7 @@ class Log:
 
             # Scores
             elif type == "goal":
-                self.game.on_goal(self.decoded['player'])
+                self.game.on_goal(self.decoded['player'], self.decoded['assister'], self.decoded['secondaryAssister'])
 
             elif type == "structureDestroy" and self.decoded['target'] == 'base':
                 self.game.on_base_destroy(self.decoded['player'])
