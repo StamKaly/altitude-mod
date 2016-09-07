@@ -42,13 +42,13 @@ class Handler:
 
     def on_setup_change(self, nickname, plane, redPerk, greenPerk, bluePerk, ace, level, plane_name, redPerk_name,
                         greenPerk_name, bluePerk_name, ace_number, level_number):
-        if plane is True:
+        if plane is True and redPerk_name != "Config Random Red" and redPerk_name != "Random Red":
             self.on_planeChange(nickname, plane_name)
-        if redPerk is True:
+        if redPerk is True and redPerk_name != "Config Random Red" and redPerk_name != "Random Red":
             self.on_redPerkChange(nickname, redPerk_name)
-        if greenPerk is True:
+        if greenPerk is True and greenPerk_name != "Config Random Green" and greenPerk_name != "Random Green":
             self.on_greenPerkChange(nickname, greenPerk_name)
-        if bluePerk is True:
+        if bluePerk is True and bluePerk_name != "Config Random Blue" and bluePerk_name != "Random Blue":
             self.on_bluePerkChange(nickname, bluePerk_name)
         if ace is True:
             self.on_aceChange(nickname, ace_number)
@@ -80,7 +80,3 @@ class Handler:
             plane_change, red_perk_change, green_perk_change, blue_perk_change, ace_change, level_change = add_or_check
             self.on_setup_change(nickname, plane_change, red_perk_change, green_perk_change, blue_perk_change,
                                  ace_change, level_change, plane, redPerk, greenPerk, bluePerk, ace, level)
-
-#TODO: Make mod understand when players are using random:
-#red perk on custom random: Config Random Red
-#red perk on full random: Random Red

@@ -132,6 +132,10 @@ class Plane:
                 red_perk = sublist[2]
                 green_perk = sublist[3]
                 blue_perk = sublist[4]
+                if red_perk == "Config Random Red":
+                    return "Custom Random"
+                elif red_perk == "Random Red":
+                    return  "Full Random"
                 self.logger.info("Got and returning {}'s player info:\nPlane = {}, Red perk = {}, Green perk: {}, Blue perk: {}".format(nickname, plane, red_perk, green_perk, blue_perk))
                 return plane, red_perk, green_perk, blue_perk
 
@@ -290,5 +294,8 @@ class Player:
         return self.plane_object.get_level_and_ace(nickname)
 
     def get_planes(self, nickname):
-        plane, red_perk, green_perk, blue_perk = self.plane_object.get(nickname)
-        return "You are using a nice {} with {}, {} and ofc {}".format(plane, red_perk, green_perk, blue_perk)
+        try:
+            plane, red_perk, green_perk, blue_perk = self.plane_object.get(nickname)
+            return "You are using a nice {} with {}, {} and ofc {}".format(plane, red_perk, green_perk, blue_perk)
+        except ValueError:
+            return "You are {}".format(self.plane_object.get(nickname))
