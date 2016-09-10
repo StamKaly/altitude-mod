@@ -1,6 +1,8 @@
 import logging
+from ast import literal_eval
 from . import commands, log, player, playerinfo_handler, game, start, permissions
 from .players_database import database_handler
+from .config import change
 
 class Run:
     def __init__(self, port, commands_file, logs_file, old_logs, logs_archive, server_mode):
@@ -21,6 +23,7 @@ class Run:
         self.players = player.Player(self.logger, self.planes)
         self.planes.get_players_object(self.players)
         self.command = commands.Commands(self.logger, self.players, port, commands_file)
+        self.server_handler = change.Change(self.logger, self.command)
         self.teachers = permissions.Permissions(self.logger, self.command, self.players, server_mode)
         self.players.get_commands_object(self.command)
         self.start_map = start.Map(self.logger, self.command)
@@ -31,6 +34,7 @@ class Run:
                        self.players, self.plane_positions, self.planes, self.playerInfoHandler, self.game_info, self.teachers)
         self.game_info.get_logs_object(self.logs)
         self.players.get_game_object(self.game_info)
+        self.extraMessage = None
         self.logger.info('Mod started')
 
 
@@ -103,7 +107,21 @@ class Run:
                 self.command.Message("Insane mode deactivated")
         elif command == "myStats":
             self.command.Whisper(self.players.nickname_from_vapor(sender), self.database.myStats(sender, argument))
-
+        elif command == "restartServer":
+            self.server_handler.handle(True)
+        elif command == "addMap":
+            self.server_handler.addMap(self.players.nickname_from_vapor(sender), argument)
+        elif command == "removeMap":
+            self.server_handler.removeMap(self.players.nickname_from_vapor(sender), argument)
+        elif command == "addAdmin":
+            self.server_handler.addAdmin(self.players.nickname_from_vapor(sender), argument)
+        elif command == "removeAdmin":
+            self.server_handler.removeAdmin(self.players.nickname_from_vapor(sender), argument)
+        elif command == "addMessage":
+            if argument == "None":
+                self.extraMessage = None
+            else:
+                self.extraMessage = literal_eval(argument)
 
 
     def on_clientAdd(self):
@@ -141,6 +159,8 @@ class Run:
             self.command.Multiple_Whispers(nickname, ['This is the lobby, when there are 2 or more players here,',
                                                       'use the command \\\"/match <gameMode>\\\" in the chat to',
                                                       'start a new match! (Press Enter to open the chat)'])
+        if self.extraMessage is not None:
+            self.command.Multiple_Whispers(nickname, self.extraMessage)
         self.logger.info("{} is welcomed!".format(nickname))
 
 

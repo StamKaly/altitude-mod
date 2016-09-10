@@ -43,8 +43,15 @@ class Handler:
         # Special thanks to Nick for letting me know when do you unlock each perk/plane
         # and of course Xalri for making level changes tracking possible!
         if ace == 0:
+            # Ladder advertising :P
+            if level == 57:
+                self.commands.Multiple_Whispers(nickname, ["Once you reach level 60 make sure to check",
+                                                           "planeball.com/ranked/about to join the altitude",
+                                                           "community and experience your first high quality",
+                                                           "matches!"])
+
             # Green perks
-            if level == 2:
+            elif level == 2:
                 self.commands.Multiple_Whispers(nickname, ["You now have Rubberized Hull, or rubber for short,",
                                                            "it increases your acceleration as well as it makes it",
                                                            "easier for you to recover from Stalls!"])
