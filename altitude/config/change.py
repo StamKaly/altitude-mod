@@ -135,6 +135,7 @@ class Change:
             self.commands.Message("Server configuration was changed and the server will be restarted!")
         else:
             self.commands.Message("Restarting server...")
+        sleep(2) # Give it some time to send the messages
         chdir("..")
         call("./start.sh", shell=True)
         sleep(1000)
