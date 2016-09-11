@@ -67,7 +67,7 @@ class Change:
         elif mapFound is True:
             with open(self.maps, "w") as maps:
                 maps.write(newMaps)
-            self.commands.Whisper("{} has been removed!".format(removedMap))
+            self.commands.Whisper(sender, "{} has been removed!".format(removedMap))
             self.logger.info("{} removed {}".format(sender, removedMap))
             self.handle(False)
 
@@ -83,7 +83,7 @@ class Change:
                         return self.commands.Whisper(sender, "The guy you tried to add is already an admin!")
             with open(self.admins, "a") as admins_file:
                 admins_file.write("{}\n".format(vaporId))
-            self.commands.Whisper("The guy has been added as an admin!")
+            self.commands.Whisper(sender, "The guy has been added as an admin!")
             self.handle(False)
 
 
@@ -105,7 +105,7 @@ class Change:
             else:
                 with open(self.admins, "w") as admins_file:
                     admins_file.write(newAdmins)
-                self.commands.Whisper("The guy has been added as an admin!")
+                self.commands.Whisper(sender, "The guy has been added as an admin!")
                 self.handle(False)
 
 
