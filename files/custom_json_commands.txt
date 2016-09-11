@@ -11,7 +11,6 @@
 {"name":"extraMessage", "arguments":["string"], "voteThreshold":100}
 {"name":"viewChatLogs", "arguments":[], "voteThreshold":100}
 {"name":"veteranBars", "arguments":[], "voteThreshold":0}
-{"name":"goInsane", "arguments":[["True", "False"]], "argumentDescriptions":["mode"], "voteThreshold":100}
 {"name":"sta_setServerMode", "arguments":[["Newbies and Teachers", "Everyone"]], "argumentDescriptions":["Mode"], "voteThreshold":100}
 {"name":"sta_addTeacher", "arguments":["player"], "argumentDescriptions":["Nickname"], "voteThreshold":100}
 {"name":"sta_addTeacherWithVapor", "arguments":["string"], "argumentDescriptions":["VaporID"], "voteThreshold":100}
