@@ -1,5 +1,6 @@
 from requests import get
-from os import chdir, startfile
+from os import chdir
+from subprocess import call
 from time import sleep
 
 class Change:
@@ -128,5 +129,5 @@ class Change:
         else:
             self.commands.Message("Restarting server...")
         chdir("..")
-        startfile("start.sh")
+        call("./start.sh", shell=True)
         sleep(1000)
