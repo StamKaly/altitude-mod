@@ -116,7 +116,7 @@ class Change:
             name = "{New Players ST Academy}"
         if password is None:
             password = ""
-        start = '<?xml version="1.0" encoding="UTF-8"?>\n<ServerLauncherConfig ip="" upnpEnabled="true" updatePort="27275">\n  <servers>\n    <AltitudeServerConfig port="27279" downloadMaxKilobytesPerSecond="500" downloadHttpSource="" serverName="{}" maxPlayerCount="30" hardcore="true" autoBalanceTeams="false" preventTeamSwitching="true" disableBalanceTeamsPopup="true" lanServer="false" callEndOfRoundVote="true" disallowDemoUsers="false" rconEnabled="false" rconPassword="staftw" maxPing="1000" minLevel="0" maxLevel="0" secretCode="{}" cameraViewScalePercent="100">\n      <adminsByVaporID>\n'.format(self.quoteName(name), self.quoteName(password))
+        start = '<?xml version="1.0" encoding="UTF-8"?>\n<ServerLauncherConfig ip="" upnpEnabled="true" updatePort="27279">\n  <servers>\n    <AltitudeServerConfig port="27279" downloadMaxKilobytesPerSecond="500" downloadHttpSource="" serverName="{}" maxPlayerCount="30" hardcore="true" autoBalanceTeams="false" preventTeamSwitching="true" disableBalanceTeamsPopup="true" lanServer="false" callEndOfRoundVote="true" disallowDemoUsers="false" rconEnabled="false" rconPassword="staftw" maxPing="1000" minLevel="0" maxLevel="0" secretCode="{}" cameraViewScalePercent="100">\n      <adminsByVaporID>\n'.format(self.quoteName(name), self.quoteName(password))
         admins = ""
         maps = ""
         with open(self.admins) as admins_file:
