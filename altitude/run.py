@@ -53,7 +53,7 @@ class Run:
     def get_today_logs(self, requester):
         with open("./files/chat_logs.txt") as today_logs:
             for log in today_logs.readlines():
-                self.command.Whisper(requester, log)
+                self.command.Whisper(requester, log.replace("\n", ""))
 
 
 
