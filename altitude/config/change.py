@@ -17,7 +17,7 @@ class Change:
 
 
     def addMap(self, sender, _map_):
-        if _map_.startwith("http") is True and _map_.endswith(".altx") is True:
+        if _map_.startswith("http") is True and _map_.endswith(".altx") is True:
             response = get(_map_)
             name = _map_.split("/", _map_.count("/"))[_map_.count("/")]
             name_without_extension, _ = name.split(".")
@@ -33,7 +33,7 @@ class Change:
             self.commands.Whisper(sender, "{} has been downloaded!".format(name_without_extension))
             self.logger.info("{} has downloaded {}".format(sender, name_without_extension))
             self.handle(False)
-        elif _map_.startwith("|") is True and _map_.endswith("|") is True:
+        elif _map_.startswith("|") is True and _map_.endswith("|") is True:
             with open(self.maps) as maps_file:
                 for map in maps_file.readlines():
                     if _map_ == map:
