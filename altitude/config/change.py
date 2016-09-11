@@ -119,10 +119,10 @@ class Change:
         start = '<?xml version="1.0" encoding="UTF-8"?>\n<ServerLauncherConfig ip="" upnpEnabled="true" updatePort="27275">\n  <servers>\n    <AltitudeServerConfig port="27279" downloadMaxKilobytesPerSecond="500" downloadHttpSource="" serverName="{}" maxPlayerCount="30" hardcore="true" autoBalanceTeams="false" preventTeamSwitching="true" disableBalanceTeamsPopup="true" lanServer="false" callEndOfRoundVote="true" disallowDemoUsers="false" rconEnabled="false" rconPassword="staftw" maxPing="1000" minLevel="0" maxLevel="0" secretCode="{}" cameraViewScalePercent="100">\n      <adminsByVaporID>\n'.format(self.quoteName(name), self.quoteName(password))
         admins = ""
         maps = ""
-        with open(self.admins) as admins:
-            admin_vapors = admins.readlines()
-        with open(self.maps) as maps:
-            map_names = maps.readlines()
+        with open(self.admins) as admins_file:
+            admin_vapors = admins_file.readlines()
+        with open(self.maps) as maps_file:
+            map_names = maps_file.readlines()
         for admin in admin_vapors:
             admins += '        <UUID UUID="{}" />\n'.format(admin)
         for _map_ in map_names:
