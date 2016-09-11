@@ -6,8 +6,11 @@
 {"name":"removeMap", "arguments":["string"], "argumentDescriptions":["Map Name"], "voteThreshold":100}
 {"name":"removeAdmin", "arguments":["string"], "argumentDescriptions":["Vapor ID"], "voteThreshold":100}
 {"name":"restartServer", "arguments":[], "voteThreshold":100}
+{"name":"changeServerName", "arguments":["string"], "argumentDescriptions":["Server's name"], "voteThreshold":100}
+{"name":"changeServerPassword", "arguments":["string"], "argumentDescriptions":["Server's password"], "voteThreshold":100}
 {"name":"extraMessage", "arguments":["string"], "argumentDescriptions":["Messages list"], "voteThreshold":100}
 {"name":"viewChatLogs", "arguments":[], "voteThreshold":100}
+{"name":"veteranBars", "arguments":[], "voteThreshold":0}
 {"name":"goInsane", "arguments":[["True", "False"]], "argumentDescriptions":["mode"], "voteThreshold":100}
 {"name":"sta_setServerMode", "arguments":[["Newbies and Teachers", "Everyone"]], "argumentDescriptions":["Mode"], "voteThreshold":100}
 {"name":"sta_addTeacher", "arguments":["player"], "argumentDescriptions":["Nickname"], "voteThreshold":100}

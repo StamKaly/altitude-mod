@@ -133,6 +133,13 @@ class Run:
             self.command.Whisper(sender_nickname, self.database.myStats(sender, argument))
         elif command == "restartServer":
             self.server_handler.handle(True)
+        elif command == "changeServerName":
+            self.server_handler.handle(False, name = argument)
+        elif command == "changeServerPassword":
+            if argument == "None":
+                self.server_handler.handle(False)
+            else:
+                self.server_handler.handle(False, password = argument)
         elif command == "addMap":
             self.server_handler.addMap(sender_nickname, argument)
         elif command == "removeMap":
@@ -153,6 +160,13 @@ class Run:
                     self.command.Whisper(sender_nickname, "Invalid list syntax, try again!")
         elif command == "viewChatLogs":
             self.get_today_logs(sender_nickname)
+        elif command == "veteranBars":
+            self.command.Whisper(sender_nickname, ["These are bars that are displayed next to your plane that",
+                                                   "not only are a badge of honor but increase your plane's",
+                                                   "health, speed, turning, damage and energy. Each time you",
+                                                   "successfully earn 10 experience without dying you will",
+                                                   "earn one bar next to your plane. Each bar is equivalent to",
+                                                   "an increase of 2% of the previous mentioned categories."])
 
 
     def on_clientAdd(self):
