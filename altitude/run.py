@@ -161,7 +161,7 @@ class Run:
         elif command == "viewChatLogs":
             self.get_today_logs(sender_nickname)
         elif command == "veteranBars":
-            self.command.Whisper(sender_nickname, ["These are bars that are displayed next to your plane that",
+            self.command.Multiple_Whispers(sender_nickname, ["These are bars that are displayed next to your plane that",
                                                    "not only are a badge of honor but increase your plane's",
                                                    "health, speed, turning, damage and energy. Each time you",
                                                    "successfully earn 10 experience without dying you will",
