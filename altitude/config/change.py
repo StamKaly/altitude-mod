@@ -61,7 +61,7 @@ class Change:
                     continue
                 elif _map_ in map and mapFound is True:
                     return self.commands.Whisper(sender, "More than 1 result came in for {}. Be more specific!".format(_map_))
-                newMaps += "{}\n".format(map)
+                newMaps += map
         if mapFound is False:
             self.commands.Whisper(sender, "No maps matched with {}".format(_map_))
         elif mapFound is True:
@@ -99,7 +99,7 @@ class Change:
                     if admin == vaporId and adminFound is False:
                         adminFound = True
                         continue
-                    newAdmins += "{}\n".format(admin)
+                    newAdmins += admin
             if adminFound is False:
                 self.commands.Whisper(sender, "The guy you tried to remove is not an admin!")
             else:
