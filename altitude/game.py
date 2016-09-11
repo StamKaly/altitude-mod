@@ -8,6 +8,7 @@ class Game:
         self.database = database
         self.current_mode = ""
         self.current_map = ""
+        self.serverStarted = False
         self.best_in_ball = self.database.get_most_goals()
         self.best_in_football = self.database.get_most_f_goals()
         self.best_in_1dm = self.database.get_most_kills()
@@ -280,13 +281,18 @@ class Game:
         except ValueError:
             mode, mapName1, mapName2 = full_map.split("_")
             mapName = mapName1 + mapName2
-        if mapName != self.current_map:
-            self.current_map = mapName
-            self.on_map_change()
+        if self.serverStarted is True:
+            if mapName != self.current_map:
+                self.current_map = mapName
+                self.on_map_change()
+            else:
+                self.on_map_change()
+            if mode != self.current_mode:
+                self.current_mode = mode
+                self.on_mode_change()
+            else:
+                self.on_mode_change()
         else:
-            self.on_map_change()
-        if mode != self.current_mode:
             self.current_mode = mode
-            self.on_mode_change()
-        else:
-            self.on_mode_change()
+            self.current_map = mapName
+            self.serverStarted = True

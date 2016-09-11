@@ -56,23 +56,23 @@ class Handler:
                                                            "it increases your acceleration as well as it makes it",
                                                            "easier for you to recover from Stalls!"])
             elif level == 13:
-                self.commands.Multiple_Whispers(nickname, ["It's time for you to take rid of that rubber and equip",
+                self.commands.Multiple_Whispers(nickname, ["It\\\'s time for you to take rid of that rubber and equip",
                                                            "your vehicle with Heavy Armour! It protects you from",
                                                            "most damage taken. Simply press E once dead and click ",
                                                            "your plane to edit it!"])
             elif level == 30:
-                self.commands.Multiple_Whispers(nickname, ["You've just unlocked Repair Drone. Don't get too excited",
-                                                           "though, it's mostly useful only for Bomber!",
+                self.commands.Multiple_Whispers(nickname, ["You\\\'ve just unlocked Repair Drone. Don\\\'t get too excited",
+                                                           "though, it\\\'s mostly useful only for Bomber!",
                                                            "{}".format(self.pressE)])
             elif level == 50:
                 self.commands.Multiple_Whispers(nickname, ["You now have Flexible Wings, an",
                                                            "easy-to-use-hard-to-master perk. Makes you go faster",
-                                                           "and turn easier, but it's also easier to crash!",
+                                                           "and turn easier, but it\\\'s also easier to crash!",
                                                            "{}".format(self.pressE)])
 
             # Blue perks
             elif level == 8:
-                self.commands.Multiple_Whispers(nickname, ["You've unlocked your first and most useful Blue Perk!",
+                self.commands.Multiple_Whispers(nickname, ["You\\\'ve unlocked your first and most useful Blue Perk!",
                                                            "Turbo Charger increases your energy regeneration rate",
                                                            "by 20%. {}".format(self.pressE)])
 
@@ -87,7 +87,7 @@ class Handler:
                                                            "{}".format(self.pressE)])
 
             elif level == 60:
-                self.commands.Multiple_Whispers(nickname, ["You've unlocked Ace Instincts! You now are probably really",
+                self.commands.Multiple_Whispers(nickname, ["You\\\'ve unlocked Ace Instincts! You now are probably really",
                                                            "excited to see what that last perk is, it increases the",
                                                            "effects of the Veteran Bars by 50%. For Veteran Bars",
                                                            "explanation use the command /veteranBars"])
@@ -102,15 +102,15 @@ class Handler:
                                                            "The second line of planes allows you to have more setups"])
 
             elif level == 44:
-                self.commands.Multiple_Whispers(nickname, ["You've unlocked Acid Bomb for Loopy! It replaces EMP",
+                self.commands.Multiple_Whispers(nickname, ["You\\\'ve unlocked Acid Bomb for Loopy! It replaces EMP",
                                                            "and the affected plane will temporarily continue to lose",
                                                            "small amounts of health!"])
 
 
             # Bomber
             elif level == 6:
-                self.commands.Multiple_Whispers(nickname, ["You've unlocked Bomber! The Bomber is one of the two",
-                                                           "'heavy'-class planes and is a key instrument in",
+                self.commands.Multiple_Whispers(nickname, ["You\\\'ve unlocked Bomber! The Bomber is one of the two",
+                                                           "\\\'heavy\\\'-class planes and is a key instrument in",
                                                            "maintaining map control!"])
 
             elif level == 27:
@@ -129,19 +129,19 @@ class Handler:
             # Explodet
             elif level == 11:
                 self.commands.Multiple_Whispers(nickname, ["You just unlocked Explodet! Also known as whale.",
-                                                           "It has the most health of any plane and both it's",
+                                                           "It has the most health of any plane and both it\\\'s",
                                                            "primary and secondary weapons cause explosive damage."])
 
             elif level == 32:
                 self.commands.Multiple_Whispers(nickname, ["Congratulations! You have unlocked Thermobarics for",
                                                            "Explodet! It replaces the normal rocket and it lets",
-                                                           "you change the direction of the opponent's plane to",
+                                                           "you change the direction of the opponent\\\'s plane to",
                                                            "wherever you detonate the thermobaric rocket!"])
 
             elif level == 53:
                 self.commands.Multiple_Whispers(nickname, ["You have unlocked Remote Mine for Explodet! It",
                                                            "replaces the normal mine with a remote one and",
-                                                           "let's you detonate it whenever you want!"])
+                                                           "let\\\'s you detonate it whenever you want!"])
 
 
 
@@ -178,7 +178,7 @@ class Handler:
                 self.commands.Multiple_Whispers(nickname, ["Congratulations! You have unlocked Time Anchor for",
                                                            "Miranda! It replaces its secondary ability to turn back",
                                                            "with the ability to go your plane back to a position",
-                                                           "you've gone through!"])
+                                                           "you\\\'ve gone through!"])
 
 
 

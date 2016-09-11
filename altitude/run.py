@@ -5,10 +5,11 @@ from .players_database import database_handler
 from .config import change
 
 class Run:
-    def __init__(self, port, commands_file, logs_file, old_logs, logs_archive, server_mode):
+    def __init__(self, port, commands_file, logs_file, old_logs, logs_archive, chat_logs_location, server_mode):
         self.logs_file = logs_file
         self.old_logs = old_logs
         self.logs_archive = logs_archive
+        self.chat_logs = chat_logs_location
         self.logger = logging.getLogger()
         self.logger.setLevel(logging.DEBUG)
         formatter = logging.Formatter("%(asctime)s   -   %(levelname)s   -   %(message)s", "%d-%m-%Y, %H:%M:%S")
@@ -38,16 +39,39 @@ class Run:
         self.logger.info('Mod started')
 
 
+    def save_log(self, log):
+        with open("./files/chat_logs.txt", "a") as today_logs:
+            today_logs.write("{}\n".format(log))
+        with open(self.chat_logs, "a") as chat_logs:
+            chat_logs.write("{}\n".format(log))
+
+    def empty_today_logs(self):
+        with open("./files/chat_logs.txt", "w"):
+            pass
+
+
+    def get_today_logs(self, requester):
+        with open("./files/chat_logs.txt") as today_logs:
+            for log in today_logs.readlines():
+                self.command.Whisper(requester, log)
+
+
+
     def on_message(self):
-        if self.logs.decoded['message'] == "hello":
-            self.command.Message("Hello there, I am the server!")
-        elif self.logs.decoded['message'] == "soo server whats my plane?":
-            self.command.Message(self.players.get_planes(self.players.nickname_from_id(self.logs.decoded['player'])))
+        nickname = self.players.nickname_from_id(self.logs.decoded['player'])
+        message = self.logs.decoded['message']
+        server = self.logs.decoded['server']
+        teamChat = self.logs.decoded['team']
+        if server is False and teamChat is False:
+            self.save_log("{}: {}".format(self.command.aquote(nickname), message))
+        elif server is False and teamChat is True:
+            self.save_log("[Team] {}: {}".format(self.command.aquote(nickname), message))
         self.logger.info('Chat message "{}" was parsed'.format(self.logs.decoded['message']))
 
 
     def on_command(self):
         sender = self.logs.decoded['source']
+        sender_nickname = self.players.nickname_from_vapor(sender)
         command = self.logs.decoded['command']
         try:
             argument = self.logs.decoded['arguments'][0]
@@ -106,26 +130,34 @@ class Run:
                 self.command.Gravity("nothing")
                 self.command.Message("Insane mode deactivated")
         elif command == "myStats":
-            self.command.Whisper(self.players.nickname_from_vapor(sender), self.database.myStats(sender, argument))
+            self.command.Whisper(sender_nickname, self.database.myStats(sender, argument))
         elif command == "restartServer":
             self.server_handler.handle(True)
         elif command == "addMap":
-            self.server_handler.addMap(self.players.nickname_from_vapor(sender), argument)
+            self.server_handler.addMap(sender_nickname, argument)
         elif command == "removeMap":
-            self.server_handler.removeMap(self.players.nickname_from_vapor(sender), argument)
+            self.server_handler.removeMap(sender_nickname, argument)
         elif command == "addAdmin":
-            self.server_handler.addAdmin(self.players.nickname_from_vapor(sender), argument)
+            self.server_handler.addAdmin(sender_nickname, argument)
         elif command == "removeAdmin":
-            self.server_handler.removeAdmin(self.players.nickname_from_vapor(sender), argument)
-        elif command == "addMessage":
+            self.server_handler.removeAdmin(sender_nickname, argument)
+        elif command == "extraMessage":
             if argument == "None":
                 self.extraMessage = None
+                self.command.Whisper(sender_nickname, "There are now no extra messages!")
             else:
-                self.extraMessage = literal_eval(argument)
+                try:
+                    self.extraMessage = literal_eval(argument)
+                    self.command.Whisper(sender_nickname, "Extra message(s) are added!")
+                except ValueError:
+                    self.command.Whisper(sender_nickname, "Invalid list syntax, try again!")
+        elif command == "viewChatLogs":
+            self.get_today_logs(sender_nickname)
 
 
     def on_clientAdd(self):
         nickname = self.logs.decoded['nickname']
+        self.save_log("{} has joined the game.".format(self.command.aquote(nickname)))
         self.command.Whisper(nickname, "Welcome to STA! The place where you have real fun!")
         if self.game_info.current_mode == "ball":
             self.command.Whisper(nickname, "Press S to use the Ball or any other powerup.")

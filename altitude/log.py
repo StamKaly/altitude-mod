@@ -45,6 +45,7 @@ class Log:
                 self.getPositions = False
                 self.game.check_current_mode_and_map(self.decoded['map'])
                 self.planes.on_changeMap()
+                self.run.save_log("Map: {}".format(self.decoded['map']))
 
             elif type == "logPlanePositions":
                 self.planesPositions.add_or_check(self.decoded)
@@ -91,11 +92,14 @@ class Log:
             elif type == "clientRemove":
                 self.logger.info("Removing {}'s client from players and planes list".format(self.decoded['nickname']))
                 self.players.remove(self.decoded['nickname'])
+                self.run.save_log("{} has left the game.".format(self.commands.aquote(self.decoded['nickname'])))
             elif type == "clientNicknameChange":
                 self.logger.info("Changing {}'s nickname in players and planes list".format(self.decoded['oldNickname']))
                 self.players.nickname_change(self.decoded['oldNickname'], self.decoded['newNickname'])
                 self.database.on_nickname_change(self.decoded['oldNickname'], self.decoded['newNickname'])
                 self.permissions.on_nicknameChange(self.decoded['newNickname'])
+                self.run.save_log("[Nickname Changed] {} is now {}".format(self.commands.aquote(self.decoded['oldNickname']),
+                                                                           self.commands.aquote(self.decoded['newNickname'])))
             elif type == "playerInfoEv":
                 self.playerInfoHandler.parse(self.decoded)
             elif type == "spawn":
@@ -132,6 +136,7 @@ class Log:
             if GMT_time.tm_hour == 0 and GMT_time.tm_min == 0 and self.newDay is False:
                 self.newDay = True
                 self.game.reset_scores()
+                self.run.empty_today_logs()
             elif GMT_time.tm_hour == 0 and GMT_time.tm_min == 1 and self.newDay is True:
                 self.newDay = False
             if self.getPositions is True:
