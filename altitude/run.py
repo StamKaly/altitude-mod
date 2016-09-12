@@ -46,8 +46,8 @@ class Run:
             chat_logs.write("{}\n".format(log))
 
     def empty_today_logs(self):
-        with open("./files/chat_logs.txt", "w"):
-            pass
+        with open("./files/chat_logs.txt", "w") as logs:
+            logs.write("New Day\n")
 
 
     def get_today_logs(self, requester):
