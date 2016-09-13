@@ -30,6 +30,7 @@ class Permissions:
                 self.teachers.add_banned(nickname, vaporId)
                 self.commands.ChatBlock(nickname, "AllChat", 20, "forever",
                                         "Only teachers and unbanned players can now talk. Ask Stam for a probable reveal")
+        return permission
 
 
     def on_nicknameChange(self, newNickname):
