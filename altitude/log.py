@@ -79,9 +79,13 @@ class Log:
 
             # Players
             elif type == "clientAdd":
+                check = self.database.add_or_check(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['ip'])
+                if check == "troll":
+                    self.commands.ChangeServer(self.decoded['nickname'], "91.121.160.173:27276", "x")
+                    self.commands.AddBan(self.decoded['ip'], 20, "forever", "No trolls are allowed in this server, if you got bored you better stop playing rather than trolling.")
+                    return
                 self.logger.info("Adding {}'s client to players and planes list".format(self.decoded['nickname']))
                 self.players.add(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['player'], self.decoded['ip'])
-                self.database.add_or_check(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['ip'])
                 self.run.on_clientAdd()
                 self.permissions.on_clientAdd(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['level'], self.decoded['aceRank'])
             elif type == "logServerStatus":
@@ -116,7 +120,6 @@ class Log:
 
         except KeyError:
             self.logger.debug("Could not handle line {}: {}\nmaybe add functionality for it?\n".format(self.current_line+1, self.decoded))
-            pass
 
 
 

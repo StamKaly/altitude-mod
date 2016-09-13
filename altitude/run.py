@@ -26,6 +26,7 @@ class Run:
         self.command = commands.Commands(self.logger, self.players, port, commands_file)
         self.server_handler = change.Change(self.logger, self.command)
         self.teachers = permissions.Permissions(self.logger, self.command, self.players, server_mode)
+        self.players.get_perm_object(self.teachers)
         self.players.get_commands_object(self.command)
         self.start_map = start.Map(self.logger, self.command)
         self.planes.get_commands_object(self.command)

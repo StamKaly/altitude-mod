@@ -202,6 +202,9 @@ class Player:
     def get_commands_object(self, commands_object):
         self.commands = commands_object
 
+    def get_perm_object(self, permissions):
+        self.permissions = permissions
+
     def get_number_of_players(self):
         return len(self.players)
 
@@ -244,7 +247,8 @@ class Player:
         if len(self.players) == 0 and self.game.current_mode != "lobby":
             self.commands.ChangeMap("lobby_sta")
             self.lobby_loaded = True
-            self.logger.info("No-one is now in the server, map is changed to the lobby!")
+            self.permissions.state = True
+            self.logger.info("No-one is now in the server, map is changed to the lobbyand mode is set to teachers and newbies only!")
 
 
     def nickname_change(self, oldNickname, newNickname):

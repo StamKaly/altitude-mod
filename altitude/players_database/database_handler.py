@@ -24,9 +24,18 @@ class Reader:
         return False
 
 
+    def get_troller(self, IP):
+        self.cursor.execute("SELECT 1 FROM Players WHERE IP = ?", (IP,))
+        if len(self.cursor.fetchall()) > 1:
+            return True
+        return False
+
+
 
     def add_or_check(self, nickname, vaporId, IP):
         if self.get_existence(vaporId) is True:
+            if self.get_troller(IP) is True:
+                return "troll"
             self.cursor.execute("UPDATE Players SET nickname = ? WHERE vaporId = ?", (nickname, vaporId,))
             self.connection.commit()
             self.logger.info("{}'s nickname is updated in the database".format(nickname))
@@ -191,27 +200,27 @@ class Reader:
             self.cursor.execute("SELECT goals FROM Players WHERE vaporId = ?", (vaporId,))
             (goals,) = self.cursor.fetchone()
             if goals == 0:
-                return "You haven\\\'t scored any goals in Ball today."
+                return "You haven't scored any goals in Ball today."
             else:
                 return "You have scored {} goals in Ball today!".format(goals)
         elif mode == "Football":
             self.cursor.execute("SELECT f_goals FROM Players WHERE vaporId = ?", (vaporId,))
             (f_goals,) = self.cursor.fetchone()
             if f_goals == 0:
-                return "You haven\\\'t scored any goals in Football today."
+                return "You haven't scored any goals in Football today."
             else:
                 return "You have scored {} goals in Football today!".format(f_goals)
         elif mode == "1dm":
             self.cursor.execute("SELECT kills FROM Players WHERE vaporId = ?", (vaporId,))
             (kills,) = self.cursor.fetchone()
             if kills == 0:
-                return "You haven\\\'t killed anyone in 1dm today."
+                return "You haven't killed anyone in 1dm today."
             else:
                 return "You have killed {} planes in 1dm today!".format(kills)
         elif mode == "TBD":
             self.cursor.execute("SELECT bases FROM Players WHERE vaporId = ?", (vaporId,))
             (bases,) = self.cursor.fetchone()
             if bases == 0:
-                return "You haven\\\'t destroyed any bases in TBD today."
+                return "You haven't destroyed any bases in TBD today."
             else:
                 return "You have destroyed {} bases in TBD today!".format(bases)

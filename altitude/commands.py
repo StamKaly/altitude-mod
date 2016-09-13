@@ -26,15 +26,22 @@ class Commands:
         self.write_command(cmd)
         self.logger.info("Tournament is now stopped")
 
+
+    def AddBan(self, IP, duration, unit_time, reason):
+        ip, _ = IP.split(":")
+        cmd = '{}addBan {} {} {} "{}"\n'.format(self.console, ip, duration, unit_time, reason)
+        self.write_command(cmd)
+
+
     def AddChatBlock(self, vapor, block_type, duration, unit_time, reason):
-        cmd = "{}chatBlock {} {} {} {} {}\n".format(self.console, vapor, block_type, duration,
+        cmd = '{}addChatBlock {} {} {} {} "{}"\n'.format(self.console, vapor, block_type, duration,
                                                   unit_time, reason)
         self.write_command(cmd)
         self.logger.info("A chat block ban has been added to {} for {} {} in {}".format(vapor, duration,
                                                                                         unit_time, block_type))
 
     def ChatBlock(self, nickname, block_type, duration, unit_time, reason):
-        cmd = "{}chatBlock {} {} {} {} {}\n".format(self.console, self.aquote(nickname), block_type, duration,
+        cmd = '{}chatBlock {} {} {} {} "{}"\n'.format(self.console, self.aquote(nickname), block_type, duration,
                                                   unit_time, reason)
         self.write_command(cmd)
         self.logger.info("A chat block ban has been added to {} for {} {} in {}".format(nickname, duration,
@@ -45,6 +52,11 @@ class Commands:
         cmd = "{}removeChatBlock {} {}\n".format(self.console, vapor, block_type)
         self.write_command(cmd)
         self.logger.info("A chat block had been removed")
+
+
+    def ChangeServer(self, nickname, IP_port, secretCode):
+        cmd = "{}serverRequestPlayerChangeServer {} {} {}".format(self.console, self.aquote(nickname), IP_port, secretCode)
+        self.write_command(cmd)
 
 
     def Whisper(self, playerName, message):
