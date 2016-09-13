@@ -248,7 +248,7 @@ class Player:
             self.commands.ChangeMap("lobby_sta")
             self.lobby_loaded = True
             self.permissions.state = True
-            self.logger.info("No-one is now in the server, map is changed to the lobbyand mode is set to teachers and newbies only!")
+            self.logger.info("No-one is now in the server, map is changed to the lobby and mode is set to teachers and newbies only!")
 
 
     def nickname_change(self, oldNickname, newNickname):

@@ -41,7 +41,7 @@ class Commands:
                                                                                         unit_time, block_type))
 
     def ChatBlock(self, nickname, block_type, duration, unit_time, reason):
-        cmd = '{}chatBlock {} {} {} {} "{}"\n'.format(self.console, self.aquote(nickname), block_type, duration,
+        cmd = '{}chatBlock "{}" {} {} {} "{}"\n'.format(self.console, self.aquote(nickname), block_type, duration,
                                                   unit_time, reason)
         self.write_command(cmd)
         self.logger.info("A chat block ban has been added to {} for {} {} in {}".format(nickname, duration,
@@ -55,7 +55,7 @@ class Commands:
 
 
     def ChangeServer(self, nickname, IP_port, secretCode):
-        cmd = "{}serverRequestPlayerChangeServer {} {} {}".format(self.console, self.aquote(nickname), IP_port, secretCode)
+        cmd = '{}serverRequestPlayerChangeServer "{}" {} {}'.format(self.console, self.aquote(nickname), IP_port, secretCode)
         self.write_command(cmd)
 
 
