@@ -83,7 +83,7 @@ class Log:
                 check = self.database.add_or_check(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['ip'])
                 if check == "troll" and perm_check != "teacher" or perm_check != "unbanned":
                     self.commands.ChangeServer(self.decoded['nickname'], "91.121.160.173:27276", "x")
-                    self.commands.AddBan(self.decoded['ip'], 20, "forever", "No trolls are allowed in this server, if you got bored you better stop playing rather than trolling.")
+                    self.commands.AddBan(self.decoded['ip'], 20, "forever", "No trolls are allowed in this server, if you got bored you better stop playing rather than trolling. :)")
                     return
                 self.logger.info("Adding {}'s client to players and planes list".format(self.decoded['nickname']))
                 self.players.add(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['player'], self.decoded['ip'])
