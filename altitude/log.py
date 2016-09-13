@@ -81,11 +81,11 @@ class Log:
             elif type == "clientAdd":
                 perm_check = self.permissions.on_clientAdd(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['level'], self.decoded['aceRank'])
                 check = self.database.add_or_check(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['ip'])
-                print(perm_check)
-                if check == "troll" and perm_check != "teacher" or perm_check != "unbanned":
-                    self.commands.ChangeServer(self.decoded['nickname'], "91.121.160.173:27276", "x")
-                    self.commands.AddBan(self.decoded['ip'], 20, "forever", "No trolls are allowed in this server, if you got bored you better stop playing rather than trolling. :)")
-                    return
+                if check == "troll":
+                    if perm_check != "teacher" or perm_check != "unbanned":
+                        self.commands.ChangeServer(self.decoded['nickname'], "91.121.160.173:27276", "x")
+                        self.commands.AddBan(self.decoded['ip'], 20, "forever", "No trolls are allowed in this server, if you got bored you better stop playing rather than trolling. :)")
+                        return
                 self.logger.info("Adding {}'s client to players and planes list".format(self.decoded['nickname']))
                 self.players.add(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['player'], self.decoded['ip'])
                 self.run.on_clientAdd()
@@ -106,7 +106,10 @@ class Log:
                 self.run.save_log("[Nickname Changed] {} is now {}".format(self.commands.aquote(self.decoded['oldNickname']),
                                                                            self.commands.aquote(self.decoded['newNickname'])))
             elif type == "playerInfoEv":
-                self.playerInfoHandler.parse(self.decoded)
+                try:
+                    self.playerInfoHandler.parse(self.decoded)
+                except TypeError:
+                    return
             elif type == "spawn":
                 self.permissions.on_spawn(self.decoded['player'])
 

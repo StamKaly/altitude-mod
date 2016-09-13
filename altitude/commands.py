@@ -55,7 +55,7 @@ class Commands:
 
 
     def ChangeServer(self, nickname, IP_port, secretCode):
-        cmd = '{}serverRequestPlayerChangeServer "{}" {} {}'.format(self.console, self.aquote(nickname), IP_port, secretCode)
+        cmd = '{}serverRequestPlayerChangeServer "{}" {} {}\n'.format(self.console, self.aquote(nickname), IP_port, secretCode)
         self.write_command(cmd)
 
 
