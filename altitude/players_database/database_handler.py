@@ -31,19 +31,28 @@ class Reader:
         return False
 
 
+    def get_vapor_from_ip(self, IP):
+        ip = IP.split(":")[0]
+        self.cursor.execute("SELECT vaporId FROM Players WHERE ip = ?", (ip,))
+        (vaporId,) = self.cursor.fetchone()
+        return vaporId
 
-    def add_or_check(self, nickname, vaporId, IP):
+
+    def add_or_check(self, nickname, vaporId, IP, check):
+        ip = IP.split(":")[0]
         if self.get_existence(vaporId) is True:
-            if self.get_troller(IP) is True:
+            if check is True and self.get_troller(ip) is True:
                 return "troll"
             self.cursor.execute("UPDATE Players SET nickname = ? WHERE vaporId = ?", (nickname, vaporId,))
             self.connection.commit()
             self.logger.info("{}'s nickname is updated in the database".format(nickname))
             return "updated"
         else:
-            self.cursor.execute("INSERT INTO Players VALUES(?, ?, ?, 0, 0, 0, 0)", (nickname, vaporId, IP,))
+            self.cursor.execute("INSERT INTO Players VALUES(?, ?, ?, 0, 0, 0, 0)", (nickname, vaporId, ip,))
             self.connection.commit()
             self.logger.info("{} is added to the database".format(nickname))
+            if check is True and self.get_troller(ip) is True:
+                return "troll"
             return "added"
 
 

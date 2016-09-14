@@ -79,15 +79,16 @@ class Log:
 
             # Players
             elif type == "clientAdd":
-                perm_check = self.permissions.on_clientAdd(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['level'], self.decoded['aceRank'])
-                check = self.database.add_or_check(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['ip'])
+                self.permissions.on_clientAdd(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['level'], self.decoded['aceRank'])
+                check = self.database.add_or_check(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['ip'], True)
                 if check == "troll":
-                    if perm_check != "teacher" or perm_check != "unbanned":
+                    perm_check = self.permissions.get_permission(self.database.get_vapor_from_ip(self.decoded['ip']))
+                    if perm_check != "teacher" and perm_check != "unbanned":
                         self.commands.ChangeServer(self.decoded['nickname'], "91.121.160.173:27276", "x")
                         self.commands.AddBan(self.decoded['ip'], 20, "forever", "No trolls are allowed in this server, if you got bored you better stop playing rather than trolling. :)")
                         return
                 self.logger.info("Adding {}'s client to players and planes list".format(self.decoded['nickname']))
-                self.players.add(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['player'], self.decoded['ip'])
+                self.players.add(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['player'], self.decoded['ip'].split(":")[0])
                 self.run.on_clientAdd()
             elif type == "logServerStatus":
                 self.logger.info("Adding all clients in server to players list")

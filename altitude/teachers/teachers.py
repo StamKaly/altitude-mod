@@ -26,6 +26,16 @@ class Handler:
                 return True
         return False
 
+    def get_permission(self, vaporId):
+        if self.unbanned_check_existence(vaporId) is True:
+            return "unbanned"
+        elif self.banned_check_existence(vaporId) is True:
+            return "banned"
+        elif self.teachers_check_existence(vaporId) is True:
+            return "teacher"
+        else:
+            return None
+
 
     def update(self, nickname, vaporId):
         if self.unbanned_check_existence(vaporId) is True:

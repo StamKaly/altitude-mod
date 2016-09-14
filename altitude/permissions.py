@@ -9,6 +9,9 @@ class Permissions:
         self.teachers = teachers.Handler(logger)
 
 
+    def get_permission(self, vaporId):
+        return self.teachers.get_permission(vaporId)
+
     def on_spawn(self, playerId):
         if self.state is True:
             if self.teachers.teachers_check_existence(self.players.vapor_from_id(playerId)) is True:
