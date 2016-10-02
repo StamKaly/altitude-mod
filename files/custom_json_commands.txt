@@ -1,19 +1,25 @@
 {"name":"match", "arguments":[["Ball","TBD","1dm","Football"]], "argumentDescriptions":["gameMode"], "voteThreshold":0}
 {"name":"matchWithMap", "arguments":["map"], "argumentDescriptions":["mapName"], "voteThreshold":0}
 {"name":"myStats", "arguments":[["Ball", "1dm", "TBD", "Football"]], "argumentDescriptions":["gameMode"], "voteThreshold":0}
-{"name":"addMap", "arguments":["string"], "argumentDescriptions":["Map URL/Mode name"], "voteThreshold":100}
-{"name":"addAdmin", "arguments":["string"], "argumentDescriptions":["Vapor ID"], "voteThreshold":100}
-{"name":"removeMap", "arguments":["string"], "argumentDescriptions":["Map Name"], "voteThreshold":100}
-{"name":"removeAdmin", "arguments":["string"], "argumentDescriptions":["Vapor ID"], "voteThreshold":100}
-{"name":"restartServer", "arguments":[], "voteThreshold":100}
-{"name":"changeServerName", "arguments":["string"], "voteThreshold":100}
-{"name":"changeServerPassword", "arguments":["string"], "voteThreshold":100}
-{"name":"extraMessage", "arguments":["string"], "voteThreshold":100}
-{"name":"viewChatLogs", "arguments":[], "voteThreshold":100}
+{"name":"aM", "arguments":["string"], "argumentDescriptions":["Map URL/Mode name"], "voteThreshold":100}
+{"name":"aA", "arguments":["string"], "argumentDescriptions":["Vapor ID"], "voteThreshold":100}
+{"name":"rM", "arguments":["string"], "argumentDescriptions":["Map Name"], "voteThreshold":100}
+{"name":"rA", "arguments":["string"], "argumentDescriptions":["Vapor ID"], "voteThreshold":100}
+{"name":"rS", "arguments":[], "voteThreshold":100}
+{"name":"cSN", "arguments":["string"], "voteThreshold":100}
+{"name":"cSP", "arguments":["string"], "voteThreshold":100}
+{"name":"eM", "arguments":["string"], "voteThreshold":100}
+{"name":"vCL", "arguments":[], "voteThreshold":100}
 {"name":"veteranBars", "arguments":[], "voteThreshold":0}
-{"name":"sta_setServerMode", "arguments":[["Newbies and Teachers", "Everyone"]], "argumentDescriptions":["Mode"], "voteThreshold":100}
-{"name":"sta_addTeacherWithVapor", "arguments":["string"], "argumentDescriptions":["VaporID"], "voteThreshold":100}
-{"name":"sta_removeTeacherWithNickname", "arguments":["string"], "argumentDescriptions":["Partial Nickname"], "voteThreshold":100}
-{"name":"sta_removeBanWithNickname", "arguments":["string"], "argumentDescriptions":["Partial Nickname"], "voteThreshold":100}
-{"name":"sta_addBanWithVapor", "arguments":["string"], "argumentDescriptions":["VaporID"], "voteThreshold":100}
-{"name":"sta_listBans", "arguments":[], "voteThreshold":100}
+{"name":"sSM", "arguments":[["Newbies and Teachers", "Everyone"]], "argumentDescriptions":["Mode"], "voteThreshold":100}
+{"name":"aT", "arguments":["player"], "argumentDescriptions":["Nickname"], "voteThreshold":100}
+{"name":"aTWV", "arguments":["string"], "argumentDescriptions":["VaporID"], "voteThreshold":100}
+{"name":"rT", "arguments":["player"], "argumentDescriptions":["Nickname"], "voteThreshold":100}
+{"name":"rTWN", "arguments":["string"], "argumentDescriptions":["Partial Nickname"], "voteThreshold":100}
+{"name":"lT", "arguments":[], "voteThreshold":0}
+{"name":"rB", "arguments":["player"], "argumentDescriptions":["Nickname"], "voteThreshold":100}
+{"name":"rBWN", "arguments":["string"], "argumentDescriptions":["Partial Nickname"], "voteThreshold":100}
+{"name":"aB", "arguments":["player"], "argumentDescriptions":["Nickname"], "voteThreshold":100}
+{"name":"aBWV", "arguments":["string"], "argumentDescriptions":["VaporID"], "voteThreshold":100}
+{"name":"lB", "arguments":[], "voteThreshold":100}
+{"name":"lU", "arguments":[], "voteThreshold":100}
