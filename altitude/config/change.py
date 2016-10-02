@@ -79,7 +79,7 @@ class Change:
         else:
             with open(self.admins) as admins_file:
                 for admin in admins_file:
-                    if vaporId == admin:
+                    if vaporId == admin.strip():
                         return self.commands.Whisper(sender, "The guy you tried to add is already an admin!")
             with open(self.admins, "a") as admins_file:
                 admins_file.write("{}\n".format(vaporId))
@@ -96,7 +96,7 @@ class Change:
             newAdmins = ""
             with open(self.admins) as admins_file:
                 for admin in admins_file:
-                    if admin == vaporId and adminFound is False:
+                    if admin.strip() == vaporId and adminFound is False:
                         adminFound = True
                         continue
                     newAdmins += admin
@@ -105,7 +105,7 @@ class Change:
             else:
                 with open(self.admins, "w") as admins_file:
                     admins_file.write(newAdmins)
-                self.commands.Whisper(sender, "The guy has been added as an admin!")
+                self.commands.Whisper(sender, "The guy is not an admin anymore!")
                 self.handle(False)
 
 
