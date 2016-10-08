@@ -1,7 +1,7 @@
 class Main:
     def __init__(self):
         self.the_lobby = "/home/user/altitude-files/maps/lobby_sta.altx"
-        self.the_lobby2 = "/home/user/altitude/altitude-mod/files/lobby_sta.altx"
+        self.the_lobby2 = "/home/user/altitude/altitude-mod/files/maps/lobby/lobby_sta.altx"
         self.gamejar = "/home/user/altitude-files/game.jar"
         self.gamejar2 = "/home/user/altitude/altitude-mod/files/game.jar"
         self.server_config = "/home/user/altitude-files/servers/launcher_config.xml"
