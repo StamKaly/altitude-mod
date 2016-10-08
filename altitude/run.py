@@ -221,6 +221,7 @@ class Run:
             self.command.Multiple_Whispers(nickname, self.extraMessage)
         if self.logs.decoded['aceRank'] == 0 and self.logs.decoded['level'] <= 59:
             if self.started_match is False and self.game_info.current_mode == "lobby":
+                self.logger.info("Launching thread for starting a match!")
                 Thread(target = start_match, args = (self,), daemon = True)
             elif self.started_match is False:
                 self.started_match = True
