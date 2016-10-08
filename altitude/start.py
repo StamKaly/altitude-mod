@@ -9,6 +9,7 @@ class Map:
                           "ball_asteroids",
                           "ball_atmosphere",
                           "ball_bricks",
+                          "ball_canopy",
                           "ball_cave",
                           "ball_cavern",
                           "ball_channelpark",
