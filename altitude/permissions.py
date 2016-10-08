@@ -29,10 +29,10 @@ class Permissions:
     def on_clientAdd(self, nickname, vaporId, level, ace):
         permission = self.teachers.update(nickname, vaporId)
         if self.state is True:
-            if permission is None and ace > 0 and level >= 59:
+            if permission is None and ace > 0 and level > 59:
                 self.teachers.add_banned(nickname, vaporId)
                 self.commands.ChatBlock(nickname, "AllChat", 20, "forever",
-                                        "Only teachers and unbanned players can now talk. Ask Stam for a probable reveal")
+                                        "Only teachers, newbies and unbanned players can now talk. Ask Stam for a probable reveal")
         return permission
 
 

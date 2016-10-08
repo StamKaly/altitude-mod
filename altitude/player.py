@@ -205,6 +205,9 @@ class Player:
     def get_perm_object(self, permissions):
         self.permissions = permissions
 
+    def get_run_object(self, run_object):
+        self.run = run_object
+
     def get_number_of_players(self):
         return len(self.players)
 
@@ -248,6 +251,7 @@ class Player:
             self.commands.ChangeMap("lobby_sta")
             self.lobby_loaded = True
             self.permissions.state = True
+            self.run.started_match = False
             self.logger.info("No-one is now in the server, map is changed to the lobby and mode is set to teachers and newbies only!")
 
 

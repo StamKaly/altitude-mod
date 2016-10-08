@@ -1,8 +1,18 @@
 import logging
 from ast import literal_eval
+from threading import Thread
 from . import commands, log, player, playerinfo_handler, game, start, permissions
 from .players_database import database_handler
 from .config import change
+
+
+def start_match(run):
+    from time import sleep
+    from random import choice
+    run.command.Message("Starting match...")
+    sleep(2)
+    choice([run.start_map.ball, run.start_map.tbd])()
+
 
 class Run:
     def __init__(self, port, commands_file, logs_file, old_logs, logs_archive, chat_logs_location, server_mode):
@@ -17,8 +27,8 @@ class Run:
         fh.setLevel(logging.DEBUG)
         fh.setFormatter(formatter)
         self.logger.addHandler(fh)
-        database_handler.Reader(self.logger).reset_values()  # Just resetting goals, bases and kills
         self.database = database_handler.Reader(self.logger)
+        self.database.reset_values() # Just resetting goals, bases and kills
         self.planes = player.Plane(self.logger)
         self.plane_positions = player.PlanePosition(self.logger)
         self.players = player.Player(self.logger, self.planes)
@@ -37,6 +47,7 @@ class Run:
         self.game_info.get_logs_object(self.logs)
         self.players.get_game_object(self.game_info)
         self.extraMessage = None
+        self.started_match = False
         self.logger.info('Mod started')
 
 
@@ -208,6 +219,11 @@ class Run:
                                                       'start a new match! (Press Enter to open the chat)'])
         if self.extraMessage is not None:
             self.command.Multiple_Whispers(nickname, self.extraMessage)
+        if self.logs.decoded['aceRank'] == 0 and self.logs.decoded['level'] <= 59:
+            if self.started_match is False and self.game_info.current_mode == "lobby":
+                Thread(target = start_match, args = (self,), daemon = True)
+            elif self.started_match is False:
+                self.started_match = True
         self.logger.info("{} is welcomed!".format(nickname))
 
 
@@ -218,6 +234,7 @@ class Run:
                             self.teachers)
         self.game_info.get_logs_object(self.logs)
         self.players.get_game_object(self.game_info)
+        self.players.get_run_object(self)
         self.logger.info('Mod started')
         self.logs.get_run_object(self)
         self.logs.Main()

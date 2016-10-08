@@ -80,9 +80,9 @@ class Log:
             # Players
             elif type == "clientAdd":
                 self.permissions.on_clientAdd(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['level'], self.decoded['aceRank'])
-                check = self.database.add_or_check(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['ip'], True)
+                check = self.database.add_or_check(self.decoded['nickname'], self.decoded['vaporId'], self.decoded['ip'].split(":")[0], True)
                 if check == "troll":
-                    perm_check = self.permissions.get_permission(self.database.get_vapor_from_ip(self.decoded['ip']))
+                    perm_check = self.permissions.get_permission(self.database.get_vapor_from_ip(self.decoded['ip'].split(":")[0]))
                     if perm_check != "teacher" and perm_check != "unbanned":
                         self.commands.ChangeServer(self.decoded['nickname'], "91.121.160.173:27276", "x")
                         self.commands.AddBan(self.decoded['ip'], 20, "forever", "No trolls are allowed in this server, if you got bored you better stop playing rather than trolling. :)")
