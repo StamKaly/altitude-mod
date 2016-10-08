@@ -1,17 +1,10 @@
 import logging
 from ast import literal_eval
-from threading import Thread
+from time import sleep
+from random import choice
 from . import commands, log, player, playerinfo_handler, game, start, permissions
 from .players_database import database_handler
 from .config import change
-
-
-def start_match(run):
-    from time import sleep
-    from random import choice
-    run.command.Message("Starting match...")
-    sleep(2)
-    choice([run.start_map.ball, run.start_map.tbd])()
 
 
 class Run:
@@ -221,8 +214,9 @@ class Run:
             self.command.Multiple_Whispers(nickname, self.extraMessage)
         if self.logs.decoded['aceRank'] == 0 and self.logs.decoded['level'] <= 59:
             if self.started_match is False and self.game_info.current_mode == "lobby":
-                self.logger.info("Launching thread for starting a match!")
-                Thread(target = start_match, args = (self,), daemon = True)
+                self.command.Message("Starting match...")
+                sleep(2)
+                choice([self.start_map.ball, self.start_map.tbd])()
             elif self.started_match is False:
                 self.started_match = True
         self.logger.info("{} is welcomed!".format(nickname))

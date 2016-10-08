@@ -251,8 +251,9 @@ class Player:
             self.commands.ChangeMap("lobby_sta")
             self.lobby_loaded = True
             self.permissions.state = True
-            self.run.started_match = False
             self.logger.info("No-one is now in the server, map is changed to the lobby and mode is set to teachers and newbies only!")
+        if len(self.players) == 0:
+            self.run.started_match = False
 
 
     def nickname_change(self, oldNickname, newNickname):
