@@ -214,8 +214,9 @@ class Run:
             self.command.Multiple_Whispers(nickname, self.extraMessage)
         if self.logs.decoded['aceRank'] == 0 and self.logs.decoded['level'] <= 59:
             if self.started_match is False and self.game_info.current_mode == "lobby":
+                sleep(1)
                 self.command.Message("Starting match...")
-                sleep(3)
+                sleep(2)
                 choice([self.start_map.ball, self.start_map.tbd])()
                 self.started_match = True
         self.logger.info("{} is welcomed!".format(nickname))
