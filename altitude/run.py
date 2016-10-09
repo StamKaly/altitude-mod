@@ -217,7 +217,7 @@ class Run:
                 self.command.Message("Starting match...")
                 sleep(3)
                 choice([self.start_map.ball, self.start_map.tbd])()
-		self.started_match = True
+                self.started_match = True
         self.logger.info("{} is welcomed!".format(nickname))
 
 
