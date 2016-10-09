@@ -215,10 +215,9 @@ class Run:
         if self.logs.decoded['aceRank'] == 0 and self.logs.decoded['level'] <= 59:
             if self.started_match is False and self.game_info.current_mode == "lobby":
                 self.command.Message("Starting match...")
-                sleep(2)
+                sleep(3)
                 choice([self.start_map.ball, self.start_map.tbd])()
-            elif self.started_match is False:
-                self.started_match = True
+		self.started_match = True
         self.logger.info("{} is welcomed!".format(nickname))
 
 
