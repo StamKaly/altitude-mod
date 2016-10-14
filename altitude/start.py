@@ -19,6 +19,7 @@ class Map:
                           "ball_factory",
                           "ball_fracas",
                           "ball_funnelpark",
+                          "ball_galatea",
                           "ball_gliderpark",
                           "ball_greywar",
                           "ball_grotto",
@@ -98,3 +99,4 @@ class Map:
 
     def football(self):
         self.commands.ChangeMap("ball_football")
+

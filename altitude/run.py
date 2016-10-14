@@ -1,11 +1,8 @@
 import logging
 from ast import literal_eval
-from time import sleep
-from random import choice
 from . import commands, log, player, playerinfo_handler, game, start, permissions
 from .players_database import database_handler
 from .config import change
-
 
 class Run:
     def __init__(self, port, commands_file, logs_file, old_logs, logs_archive, chat_logs_location, server_mode):
@@ -20,8 +17,8 @@ class Run:
         fh.setLevel(logging.DEBUG)
         fh.setFormatter(formatter)
         self.logger.addHandler(fh)
+        database_handler.Reader(self.logger).reset_values()  # Just resetting goals, bases and kills
         self.database = database_handler.Reader(self.logger)
-        self.database.reset_values()  # Just resetting goals, bases and kills
         self.planes = player.Plane(self.logger)
         self.plane_positions = player.PlanePosition(self.logger)
         self.players = player.Player(self.logger, self.planes)
@@ -40,7 +37,6 @@ class Run:
         self.game_info.get_logs_object(self.logs)
         self.players.get_game_object(self.game_info)
         self.extraMessage = None
-        self.started_match = False
         self.logger.info('Mod started')
 
 
@@ -99,29 +95,29 @@ class Run:
                 self.command.ChangeMap(argument)
             else:
                 self.command.Message("2 or more players must be here to start a match!")
-        elif command == "sSM":  # sta_setServerMode
+        elif command == "sSM": # sta_setServerMode
             self.teachers.setServerMode(sender, argument)
-        elif command == "aT":  # sta_addTeacher
+        elif command == "aT": # sta_addTeacher
             self.teachers.addTeacher(sender, argument)
-        elif command == "aTWV":  # sta_addTeacherWithVapor
+        elif command == "aTWV": # sta_addTeacherWithVapor
             self.teachers.addTeacherWithVapor(sender, argument)
-        elif command == "rT":  # sta_removeTeacher
+        elif command == "rT": # sta_removeTeacher
             self.teachers.removeTeacher(sender, argument)
-        elif command == "rTWN":  # sta_removeTeacherWithNickname
+        elif command == "rTWN": # sta_removeTeacherWithNickname
             self.teachers.removeTeacherWithNickname(sender, argument)
-        elif command == "lT":  # sta_listTeachers
+        elif command == "lT": # sta_listTeachers
             self.teachers.listTeachers(sender)
-        elif command == "rB":  # sta_removeBan
+        elif command == "rB": # sta_removeBan
             self.teachers.removeBan(sender, argument)
-        elif command == "rBWN":  # sta_removeBanWithNickname
+        elif command == "rBWN": # sta_removeBanWithNickname
             self.teachers.removeBanWithNickname(sender, argument)
-        elif command == "aB":  # sta_addBan
+        elif command == "aB": # sta_addBan
             self.teachers.addBan(sender, argument)
-        elif command == "aBWV":  # sta_addBanWithVapor
+        elif command == "aBWV": # sta_addBanWithVapor
             self.teachers.addBanWithVapor(sender, argument)
-        elif command == "lB":  # sta_listBans
+        elif command == "lB": # sta_listBans
             self.teachers.listBans(sender)
-        elif command == "lU":  # sta_listUnbanned
+        elif command == "lU": # sta_listUnbanned
             self.teachers.listUnbanned(sender)
         elif command == "goInsane":
             if argument == "True":
@@ -136,24 +132,24 @@ class Run:
                 self.command.Message("Insane mode deactivated")
         elif command == "myStats":
             self.command.Whisper(sender_nickname, self.database.myStats(sender, argument))
-        elif command == "rS":  # restartServer
+        elif command == "rS": # restartServer
             self.server_handler.handle(True)
-        elif command == "cSN":  # changeServerName
-            self.server_handler.handle(False, name=argument)
-        elif command == "cSP":  # changeServerPassword
+        elif command == "cSN": # changeServerName
+            self.server_handler.handle(False, name = argument)
+        elif command == "cSP": # changeServerPassword
             if argument == "None":
                 self.server_handler.handle(False)
             else:
-                self.server_handler.handle(False, password=argument)
-        elif command == "aM":  # addMap
+                self.server_handler.handle(False, password = argument)
+        elif command == "aM": # addMap
             self.server_handler.addMap(sender_nickname, argument)
-        elif command == "rM":  # removeMap
+        elif command == "rM": # removeMap
             self.server_handler.removeMap(sender_nickname, argument)
-        elif command == "aA":  # addAdmin
+        elif command == "aA": # addAdmin
             self.server_handler.addAdmin(sender_nickname, argument)
-        elif command == "rA":  # removeAdmin
+        elif command == "rA": # removeAdmin
             self.server_handler.removeAdmin(sender_nickname, argument)
-        elif command == "eM":  # extraMessage
+        elif command == "eM": # extraMessage
             if argument == "None":
                 self.extraMessage = None
                 self.command.Whisper(sender_nickname, "There are now no extra messages!")
@@ -163,7 +159,7 @@ class Run:
                     self.command.Whisper(sender_nickname, "Extra message(s) are added!")
                 except ValueError:
                     self.command.Whisper(sender_nickname, "Invalid list syntax, try again!")
-        elif command == "vCL":  # viewChatLogs
+        elif command == "vCL": # viewChatLogs
             self.get_today_logs(sender_nickname)
         elif command == "veteranBars":
             self.command.Multiple_Whispers(sender_nickname, ["These are bars that are displayed next to your plane that",
@@ -212,13 +208,6 @@ class Run:
                                                       'start a new match! (Press Enter to open the chat)'])
         if self.extraMessage is not None:
             self.command.Multiple_Whispers(nickname, self.extraMessage)
-        if self.logs.decoded['aceRank'] == 0 and self.logs.decoded['level'] <= 59:
-            if self.started_match is False and self.game_info.current_mode == "lobby":
-                sleep(1)
-                self.command.Message("Starting match...")
-                sleep(2)
-                choice([self.start_map.ball, self.start_map.tbd])()
-                self.started_match = True
         self.logger.info("{} is welcomed!".format(nickname))
 
 
@@ -229,7 +218,6 @@ class Run:
                             self.teachers)
         self.game_info.get_logs_object(self.logs)
         self.players.get_game_object(self.game_info)
-        self.players.get_run_object(self)
         self.logger.info('Mod started')
         self.logs.get_run_object(self)
         self.logs.Main()

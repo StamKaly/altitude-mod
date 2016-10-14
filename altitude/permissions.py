@@ -210,3 +210,4 @@ class Permissions:
             number, messages = unban
             self.commands.Whisper(sender_nickname, "There are {} people unbanned:".format(number))
             self.commands.Multiple_Whispers(sender_nickname, messages)
+
