@@ -169,4 +169,5 @@ class Log:
                                     archive.write(old_logs)
                             remove(self.old_logs)
                             self.logger.info("Started parsing new logs file")
+            time.sleep(0.01)
 
